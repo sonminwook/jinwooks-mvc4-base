@@ -321,5 +321,10 @@ namespace MVC4Base.Models
 
 
         #endregion == 로그인한 사용자의 정보 생성 인증로그인 쿠키 & 사용자정보 세션 ==
+
+        public static void InsertVisitLog(string controllerName, string actionName)
+        {
+            
+        }
     }
 }
