@@ -12,6 +12,9 @@ namespace MVC4Base.Models
 {
     public class AuthManager
     {
+        /// <summary>
+        /// 세션에 있는 로그인 정보를 반환한다.
+        /// </summary>
         public static UserInfo UserInfomation 
         { 
             get 
@@ -91,6 +94,7 @@ namespace MVC4Base.Models
                 {
                     MakeLoginInfo(ds); // 사용자 정보 생성 (쿠키&세션)
 
+                    //아이디 기억여부
                     if (isSaveID)
                     {
                         if (!response.Cookies.AllKeys.Contains("EpSaveLoginID"))
