@@ -22,6 +22,10 @@ namespace MVC4Base.Filters
             //로그인정보를 확인하여 세션에 담는다.
             AuthManager.CheckLoginUser();
 
+            AuthManager.InsertVisitLog(
+                filterContext.ActionDescriptor.ControllerDescriptor.ControllerName
+              , filterContext.ActionDescriptor.ActionName);
+
             //익명로그인 속성이 없으면 로그인 체크후 로그인 페이지로 이동한다.
             int count = filterContext.ActionDescriptor.GetCustomAttributes(true)
                 .Where(n => n.GetType().ToString() == "System.Web.Mvc.AllowAnonymousAttribute").Count();
