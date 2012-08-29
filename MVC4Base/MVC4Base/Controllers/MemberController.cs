@@ -8,6 +8,9 @@ using MVC4Base.Filters;
 
 namespace MVC4Base.Controllers
 {
+    /// <summary>
+    /// 로그인 관련 컨트롤러
+    /// </summary>
     [InitUserInfo]
     public class MemberController : Controller
     {
@@ -64,7 +67,11 @@ namespace MVC4Base.Controllers
         }
 
 
-
+        /// <summary>
+        /// 페이지 이동 함수(로그인 페이지와 도메인이 같아야 이동)
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (!string.IsNullOrEmpty(returnUrl) && returnUrl.Contains(Request.Url.Authority))

@@ -12,12 +12,17 @@ namespace MVC4Base.Filters
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public class InitUserInfoAttribute : System.Web.Mvc.ActionFilterAttribute
     {
+        /// <summary>
+        /// 로그인 확인후 로그인 페이지로 이동여부
+        /// </summary>
         public string AuthorizeYN { get; set; }
 
         public override void OnActionExecuting(System.Web.Mvc.ActionExecutingContext filterContext)
         {
+            //로그인정보를 확인하여 세션에 담는다.
             AuthManager.CheckLoginUser();
 
+            //익명로그인 속성이 없으면 로그인 체크후 로그인 페이지로 이동한다.
             int count = filterContext.ActionDescriptor.GetCustomAttributes(true)
                 .Where(n => n.GetType().ToString() == "System.Web.Mvc.AllowAnonymousAttribute").Count();
             
