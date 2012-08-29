@@ -191,7 +191,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\MVC4Base.mdf" />
-    <Content Include="App_Data\MVC4Base_log.ldf">
+    <Content Include="App_Data\MVC4Base_log.LDF">
       <DependentUpon>MVC4Base.mdf</DependentUpon>
     </Content>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
