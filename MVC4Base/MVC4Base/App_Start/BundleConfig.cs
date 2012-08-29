@@ -38,6 +38,11 @@ namespace MVC4Base
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+
+            //네오플러스 자바스크립트 추가
+            bundles.Add(new ScriptBundle("~/bundles/Neoplus").Include(
+                        "~/Scripts/Common.js",
+                        "~/Scripts/NeoplusWebControl.js"));
         }
     }
 }
