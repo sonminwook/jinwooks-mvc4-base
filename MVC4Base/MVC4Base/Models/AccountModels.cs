@@ -59,8 +59,8 @@ namespace MVC4Base.Models
     public class LoginModel
     {
         [Required]
-        [Display(Name = "User name")]
-        public string UserName { get; set; }
+        [Display(Name = "User ID")]
+        public string UserID { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

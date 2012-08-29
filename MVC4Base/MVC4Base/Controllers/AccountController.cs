@@ -19,7 +19,9 @@ namespace MVC4Base.Controllers
     {
         //
         // GET: /Account/Login
-
+        /// <summary>
+        /// 로그인 페이지 이동시
+        /// </summary>
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -29,13 +31,15 @@ namespace MVC4Base.Controllers
 
         //
         // POST: /Account/Login
-
+        /// <summary>
+        /// 로그인 페이지에서 로그인 클릭시
+        /// </summary>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            if (ModelState.IsValid && WebSecurity.Login(model.UserID, model.Password, persistCookie: model.RememberMe))
             {
                 return RedirectToLocal(returnUrl);
             }
@@ -47,7 +51,10 @@ namespace MVC4Base.Controllers
 
         //
         // POST: /Account/LogOff
-
+        /// <summary>
+        /// 로그아웃 클릭시
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -59,7 +66,10 @@ namespace MVC4Base.Controllers
 
         //
         // GET: /Account/Register
-
+        /// <summary>
+        /// 등록페이지 이동시
+        /// </summary>
+        /// <returns></returns>
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -68,7 +78,11 @@ namespace MVC4Base.Controllers
 
         //
         // POST: /Account/Register
-
+        /// <summary>
+        /// 등록페이지에서 등록 클릭시
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]

@@ -86,14 +86,14 @@ namespace MVC4Base.Models
         /// 사용자 로그인 후 페이지 이동
         /// </summary>
         /// <param name="page">페이지객체</param>
-        /// <param name="objectID">사용자ID</param>
+        /// <param name="userID">사용자ID</param>
         /// <param name="password">비밀번호</param>
         /// <param name="isSaveID">아이디 저장여부</param>
         /// <param name="message">결과 메시지</param>
         /// <returns></returns>
-        public bool LoginAndRedirectFromLoginPage(Page page, string objectID, string password, bool isSaveID, out string message)
+        public bool LoginAndRedirectFromLoginPage(string userID, string password, bool isSaveID, out string message)
         {
-            bool result = Login(page, objectID, password, isSaveID, out message);
+            bool result = Login(userID, password, isSaveID, out message);
 
             if (result)
             {
@@ -104,13 +104,13 @@ namespace MVC4Base.Models
                 if (prevUrl.Contains("Login.aspx"))
                 {
                     //로그인 성공후 페이지로 이동한다.
-                    FormsAuthentication.SetAuthCookie(objectID, false);
+                    FormsAuthentication.SetAuthCookie(userID, false);
                     HttpContext.Current.Response.RedirectPermanent(FormsAuthentication.DefaultUrl);
                 }
                 else
                 {
                     //로그인 성공후 페이지로 이동한다.
-                    FormsAuthentication.RedirectFromLoginPage(objectID, false);
+                    FormsAuthentication.RedirectFromLoginPage(userID, false);
                 }
 
             }
@@ -134,15 +134,17 @@ namespace MVC4Base.Models
         /// 사용자 로그인
         /// </summary>
         /// <param name="page">페이지객체</param>
-        /// <param name="objectID">사용자ID</param>
+        /// <param name="userID">사용자ID</param>
         /// <param name="password">비밀번호</param>
         /// <param name="isSaveID">아이디 저장여부</param>
         /// <param name="processCode">결과 메시지</param>
         /// <returns></returns>
-        public bool Login(Page page, string objectID, string password, bool isSaveID, out string processCode)
+        public bool Login(string userID, string password, bool isSaveID, out string processCode)
         {
             string strProcessCode = string.Empty;
             processCode = string.Empty;
+            HttpRequest request = System.Web.HttpContext.Current.Request;
+            HttpRequest response = System.Web.HttpContext.Current.Request;
 
             DataSet ds = null;
             try
@@ -151,14 +153,14 @@ namespace MVC4Base.Models
 
                 Dac.UserInfo oClass = new Dac.UserInfo();
 
-                ds = oClass.GetUserInfo(objectID, password,
-                                             page.Request.UserHostAddress,
-                                             page.Request.UserAgent.ToString(),
-                                             page.Request.Browser.Id.ToString(),
-                                             page.Request.Browser.Version.ToString(),
+                ds = oClass.GetUserInfo(userID, password,
+                                             request.UserHostAddress,
+                                             request.UserAgent.ToString(),
+                                             request.Browser.Id.ToString(),
+                                             request.Browser.Version.ToString(),
                                              GetUserPlatform(),
-                                             page.Request.Browser.Cookies.ToString(),
-                                             page.Request.Browser.ActiveXControls.ToString(),
+                                             request.Browser.Cookies.ToString(),
+                                             request.Browser.ActiveXControls.ToString(),
                                              out strProcessCode);
 
                 if (string.IsNullOrEmpty(strProcessCode))
@@ -167,13 +169,13 @@ namespace MVC4Base.Models
 
                     if (isSaveID)
                     {
-                        page.Response.Cookies["EpSaveLoginID"].Value = objectID;
-                        page.Response.Cookies["EpSaveLoginID"].Expires = System.DateTime.Now.AddMonths(3); //3개월간 저장
+                        response.Cookies["EpSaveLoginID"].Value = userID;
+                        response.Cookies["EpSaveLoginID"].Expires = System.DateTime.Now.AddMonths(3); //3개월간 저장
                     }
                     else
                     {
-                        page.Response.Cookies["EpSaveLoginID"].Value = null;
-                        page.Response.Cookies["EpSaveLoginID"].Expires = System.DateTime.Now.AddDays(-1);
+                        response.Cookies["EpSaveLoginID"].Value = null;
+                        response.Cookies["EpSaveLoginID"].Expires = System.DateTime.Now.AddDays(-1);
                     }
 
                     // 로그인 성공
@@ -246,7 +248,7 @@ namespace MVC4Base.Models
                         userInfo.IsLoginUser = true;
                         if (!HttpContext.Current.User.Identity.IsAuthenticated)
                         {
-                            FormsAuthentication.SetAuthCookie(userInfo.ObjectID, false);
+                            FormsAuthentication.SetAuthCookie(userInfo.UserID, false);
                         }
                     }
                     else
@@ -262,7 +264,7 @@ namespace MVC4Base.Models
                             userInfo.IsLoginUser = true;
                             if (!HttpContext.Current.User.Identity.IsAuthenticated)
                             {
-                                FormsAuthentication.SetAuthCookie(userInfo.ObjectID, false);
+                                FormsAuthentication.SetAuthCookie(userInfo.UserID, false);
                             }
                         }
                     }
@@ -285,7 +287,7 @@ namespace MVC4Base.Models
 
             Hashtable hstParam = (Hashtable)System.Web.HttpContext.Current.Session["AuthManagerLoginInfo"];
 
-            userInfo.ObjectID = hstParam["User_ObjectID"].ToString();		    // 사용자ID 
+            userInfo.UserID = hstParam["User_UserID"].ToString();		    // 사용자ID 
             userInfo.UserName = hstParam["User_UserName"].ToString();	        // 사용자명  
             userInfo.Nickname = hstParam["User_Nickname"].ToString();           // 별명
             userInfo.LoginTime = hstParam["User_LoginTime"].ToString();	        // 로그인 시간 
@@ -295,7 +297,7 @@ namespace MVC4Base.Models
         /// <summary>
         /// 사용자 정보를 DB에서 읽어와서 다시 세션에 담는다.
         /// </summary>
-        private void ReSetUserInfo(string objectID, string loginTime, string userIP, out string processCode)
+        private void ReSetUserInfo(string userID, string loginTime, string userIP, out string processCode)
         {
             DataSet ds = null;
             Dac.UserInfo oUserInfo = null;
@@ -305,7 +307,7 @@ namespace MVC4Base.Models
                 ds = new DataSet();
                 oUserInfo = new Dac.UserInfo();
 
-                ds = oUserInfo.ReGetUserInfo(objectID, loginTime, userIP, out processCode);
+                ds = oUserInfo.ReGetUserInfo(userID, loginTime, userIP, out processCode);
 
                 if (string.IsNullOrEmpty(processCode))
                 {
@@ -357,7 +359,7 @@ namespace MVC4Base.Models
             }
 
             // 1.2 쿠키 값 입력
-            string strCookieValue = drw["ObjectID"].ToString() + "|" + drw["LoginTime"].ToString() + "|" + drw["LoginIP"].ToString();
+            string strCookieValue = drw["UserID"].ToString() + "|" + drw["LoginTime"].ToString() + "|" + drw["LoginIP"].ToString();
 
             // 1.3 암호화 클래스 생성
             Neoplus.Framework.Common.CryptoManager oCryptoManager = new Neoplus.Framework.Common.CryptoManager();
@@ -390,7 +392,7 @@ namespace MVC4Base.Models
             // 2.1 해쉬테이블 생성
             Hashtable hstParam = new Hashtable();
             // 2.2 해쉬테이블에 사용자 정보 입력
-            hstParam.Add("User_ObjectID", drw["ObjectID"].ToString());
+            hstParam.Add("User_UserID", drw["UserID"].ToString());
             hstParam.Add("User_Nickname", drw["Nickname"].ToString());
             hstParam.Add("User_UserName", drw["UserName"].ToString());
             hstParam.Add("User_LoginTime", drw["LoginTime"].ToString());
