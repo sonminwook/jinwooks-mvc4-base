@@ -4,10 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MVC4Base.Models;
+using MVC4Base.Filters;
 
 namespace MVC4Base.Controllers
 {
     [Authorize]
+    [InitUserInfo]
     public class MemberController : Controller
     {
         //
@@ -33,17 +35,30 @@ namespace MVC4Base.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            AuthManager manager = new AuthManager();
             string processCode = string.Empty;
-            if (manager.Login(model.UserID, model.Password, model.RememberMe, out processCode))
+            if (AuthManager.Login(model.UserID, model.Password, model.RememberMe, out processCode))
             {
                 return RedirectToLocal(returnUrl);
             }
 
-            // If we got this far, something failed, redisplay form
             ModelState.AddModelError("", "아이디 또는 비밀번호가 일치하지 않습니다.");
             return View(model);
         }
+
+        //
+        // POST: /Account/LogOff
+        /// <summary>
+        /// 로그아웃 클릭시
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LogOff()
+        {
+            AuthManager.Logout();
+            return RedirectToAction("Index", "Home");
+        }
+
 
 
         private ActionResult RedirectToLocal(string returnUrl)

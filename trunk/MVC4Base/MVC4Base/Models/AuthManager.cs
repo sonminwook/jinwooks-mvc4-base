@@ -12,52 +12,25 @@ namespace MVC4Base.Models
 {
     public class AuthManager
     {
-        protected UserInfo userInfo = new UserInfo();
+        public static UserInfo UserInfomation 
+        { 
+            get 
+            {
+                if(HttpContext.Current.Session["AuthManagerLoginInfo"] != null){
+                    return (UserInfo)System.Web.HttpContext.Current.Session["AuthManagerLoginInfo"];
+                 }else{
+                    return new UserInfo();
+                 }
+            }
+        }
 
         #region 로그인 관련 부분
-
-        /// <summary>
-        /// 로그인이 안된 사람은 로그인 페이지로 이동
-        /// </summary>
-        public void CheckAndRedirectToLoginPage()
-        {
-            if (!userInfo.IsLoginUser)
-            {
-                FormsAuthentication.SignOut();
-                FormsAuthentication.RedirectToLoginPage();
-            }
-        }
-
-        /// <summary>
-        /// 로그인이 안된 사람은 로그인 페이지로 이동
-        /// </summary>
-        /// <param name="extraQueryString">넘겨줄 파라미터</param>
-        public void CheckAndRedirectToLoginPage(string extraQueryString)
-        {
-            if (!userInfo.IsLoginUser)
-            {
-                FormsAuthentication.SignOut();
-                FormsAuthentication.RedirectToLoginPage(extraQueryString);
-            }
-        }
-
-        /// <summary>
-        /// 로그인이 안된 사람은 로그인 팝업 띄우기
-        /// </summary>
-        public void CheckAndLoginPopup(Page page)
-        {
-            if (!userInfo.IsLoginUser)
-            {
-                ScriptManager.RegisterClientScriptBlock(page, this.GetType(), "login", "Common.LoginPopup();", true);
-            }
-        }
-
 
         /// <summary>
         /// 사용자 플랫폼 가져오기
         /// </summary>
         /// <returns></returns>
-        public string GetUserPlatform()
+        public static string GetUserPlatform()
         {
             string strPlatform = string.Empty;
 
@@ -81,55 +54,6 @@ namespace MVC4Base.Models
             return strPlatform;
         }
 
-
-        /// <summary>
-        /// 사용자 로그인 후 페이지 이동
-        /// </summary>
-        /// <param name="page">페이지객체</param>
-        /// <param name="userID">사용자ID</param>
-        /// <param name="password">비밀번호</param>
-        /// <param name="isSaveID">아이디 저장여부</param>
-        /// <param name="message">결과 메시지</param>
-        /// <returns></returns>
-        public bool LoginAndRedirectFromLoginPage(string userID, string password, bool isSaveID, out string message)
-        {
-            bool result = Login(userID, password, isSaveID, out message);
-
-            if (result)
-            {
-                FormsAuthentication.SignOut();
-
-                string prevUrl = FormsAuthentication.GetRedirectUrl(HttpContext.Current.User.Identity.Name, false);
-
-                if (prevUrl.Contains("Login.aspx"))
-                {
-                    //로그인 성공후 페이지로 이동한다.
-                    FormsAuthentication.SetAuthCookie(userID, false);
-                    HttpContext.Current.Response.RedirectPermanent(FormsAuthentication.DefaultUrl);
-                }
-                else
-                {
-                    //로그인 성공후 페이지로 이동한다.
-                    FormsAuthentication.RedirectFromLoginPage(userID, false);
-                }
-
-            }
-
-
-            return result;
-        }
-
-        /// <summary>
-        /// 로그아웃 후 메인페이지로 이동
-        /// </summary>
-        public void LogoutAndRedirectToLoginPage()
-        {
-            Logout();
-            // 쿠키와 세션을 삭제한후 메인 페이지로 이동한다.
-            FormsAuthentication.SignOut();
-            FormsAuthentication.RedirectToLoginPage();
-        }
-
         /// <summary>
         /// 사용자 로그인
         /// </summary>
@@ -139,7 +63,7 @@ namespace MVC4Base.Models
         /// <param name="isSaveID">아이디 저장여부</param>
         /// <param name="processCode">결과 메시지</param>
         /// <returns></returns>
-        public bool Login(string userID, string password, bool isSaveID, out string processCode)
+        public static bool Login(string userID, string password, bool isSaveID, out string processCode)
         {
             string strProcessCode = string.Empty;
             processCode = string.Empty;
@@ -169,11 +93,19 @@ namespace MVC4Base.Models
 
                     if (isSaveID)
                     {
+                        if (!response.Cookies.AllKeys.Contains("EpSaveLoginID"))
+                        {
+                            response.Cookies.Add(new HttpCookie("EpSaveLoginID"));
+                        }
                         response.Cookies["EpSaveLoginID"].Value = userID;
                         response.Cookies["EpSaveLoginID"].Expires = System.DateTime.Now.AddMonths(3); //3개월간 저장
                     }
                     else
                     {
+                        if (!response.Cookies.AllKeys.Contains("EpSaveLoginID"))
+                        {
+                            response.Cookies.Add(new HttpCookie("EpSaveLoginID"));
+                        }
                         response.Cookies["EpSaveLoginID"].Value = null;
                         response.Cookies["EpSaveLoginID"].Expires = System.DateTime.Now.AddDays(-1);
                     }
@@ -197,7 +129,7 @@ namespace MVC4Base.Models
         /// <summary>
         /// 로그아웃
         /// </summary>
-        public void Logout()
+        public static void Logout()
         {
             // 쿠키 삭제
             if (!System.Web.HttpContext.Current.Request.IsLocal)
@@ -219,9 +151,9 @@ namespace MVC4Base.Models
         /// 로그인 체크
         /// </summary>
         /// <param name="pageRole"></param>
-        public void CheckLoginUser()
+        public static void CheckLoginUser()
         {
-            userInfo.LoginIP = HttpContext.Current.Request.UserHostAddress;
+            UserInfomation.LoginIP = HttpContext.Current.Request.UserHostAddress;
             // 1.1 쿠키가 있는지 체크한다.
             if (System.Web.HttpContext.Current.Request.Cookies["AuthManagerLoginInfo"] != null)
             {
@@ -244,11 +176,10 @@ namespace MVC4Base.Models
                     if (System.Web.HttpContext.Current.Session["AuthManagerLoginInfo"] != null)
                     {
                         // 세션에서 사용자 정보를 바인딩한다.
-                        SetUserInfo();
-                        userInfo.IsLoginUser = true;
+                        UserInfomation.IsLoginUser = true;
                         if (!HttpContext.Current.User.Identity.IsAuthenticated)
                         {
-                            FormsAuthentication.SetAuthCookie(userInfo.UserID, false);
+                            FormsAuthentication.SetAuthCookie(UserInfomation.UserID, false);
                         }
                     }
                     else
@@ -260,11 +191,10 @@ namespace MVC4Base.Models
                         if (string.IsNullOrEmpty(strProcessCode))
                         {
                             // 세션에 있는 사용자 정보를 바인딩한다.
-                            SetUserInfo();
-                            userInfo.IsLoginUser = true;
+                            UserInfomation.IsLoginUser = true;
                             if (!HttpContext.Current.User.Identity.IsAuthenticated)
                             {
-                                FormsAuthentication.SetAuthCookie(userInfo.UserID, false);
+                                FormsAuthentication.SetAuthCookie(UserInfomation.UserID, false);
                             }
                         }
                     }
@@ -278,26 +208,10 @@ namespace MVC4Base.Models
 
         #region == 로그인한 사용자의 정보 생성 인증로그인 쿠키 & 사용자정보 세션 ==
 
-
-        /// <summary>
-        /// 세션에서 사용자 정보를 바인딩한다.
-        /// </summary>
-        private void SetUserInfo()
-        {
-
-            Hashtable hstParam = (Hashtable)System.Web.HttpContext.Current.Session["AuthManagerLoginInfo"];
-
-            userInfo.UserID = hstParam["User_UserID"].ToString();		    // 사용자ID 
-            userInfo.UserName = hstParam["User_UserName"].ToString();	        // 사용자명  
-            userInfo.Nickname = hstParam["User_Nickname"].ToString();           // 별명
-            userInfo.LoginTime = hstParam["User_LoginTime"].ToString();	        // 로그인 시간 
-            userInfo.LoginIP = hstParam["User_LoginIP"].ToString();	            // 로그인 IP 
-        }
-
         /// <summary>
         /// 사용자 정보를 DB에서 읽어와서 다시 세션에 담는다.
         /// </summary>
-        private void ReSetUserInfo(string userID, string loginTime, string userIP, out string processCode)
+        private static void ReSetUserInfo(string userID, string loginTime, string userIP, out string processCode)
         {
             DataSet ds = null;
             Dac.UserInfo oUserInfo = null;
@@ -313,9 +227,6 @@ namespace MVC4Base.Models
                 {
                     // DataSet으로 사용자 정보가 담긴 세션을 만든다.
                     MakeSession(ds);
-
-                    // 사용자 정보를 다시 바인딩 한다.
-                    SetUserInfo();
                 }
             }
             finally
@@ -328,7 +239,7 @@ namespace MVC4Base.Models
         /// DB에서 로그인정보가 정확하면 사용자 정보로 로그인 쿠키와 세션을 생성해 준다.
         /// </summary>
         /// <param name="ds"></param>
-        private void MakeLoginInfo(DataSet ds)
+        private static void MakeLoginInfo(DataSet ds)
         {
             // 로그인 인증용 쿠키를 생성한다.
             MakeCookie(ds);
@@ -341,7 +252,7 @@ namespace MVC4Base.Models
         /// 로그인 인증용 쿠키를 만든다.
         /// </summary>
         /// <param name="ds"></param>
-        private void MakeCookie(DataSet ds)
+        private static void MakeCookie(DataSet ds)
         {
             DataRow drw = ds.Tables[0].Rows[0];
 
@@ -377,7 +288,7 @@ namespace MVC4Base.Models
         /// 사용자 정보를 담고 있는 세션을 만든다.
         /// </summary>
         /// <param name="ds"></param>
-        private void MakeSession(DataSet ds)
+        private static void MakeSession(DataSet ds)
         {
 
             DataRow drw = ds.Tables[0].Rows[0];
@@ -389,17 +300,16 @@ namespace MVC4Base.Models
                 System.Web.HttpContext.Current.Session.Remove("AuthManagerLoginInfo");
 
             // 2. 세션에 담을 정보를 바인딩 한다.
-            // 2.1 해쉬테이블 생성
-            Hashtable hstParam = new Hashtable();
-            // 2.2 해쉬테이블에 사용자 정보 입력
-            hstParam.Add("User_UserID", drw["UserID"].ToString());
-            hstParam.Add("User_Nickname", drw["Nickname"].ToString());
-            hstParam.Add("User_UserName", drw["UserName"].ToString());
-            hstParam.Add("User_LoginTime", drw["LoginTime"].ToString());
-            hstParam.Add("User_LoginIP", drw["LoginIP"].ToString());
+            UserInfo Info = new UserInfo();
+
+            Info.UserID = drw["UserID"].ToString();
+            Info.Nickname = drw["Nickname"].ToString();
+            Info.UserName = drw["UserName"].ToString();
+            Info.LoginTime = drw["LoginTime"].ToString();
+            Info.LoginIP = drw["LoginIP"].ToString();
 
             // 2.3 세션에 사용자 정보 해쉬테이블을 담는다.
-            System.Web.HttpContext.Current.Session["AuthManagerLoginInfo"] = hstParam;
+            System.Web.HttpContext.Current.Session["AuthManagerLoginInfo"] = Info;
 
             #endregion == 사용자 정보 세션 생성 ==
         }
