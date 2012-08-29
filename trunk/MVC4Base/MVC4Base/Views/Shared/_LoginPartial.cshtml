@@ -6,7 +6,7 @@
 {
     <text>
         Hello, @userInfo.UserID (@userInfo.UserName, @userInfo.LoginTime)!
-        @using (Html.BeginForm("LogOff", "Member", FormMethod.Post, new { id = "logoutForm" }))
+        @using (Html.BeginForm("LogOff", "Member", FormMethod.Post, new { id = "logoutForm"}))
         {
             @Html.AntiForgeryToken()
             <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>

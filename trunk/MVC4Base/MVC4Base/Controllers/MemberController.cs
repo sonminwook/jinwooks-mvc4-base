@@ -8,7 +8,6 @@ using MVC4Base.Filters;
 
 namespace MVC4Base.Controllers
 {
-    [Authorize]
     [InitUserInfo]
     public class MemberController : Controller
     {
@@ -18,7 +17,6 @@ namespace MVC4Base.Controllers
         /// <summary>
         /// 로그인 페이지 이동시
         /// </summary>
-        [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -31,7 +29,6 @@ namespace MVC4Base.Controllers
         /// 로그인 페이지에서 로그인 클릭시
         /// </summary>
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
@@ -56,14 +53,21 @@ namespace MVC4Base.Controllers
         public ActionResult LogOff()
         {
             AuthManager.Logout();
-            return RedirectToAction("Index", "Home");
+
+            string returnUrl = string.Empty;
+            if (Request.UrlReferrer != null)
+            {
+                returnUrl = Request.UrlReferrer.ToString();
+            }
+
+            return RedirectToLocal(returnUrl);
         }
 
 
 
         private ActionResult RedirectToLocal(string returnUrl)
         {
-            if (Url.IsLocalUrl(returnUrl))
+            if (!string.IsNullOrEmpty(returnUrl) && returnUrl.Contains(Request.Url.Authority))
             {
                 return Redirect(returnUrl);
             }
