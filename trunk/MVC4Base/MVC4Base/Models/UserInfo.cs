@@ -17,7 +17,7 @@ namespace MVC4Base.Models
     {
         public UserInfo()
         {
-            ObjectID = string.Empty;
+            UserID = string.Empty;
             UserName = string.Empty;
             Nickname = string.Empty;
             LoginTime = string.Empty;
@@ -33,7 +33,7 @@ namespace MVC4Base.Models
         /// <summary>
         ///  사용자ID 
         /// </summary>
-        public string ObjectID { get; set; } 
+        public string UserID { get; set; } 
         /// <summary>
         /// 사용자명      
         /// </summary>
