@@ -23,6 +23,10 @@ namespace MVC4Base.Models
             LoginTime = string.Empty;
             LoginIP = string.Empty;
             IsLoginUser = false;
+
+            CurrentMenuID = string.Empty;
+            MenuAuthList = new List<string>();
+            RoleList = new Dictionary<string, string>();
         }
 
 
@@ -54,6 +58,28 @@ namespace MVC4Base.Models
         /// 정상적인 로그인 유저인지 체크 
         /// </summary>
         public bool IsLoginUser { get; set; }
+
+        //사용자 권한 정보
+
+        /// <summary>
+        /// 현재 메뉴ID
+        /// </summary>
+        public string CurrentMenuID { get; set; }
+        /// <summary>
+        /// 메뉴 사용 권한
+        /// </summary>
+        public List<string> MenuAuthList { get; set; }
+        /// <summary>
+        /// 권한 그룹 정보(권한그룹ID, 권한그룹명)
+        /// </summary>
+        public Dictionary<string, string> RoleList { get; set; }
+        /// <summary>
+        /// 권한이 있는지 여부
+        /// </summary>
+        public bool HasAuthority(string AuthID)
+        {
+            return MenuAuthList.Contains(AuthID);
+        }
 
         #endregion == 맴버변수 로그인 사용자 정보 ==
 

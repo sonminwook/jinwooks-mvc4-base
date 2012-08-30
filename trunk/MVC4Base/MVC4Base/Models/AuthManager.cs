@@ -27,6 +27,16 @@ namespace MVC4Base.Models
             }
         }
 
+        /// <summary>
+        /// 로그인 정보를 변경합니다.
+        /// </summary>
+        /// <param name="userInfo"></param>
+        private static void ChangeUserInfomation(UserInfo userInfo)
+        {
+            /// 로그인 정보를 변경하려면 UserInfo 전체를 다시 할당해야합니다.
+            HttpContext.Current.Session["AuthManagerLoginInfo"] = userInfo;
+        }
+
         #region 로그인 관련 부분
 
         /// <summary>
@@ -206,6 +216,71 @@ namespace MVC4Base.Models
             }
         }
 
+        /// <summary>
+        /// 로그남기기
+        /// </summary>
+        public static void InsertVisitLog(string controllerName, string actionName)
+        {
+            HttpRequest request = System.Web.HttpContext.Current.Request;
+            HttpRequest response = System.Web.HttpContext.Current.Request;
+
+            Dac.UserInfo oClass = new Dac.UserInfo();
+
+            oClass.InsertVisitLog(string.Format("{0}_{1}",controllerName, actionName), 
+                            request.UserHostAddress,
+                            UserInfomation.UserID,
+                            request.UserAgent.ToString(),
+                            request.Browser.Id.ToString(),
+                            request.Browser.Version.ToString(),
+                            GetUserPlatform(),
+                            request.Browser.Cookies.ToString(),
+                            request.Browser.ActiveXControls.ToString());
+        }
+
+        /// <summary>
+        /// 권한 가져오기
+        /// </summary>
+        public static void CheckAuthority(string controllerName, string actionName)
+        {
+            var UserInfoTemp = UserInfomation;
+            UserInfoTemp.CurrentMenuID = string.Format("{0}_{1}", controllerName, actionName);
+
+            //로그인 한 사람만 권한 수집
+            if (UserInfomation.IsLoginUser)
+            {
+                DataSet ds = null;
+                Dac.UserInfo oUserInfo = null;
+
+                try
+                {
+                    ds = new DataSet();
+                    oUserInfo = new Dac.UserInfo();
+
+                    ds = oUserInfo.GetAuthority(UserInfomation.UserID, UserInfomation.CurrentMenuID);
+
+                    if (ds.Tables.Count > 1)
+                    {
+                        
+                        //권한그룹정보 수집
+                        foreach(DataRow row in ds.Tables[0].Rows){
+                            UserInfoTemp.RoleList.Add(row["RoleID"].ToString(), row["RoleName"].ToString());
+                        }
+                        //권한 수집
+                        foreach (DataRow row in ds.Tables[1].Rows)
+                        {
+                            UserInfoTemp.RoleList.Add(row["AuthorityID"].ToString(), row["AuthorityName"].ToString());
+                        }
+
+                        //변경사항 저장
+                        ChangeUserInfomation(UserInfoTemp);
+                    }
+                }
+                finally
+                {
+                    if (ds != null) ds.Dispose();
+                }
+            }
+        }
 
 
         #endregion 로그인 관련 부분
@@ -322,9 +397,6 @@ namespace MVC4Base.Models
 
         #endregion == 로그인한 사용자의 정보 생성 인증로그인 쿠키 & 사용자정보 세션 ==
 
-        public static void InsertVisitLog(string controllerName, string actionName)
-        {
-            
-        }
+
     }
 }

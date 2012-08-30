@@ -19,11 +19,16 @@ namespace MVC4Base.Filters
 
         public override void OnActionExecuting(System.Web.Mvc.ActionExecutingContext filterContext)
         {
-            //로그인정보를 확인하여 세션에 담는다.
+            //01. 로그인정보를 확인하여 세션에 담는다.
             AuthManager.CheckLoginUser();
 
+            //02. 로그를 남긴다.
             AuthManager.InsertVisitLog(
                 filterContext.ActionDescriptor.ControllerDescriptor.ControllerName
+              , filterContext.ActionDescriptor.ActionName);
+
+            //03. 권한을 수집한다.
+            AuthManager.CheckAuthority(filterContext.ActionDescriptor.ControllerDescriptor.ControllerName
               , filterContext.ActionDescriptor.ActionName);
 
             //익명로그인 속성이 없으면 로그인 체크후 로그인 페이지로 이동한다.
