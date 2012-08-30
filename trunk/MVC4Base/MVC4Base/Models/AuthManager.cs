@@ -224,6 +224,7 @@ namespace MVC4Base.Models
             }
 
             ChangeUserInfomation(UserInfoTemp);
+
         }
 
         /// <summary>
