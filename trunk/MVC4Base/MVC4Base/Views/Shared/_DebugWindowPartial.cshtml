@@ -1,0 +1,33 @@
+﻿@{
+    MVC4Base.Models.UserInfo userInfo = MVC4Base.Models.AuthManager.UserInfomation;   
+}
+
+        @{ if (Request.IsLocal){
+             
+            <div style="position: absolute; z-index: 100000000; bottom: 0; right: 0; background-color: #000000;
+                border: 1px solid #333333; color: #ffffff">
+                <div id="debugWindow" style="background-color: #ffffff; padding: 10px 10px 10px 10px;
+                    width: 700px; height: 500px; font-size: 10pt; display: none; text-align: left;
+                    overflow: scroll;">
+                    1. 로그인 정보<br />
+                    1) 사용자ID : @userInfo.UserID<br />
+                    2) 사용자이름 : @userInfo.UserName<br />
+                </div>
+                <input type="button" onclick="showDebugXml()" style="background-color: Black; color: white"
+                    value="열기"/>
+                |
+                <input type="button" onclick="hideDebugXml()" style="background-color: Black; color: white"
+                    value="닫기"/>
+                <script type="text/javascript">
+                    <!--
+                    function showDebugXml() {
+                        $('div[id="debugWindow"]').show(1, null);
+                    }
+                    function hideDebugXml() {
+                        $('div[id="debugWindow"]').hide(1, null);
+                    }
+                    // -->
+                </script>
+            </div>
+            }
+          }
