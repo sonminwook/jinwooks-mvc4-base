@@ -13,7 +13,7 @@
                     1) 사용자ID : @(userInfo.IsLoginUser ? userInfo.UserID : "Guest")<br />
                     2) 사용자이름 : @(userInfo.IsLoginUser ? userInfo.UserName : "손 님")<br />
                     3) 로그인한 시간 : @(userInfo.IsLoginUser ? userInfo.LoginTime : "로그인하지 않은 사용자")<br />
-                    3) 경과 시간 : @(userInfo.IsLoginUser ? string.Format("{0}분 경과", (DateTime.Now - DateTime.Parse(userInfo.LoginTime)).TotalMinutes.ToString("###,##0")) : "로그인하지 않은 사용자")<br />
+                    4) 경과 시간 : @(userInfo.IsLoginUser ? string.Format("{0}분 경과", (DateTime.Now - DateTime.Parse(userInfo.LoginTime)).TotalMinutes.ToString("###,##0")) : "로그인하지 않은 사용자")<br />
                 </div>
                 <input type="button" onclick="showDebugXml()" style="font-size:10pt;background-color: Black; color: white; height:30px;border:0 solid #ffffff"
                     value="열기"/>

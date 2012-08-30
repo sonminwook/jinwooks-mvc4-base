@@ -13,7 +13,7 @@ namespace MVC4Base.Models
     public class AuthManager
     {
         /// <summary>
-        /// 세션에 있는 로그인 정보를 반환한다.
+        /// 세션에 있는 로그인 정보를 반환한다.(변경불가!!)
         /// </summary>
         public static UserInfo UserInfomation 
         { 
@@ -167,7 +167,8 @@ namespace MVC4Base.Models
         /// <param name="pageRole"></param>
         public static void CheckLoginUser()
         {
-            UserInfomation.LoginIP = HttpContext.Current.Request.UserHostAddress;
+            var UserInfoTemp = UserInfomation;
+            UserInfoTemp.LoginIP = HttpContext.Current.Request.UserHostAddress;
             // 1.1 쿠키가 있는지 체크한다.
             if (System.Web.HttpContext.Current.Request.Cookies["AuthManagerLoginInfo"] != null)
             {
@@ -190,7 +191,7 @@ namespace MVC4Base.Models
                     if (System.Web.HttpContext.Current.Session["AuthManagerLoginInfo"] != null)
                     {
                         // 세션에서 사용자 정보를 바인딩한다.
-                        UserInfomation.IsLoginUser = true;
+                        UserInfoTemp.IsLoginUser = true;
                         if (!HttpContext.Current.User.Identity.IsAuthenticated)
                         {
                             FormsAuthentication.SetAuthCookie(UserInfomation.UserID, false);
@@ -205,15 +206,23 @@ namespace MVC4Base.Models
                         if (string.IsNullOrEmpty(strProcessCode))
                         {
                             // 세션에 있는 사용자 정보를 바인딩한다.
-                            UserInfomation.IsLoginUser = true;
+                            UserInfoTemp.IsLoginUser = true;
                             if (!HttpContext.Current.User.Identity.IsAuthenticated)
                             {
                                 FormsAuthentication.SetAuthCookie(UserInfomation.UserID, false);
                             }
                         }
                     }
+
+                    if ((DateTime.Now - DateTime.Parse(UserInfomation.LoginTime)).TotalMinutes > 0)
+                    {
+                    }
+
+                    
                 }
             }
+
+            ChangeUserInfomation(UserInfoTemp);
         }
 
         /// <summary>
@@ -270,9 +279,6 @@ namespace MVC4Base.Models
                         {
                             UserInfoTemp.RoleList.Add(row["AuthorityID"].ToString(), row["AuthorityName"].ToString());
                         }
-
-                        //변경사항 저장
-                        ChangeUserInfomation(UserInfoTemp);
                     }
                 }
                 finally
@@ -280,6 +286,9 @@ namespace MVC4Base.Models
                     if (ds != null) ds.Dispose();
                 }
             }
+
+            //변경사항 저장
+            ChangeUserInfomation(UserInfoTemp);
         }
 
 
