@@ -213,12 +213,6 @@ namespace MVC4Base.Models
                             }
                         }
                     }
-
-                    if ((DateTime.Now - DateTime.Parse(UserInfomation.LoginTime)).TotalMinutes > 0)
-                    {
-                    }
-
-                    
                 }
             }
 
