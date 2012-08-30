@@ -6,17 +6,19 @@
              
             <div style="position: absolute; z-index: 100000000; bottom: 0; right: 0; background-color: #000000;
                 border: 1px solid #333333; color: #ffffff">
-                <div id="debugWindow" style="background-color: #ffffff; padding: 10px 10px 10px 10px;
-                    width: 700px; height: 500px; font-size: 10pt; display: none; text-align: left;
+                <div id="debugWindow" style="background-color: #ffffff; color:Black; padding: 10px 10px 10px 10px;
+                    width: 500px; height: 500px; font-size: 10pt; display: none; text-align: left;
                     overflow: scroll;">
-                    1. 로그인 정보<br />
-                    1) 사용자ID : @userInfo.UserID<br />
-                    2) 사용자이름 : @userInfo.UserName<br />
+                    [로그인 정보]<br />
+                    1) 사용자ID : @(userInfo.IsLoginUser ? userInfo.UserID : "Guest")<br />
+                    2) 사용자이름 : @(userInfo.IsLoginUser ? userInfo.UserName : "손 님")<br />
+                    3) 로그인한 시간 : @(userInfo.IsLoginUser ? userInfo.LoginTime : "로그인하지 않은 사용자")<br />
+                    3) 경과 시간 : @(userInfo.IsLoginUser ? string.Format("{0}분 경과", (DateTime.Now - DateTime.Parse(userInfo.LoginTime)).TotalMinutes.ToString("###,##0")) : "로그인하지 않은 사용자")<br />
                 </div>
-                <input type="button" onclick="showDebugXml()" style="background-color: Black; color: white"
+                <input type="button" onclick="showDebugXml()" style="font-size:10pt;background-color: Black; color: white; height:30px;border:0 solid #ffffff"
                     value="열기"/>
                 |
-                <input type="button" onclick="hideDebugXml()" style="background-color: Black; color: white"
+                <input type="button" onclick="hideDebugXml()" style="font-size:10pt;background-color: Black; color: white; height:30px;border:0 solid #ffffff"
                     value="닫기"/>
                 <script type="text/javascript">
                     <!--
@@ -29,5 +31,5 @@
                     // -->
                 </script>
             </div>
-            }
+           }
           }
