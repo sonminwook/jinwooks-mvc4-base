@@ -5,16 +5,16 @@
 @if (userInfo.IsLoginUser)
 {
     <text>
-        Hello, @userInfo.UserID (@userInfo.UserName, @userInfo.LoginTime)!
+        어서오세요, @userInfo.UserName 님(@userInfo.UserID)!
         @using (Html.BeginForm("LogOff", "Member", FormMethod.Post, new { id = "logoutForm"}))
         {
             @Html.AntiForgeryToken()
-            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+            <a href="javascript:document.getElementById('logoutForm').submit()">로그아웃</a>
         }
     </text>
 } else {
     <ul>
-        <li>@Html.ActionLink("Register", "Register", "Member", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Member", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink("가입하기", "Register", "Member", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("로그인", "Login", "Member", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }
