@@ -168,6 +168,13 @@ namespace MVC4Base.Models
         public static void CheckLoginUser()
         {
             var UserInfoTemp = UserInfomation;
+
+            if (UserInfoTemp.UserID == string.Empty)
+            {
+                Logout();
+                return;
+            }
+
             UserInfoTemp.LoginIP = HttpContext.Current.Request.UserHostAddress;
             // 1.1 쿠키가 있는지 체크한다.
             if (System.Web.HttpContext.Current.Request.Cookies["AuthManagerLoginInfo"] != null)
