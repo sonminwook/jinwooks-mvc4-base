@@ -1,0 +1,39 @@
+﻿@charset "utf-8";
+
+.autoCompletionList
+{
+    margin: 0px;
+    background-color: inherit;
+    border: solid 1px buttonshadow;
+    overflow: auto;
+    text-align: left;
+    list-style-type: none;
+}
+
+.autoCompletionListItem
+{
+    padding: 1px;
+    background-color:inherit;
+}
+
+.autoCompletionListHighighte
+{
+    padding: 1px;
+    background-color: #ffff99;
+    color: Red;
+}
+
+ul,li
+{
+    margin:0;
+    padding:0;
+    border:none;    
+}
+
+.WB
+{
+    white-space:-moz-pre-wrap;
+    white-space:pre-wrap; 
+    white-space:-o-pre-wrap; 
+    word-break:break-all;
+}

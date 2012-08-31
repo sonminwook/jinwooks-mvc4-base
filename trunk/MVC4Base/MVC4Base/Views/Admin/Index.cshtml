@@ -2,28 +2,75 @@
     ViewBag.Title = "Home Page";
     Layout = "./_Layout.cshtml";
 }
-@section featured {
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>@ViewBag.Title.</h1>
-                <h2>@ViewBag.Message</h2>
-            </hgroup>
-            <p>
-                To learn more about ASP.NET MVC visit
-                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
-                If you have any questions about ASP.NET MVC visit
-                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
-            </p>
+<h3 style="margin-top:0;">개인정보</h3>
+      <table class="sub_table" cellspacing="0" cellpadding="0">
+      	<col width="15%" />
+      	<col width="" />
+      	<tr>
+        	<th class="list_le">사용자ID</th>
+          <td>test</td>
+       	</tr>
+      	<tr>
+        	<th class="list_le">사용자명</th>
+          <td>사용자명 <a href=""><img src="/Content/img/btn/btn_list_languages.gif" width="20" height="20" /></a></td>
+       	</tr>
+      	<tr>
+        	<th class="list_le">별명</th>
+          <td><input type="text" style="width:96%;" /></td>
+       	</tr>
+      	<tr>
+        	<th class="list_le">지역</th>
+          <td>서울</td>
+       	</tr>
+      	<tr>
+        	<th class="list_le">생년월일</th>
+          <td><input type="text" style="width:100px;" /><a href=""><img src="/Content/img/btn/btn_list_diary.gif" width="20" height="20" /></a></td>
+       	</tr>
+      	<tr>
+        	<th class="list_le">우편번호</th>
+          <td><input type="text" style="width:100px;" /><a href=""><img src="/Content/img/btn/btn_list_search.gif" width="20" height="20" /></a></td>
+       	</tr>
+      	<tr>
+        	<th class="list_le">주소</th>
+          <td><p><input type="text" style="width:96%;" /></p><p><input type="text" style="width:96%;" /></p></td>
+       	</tr>
+      	<tr>
+        	<th class="list_le">집전화</th>
+          <td>
+          	<input type="text" maxlength="3" style="width:40px;" /> -
+          	<input type="text" style="width:60px;" /> -
+            <input type="text" style="width:60px;" /></td>
+       	</tr>
+			</table>
+      <!--리스트 하단버튼영역,board.css-->
+      <div class="foot_btn">
+      	<div class="ri">
+        	<div class="btn"><a href=""><span><img src="/Content/img/btn/btn_save.gif" width="30" height="30" /></span><p>저장</p></a></div>
         </div>
-    </section>
-}
-<h3>We suggest the following:</h3>
-<ol class="round">
-    <li class="one">
-        <h5>Getting Started</h5>
-        관리자 페이지
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
-    </li>
-</ol>
+      </div>
+      <!--//리스트 하단버튼영역-->
+
+      <h3>비밀번호 수정</h3>
+      <table class="sub_table" cellspacing="0" cellpadding="0">
+      	<col width="15%" />
+      	<col width="" />
+        <tr>
+        	<th class="list_le">기존비밀번호</th>
+          <td><input type="password" style="width:200px;" /></td>
+				</tr>
+        <tr>
+        	<th class="list_le">새비밀번호</th>
+          <td><input type="password" style="width:200px;" /></td>
+				</tr>
+        <tr>
+        	<th class="list_le">새비밀번호 확인</th>
+          <td><input type="password" style="width:200px;" /></td>
+				</tr>
+			</table>
+      <!--리스트 하단버튼영역,board.css-->
+      <div class="foot_btn">
+      	<div class="ri">
+        	<div class="btn"><a href=""><span><img src="/Content/img/btn/btn_modify.gif" width="30" height="30" /></span><p>수정</p></a></div>
+        </div>
+      </div>
+      <!--//리스트 하단버튼영역-->

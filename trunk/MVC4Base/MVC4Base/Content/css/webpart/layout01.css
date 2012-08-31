@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+#WebPartContainer{width:610px;float:left}
+#imageArea{width:610px; height:134px; margin-bottom:10px; background:url(../../img/mainTitle01.jpg) no-repeat 0 0;}
+#pane_top{width:100%;display:none;}
+
+#pane_left{width:290px;float:left;}
+#pane_right{width:290px; float:right;}
+#pane_widget{width:166px; float:right;}
+
+#pane_bottom{width:100%;clear:both; display:none;}
+
+.paneChild {text-align:center; vertical-align:middle;}

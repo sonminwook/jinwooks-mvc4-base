@@ -1,0 +1,344 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/Content/css/default.css" rel="stylesheet" type="text/css">
+<link href="/Content/css/popup.css" rel="stylesheet" type="text/css">
+<link href="/Content/css/board.css" rel="stylesheet" type="text/css">
+<title>대한전선</title>
+</head>
+
+<body>
+<div class="pop_wrap">
+	<!--상단 타이틀영역-->
+  <div class="pop_title">
+  	<h1>관리자</h1>
+  </div>
+	<!--//상단 타이틀영역-->
+  
+	<!--콘텐츠 영역 감싸기--><!--style로 width와 height값 지정. div 안에 스크롤 생성. 전체 팝업창 크기는 width+20px/height+76px-->
+  <div class="pop_admin_wrap">
+    <!--왼쪽 트리메뉴-->
+    <div class="admin_left">
+    	<div class="pop_tree" style="height:600px;">
+    		<ul class="tree">
+					<li class="depth1">
+          	<a href="" class="depth1_on">1depth menu</a>
+            <!--2depth-->
+						<ul class="tree2">
+							<li class="depth2">
+              	<a href="">2depth menu</a>
+                <!--3depth-->
+								<ul class="tree3">
+									<li><a href="">3depth menu</a></li>
+									<li>
+                  	<a href="">3depth menu</a>
+										<!--4depth-->
+										<ul class="tree4">
+											<li><a href="">4depth menu</a></li>
+											<li class="depth3_end"><a href="">4depth menu</a></li>
+										</ul>
+										<!--//4depth-->
+									</li>
+									<li class="depth3_end"><a href="">3depth menu</a></li>
+								</ul>
+								<!--3depth-->
+              </li>
+							<li class="depth_end"><a href="">전략기획실</a></li>
+            </ul>
+            <!--//2depth-->
+         	</li>
+          <li class="depth1"><a href="">1depth menu</a></li>
+          <li class="depth1"><a href="">1depth menu</a></li>
+          <li class="depth1"><a href="">1depth menu</a></li>
+          <li class="depth1"><a href="">1depth menu</a></li>
+				</ul><!--//트리메뉴-->
+			</div>
+    </div>
+    <!--//왼쪽 트리메뉴-->
+    
+    <!--오른쪽 콘텐츠-->
+    <div class="admin_right">
+    	<div class="admin_cont">
+      
+      <!--타이틀, 네비게이터-->
+      <div class="sub_title">
+      	<h2>테스트결과관리</h2>
+      </div>
+    	<!--//타이틀, 네비게이터-->
+      
+      <!--상단버튼영역,board.css-->
+      <div class="top_btn">
+      	<div class="ri">
+        	<div class="btn_list"><a href=""><span><img src="/Content/img/btn/btn_top_inquiry.gif" width="23" height="20" /></span><p>조회</p></a></div>
+        </div>
+      </div>
+      <!--//상단버튼영역-->
+      
+      <!--조회조건 박스, board.css-->
+      <table class="box" cellspacing="0" cellpadding="0">
+  			<tr>
+    			<td class="box_t01"> </td>
+    			<td class="box_t02"> </td>
+    			<td class="box_t03"> </td>
+  			</tr>
+        <tr>
+    			<td class="box_le">&nbsp;</td>
+    			<td class="box_cen">
+          	<table class="box_cont" cellspacing="0" cellpadding="0">
+            	<col width="7%" />
+            	<col width="18%" />
+            	<col width="9%" />
+            	<col width="18%" />
+            	<col width="9%" />
+            	<col width="15%" />
+            	<col width="7%" />
+            	<col width="17%" />
+ 							<tr>
+    						<th>메뉴</th>
+    						<td><input type="text" style="width:86px;" /><a href=""><img src="/Content/img/btn/btn_list_search.gif" width="20" height="20" /></a></td>
+    						<th>사용자</th>
+    						<td><input type="text" style="width:86px;" /><a href=""><img src="/Content/img/btn/btn_list_search.gif" width="20" height="20" /></a></td>
+    						<th>요청구분</th>
+    						<td><select style="width:88px;"><option>전체</option></select></td>
+    						<th>요청일</th>
+    						<td><input type="text" style="width:50px;" /><input type="text" style="width:50px;" /></td>
+   						</tr>
+              <tr>
+    						<th>처리자</th>
+    						<td><input type="text" style="width:86px;" /><a href=""><img src="/Content/img/btn/btn_list_search.gif" width="20" height="20" /></a></td>
+    						<th>처리상태</th>
+    						<td><select style="width:88px;"><option>전체</option></select></td>
+    						<th>처리일</th>
+    						<td colspan="3"><input type="text" style="width:50px;" /><input type="text" style="width:50px;" /></td>
+    					</tr>
+						</table></td>
+    			<td class="box_ri">&nbsp;</td>
+  			</tr>
+        <tr>
+    			<td class="box_f01"> </td>
+    			<td class="box_f02"> </td>
+    			<td class="box_f03"> </td>
+  			</tr>
+			</table>
+      <!--//조회조건 박스-->
+      
+      <!--게시판 리스트-->
+      <table class="list" cellspacing="0" cellpadding="0">
+      	<col width="4%" />
+      	<col width="7%" />
+      	<col width="27%" />
+      	<col width="10%" />
+      	<col width="9%" />
+      	<col width="12%" />
+      	<col width="12%" />
+      	<col width="9%" />
+      	<col width="10%" />
+        <thead>
+        	<tr>
+          	<th class="list_le"><input type="checkbox" /></th>
+            <th>번호</th>
+            <th>메뉴</th>
+            <th>요청자</th>
+            <th>요청구분</th>
+            <th>요청일</th>
+            <th>처리일</th>
+            <th>처리상태</th>
+            <th>처리자</th>
+          </tr>
+        </thead>
+        <tfoot>
+        	<tr>
+        		<td colspan="9"> </td>
+          </tr>
+				</tfoot>
+        <tbody>
+        	<tr>
+    				<td class="list_le"><input type="checkbox" /></td>
+    				<td>10</td>
+    				<td><p><a href="">메뉴메뉴메뉴메뉴메뉴</a></p></td>
+    				<td>홍길동</td>
+    				<td>요청구분</td>
+    				<td>2010.08.30</td>
+    				<td>2010.08.30</td>
+    				<td><span class="txt_blue">완료</span></td>
+    				<td>홍길동</td>
+  				</tr>
+        	<tr class="tr_bg">
+    				<td class="list_le"><input type="checkbox" /></td>
+    				<td>10</td>
+    				<td><p><a href="">메뉴메뉴메뉴메뉴메뉴</a></p></td>
+    				<td>홍길동</td>
+    				<td>요청구분</td>
+    				<td>2010.08.30</td>
+    				<td>2010.08.30</td>
+    				<td><span class="txt_blue">완료</span></td>
+    				<td>홍길동</td>
+  				</tr>
+        	<tr>
+    				<td class="list_le"><input type="checkbox" /></td>
+    				<td>10</td>
+    				<td><p><a href="">메뉴메뉴메뉴메뉴메뉴</a></p></td>
+    				<td>홍길동</td>
+    				<td>요청구분</td>
+    				<td>2010.08.30</td>
+    				<td>2010.08.30</td>
+    				<td><span class="txt_blue">완료</span></td>
+    				<td>홍길동</td>
+  				</tr>
+        	<tr class="tr_bg">
+    				<td class="list_le"><input type="checkbox" /></td>
+    				<td>10</td>
+    				<td><p><a href="">메뉴메뉴메뉴메뉴메뉴</a></p></td>
+    				<td>홍길동</td>
+    				<td>요청구분</td>
+    				<td>2010.08.30</td>
+    				<td>2010.08.30</td>
+    				<td><span class="txt_blue">완료</span></td>
+    				<td>홍길동</td>
+  				</tr>
+        	<tr>
+    				<td class="list_le"><input type="checkbox" /></td>
+    				<td>10</td>
+    				<td><p><a href="">메뉴메뉴메뉴메뉴메뉴</a></p></td>
+    				<td>홍길동</td>
+    				<td>요청구분</td>
+    				<td>2010.08.30</td>
+    				<td>2010.08.30</td>
+    				<td><span class="txt_orange">진행중</span></td>
+    				<td>홍길동</td>
+  				</tr>
+        	<tr class="tr_bg">
+    				<td class="list_le"><input type="checkbox" /></td>
+    				<td>10</td>
+    				<td><p><a href="">메뉴메뉴메뉴메뉴메뉴</a></p></td>
+    				<td>홍길동</td>
+    				<td>요청구분</td>
+    				<td>2010.08.30</td>
+    				<td>2010.08.30</td>
+    				<td><span class="txt_blue">완료</span></td>
+    				<td>홍길동</td>
+  				</tr>
+        	<tr>
+    				<td class="list_le"><input type="checkbox" /></td>
+    				<td>10</td>
+    				<td><p><a href="">메뉴메뉴메뉴메뉴메뉴</a></p></td>
+    				<td>홍길동</td>
+    				<td>요청구분</td>
+    				<td>2010.08.30</td>
+    				<td>2010.08.30</td>
+    				<td><span class="txt_blue">완료</span></td>
+    				<td>홍길동</td>
+  				</tr>
+        	<tr class="tr_bg">
+    				<td class="list_le"><input type="checkbox" /></td>
+    				<td>10</td>
+    				<td><p><a href="">메뉴메뉴메뉴메뉴메뉴</a></p></td>
+    				<td>홍길동</td>
+    				<td>요청구분</td>
+    				<td>2010.08.30</td>
+    				<td>2010.08.30</td>
+    				<td><span class="txt_blue">완료</span></td>
+    				<td>홍길동</td>
+  				</tr>
+				</tbody>
+			</table>
+      <!--//게시판 리스트-->
+      
+      <!--페이지 리스트 버튼-->
+      <div class="list_btn">
+      	<div class="btn_left">총 <em>1,000</em>건(1/100Page)</div>
+        <div>
+        	<a href=""><img src="/Content/img/board/btn_front.gif" width="20" height="15" /></a>
+        	<a href=""><img src="/Content/img/board/btn_pre.gif" width="16" height="15" /></a>
+        	<a href="" class="list_btn_on">1</a>
+          <a href="">2</a>
+          <a href="">3</a>
+          <a href="">4</a>
+          <a href="">5</a>
+        	<a href=""><img src="/Content/img/board/btn_next.gif" width="16" height="15" /></a>
+        	<a href=""><img src="/Content/img/board/btn_end.gif" width="20" height="15" /></a>
+        </div>
+        <div class="btn_right">
+        	<span>목록</span><select><option>30</option></select>
+				</div>
+      </div>
+      <!--//페이지 리스트 버튼-->
+      
+      <h3>요청내역</h3>
+      <table class="sub_table" cellspacing="0" cellpadding="0">
+      	<col width="12%" />
+      	<col width="38%" />
+      	<col width="12%" />
+      	<col width="38%" />
+      	<tr>
+        	<th class="list_le">메뉴</th>
+          <td colspan="3">커뮤니티 > 공지사항</td>
+       	</tr>
+        <tr>
+        	<th class="list_le">URL</th>
+          <td><a href="">/Main/Board/BoardList.aspx</a></td>
+        	<th>Param</th>
+          <td>&nbsp;</td>
+				</tr>
+        <tr>
+        	<th class="list_le">요청자</th>
+          <td>&nbsp;</td>
+        	<th>요청일</th>
+          <td>2010.08.30</td>
+				</tr>
+       	<tr>
+        	<th class="list_le">요청내용</th>
+          <td colspan="3">요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용</td>
+       	</tr>
+       	<tr>
+        	<th class="list_le">오류내용</th>
+          <td colspan="3">&nbsp;</td>
+       	</tr>
+			</table>
+
+      <h3>처리내역</h3>
+      <table class="sub_table" cellspacing="0" cellpadding="0">
+      	<col width="12%" />
+      	<col width="38%" />
+      	<col width="12%" />
+      	<col width="38%" />
+        <tr>
+        	<th class="list_le">처리자</th>
+          <td><input type="text" style="width:200px;" /><a href=""><img src="/Content/img/btn/btn_list_search.gif" width="20" height="20" /></a></td>
+        	<th>처리일</th>
+          <td>&nbsp;</td>
+				</tr>
+        <tr>
+        	<th class="list_le">처리상태</th>
+          <td>&nbsp;</td>
+        	<th>처리구분</th>
+          <td><select style="width:200px;"><option>전체</option></select></td>
+				</tr>
+       	<tr>
+        	<th class="list_le">처리내용</th>
+          <td colspan="3">요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용요청내용</td>
+       	</tr>
+			</table>
+      <!--리스트 하단버튼영역,board.css-->
+      <div class="foot_btn">
+      	<div class="ri">
+        	<div class="btn"><a href=""><span><img src="/Content/img/btn/btn_cancel.gif" width="30" height="30" /></span><p>취소</p></a></div>
+        	<div class="btn"><a href=""><span><img src="/Content/img/btn/btn_save.gif" width="30" height="30" /></span><p>저장</p></a></div>
+        </div>
+      </div>
+      <!--//리스트 하단버튼영역-->
+    	</div>
+    </div>
+    <!--//오른쪽 콘텐츠-->
+  </div>
+  <!--//콘텐츠 영역 감싸기-->
+  
+  <!--하단 닫기 버튼-->
+  <div class="close">
+  	<a href=""><img src="/Content/img/btn/ko-kr/btn_close.gif" width="45" height="16" /></a>
+  </div>
+  <!--//하단 닫기 버튼-->
+</div>
+</body>
+</html>

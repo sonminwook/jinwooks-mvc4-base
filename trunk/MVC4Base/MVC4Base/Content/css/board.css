@@ -1,0 +1,99 @@
+@charset "utf-8";
+/*상+하단버튼영역 0708수정*/
+.top_btn{clear:both; width:100%; text-align:right; min-height:20px;_height:20px; margin:5px 0;}
+.foot_btn{clear:both; width:100%; position:relative; text-align:right; min-height:30px;_height:30px; margin:8px 0 5px 0;}
+.alert_btn{clear:both; padding:0;}
+.alert_btn .btn_list{margin:5px 0 0 4px;}
+.list_btn{clear:both; position:relative; width:100%; margin:10px 0 0 0; min-height:30px; _height:30px; text-align:center;}/*0707수정*/
+.list_btn img{vertical-align:middle; margin:-1px 0 0 0;}
+.list_btn div,.list_btn a,.list_btn span{font-size:11px; color:#999;}
+	.list_btn a{padding:0 1px;}.list_btn a:hover{color:#F93;}
+.list_btn_on{font-weight:bold;color:#F16423 !important;}
+.list_btn div em{color:#F93;}
+.list_btn li{float:left;}
+.list_btn select{font-size:11px; color:#666; margin-left:3px;}
+.btn_left{position:absolute; top:0; left:0; margin-right:3px;}
+.btn_right{position:absolute; top:0; right:0; margin-left:3px;}
+.btn_left span,.btn_right span{padding:0 0 0 6px;background:url(../img/board/arr_ico.gif) no-repeat 0 3px;}
+/*버튼 0708수정*/
+.btn_right .btn{margin:-4px 0 0 0; _margin:0;}
+.btn{float:left; margin-left:3px; height:30px; background:url(../img/btn/btn_foot_bg.gif) no-repeat right 0;}
+.btn a{padding:0; cursor:pointer;}
+.btn a span{float:left; background:none; padding:0;}
+.btn_right .btn a span{margin:1px 0 0 0;}
+.btn a p{float:left; font-size:12px; _line-height:180%; font-weight:bold; color:#454545; padding:5px 10px 0 0;}
+.btn a img{vertical-align:middle; margin-right:1px;}
+.top_btn .btn_list{margin-right:1px; margin-left:3px;}
+.btn_list{float:left; margin-right:3px; height:20px; background:url(../img/btn/btn_top_bg.gif) no-repeat right 0;}
+.btn_list a{font-size:11px; padding:0 8px 0 0; cursor:pointer;}
+.btn_list a span{float:left;}
+.btn_list a p{float:left; font-size:11px;_line-height:170%; color:#999; padding:2px 0 0 0;}
+.btn_list a img{vertical-align:middle; margin-right:1px;}
+
+.organ_btn{margin:9px 0 0 0;}
+.organ_btn li{clear:both;}
+.organ_btn li .btn_list{width:250px; margin-bottom:3px;} /* 2010-07-13 김윤식수정*/
+
+/*검색박스*/
+.box{clear:both; width:100%; margin-bottom:10px; background:#F5F5F5;}
+.box select{font-size:12px; color:#666;}
+.box input{height:18px;font-size:12px; border:1px solid #ccc; float:left; margin-right:3px;}
+.box img{float:left; margin-right:3px;}
+.box_t01{width:5px; height:5px; background:url(../img/board/box.gif) no-repeat 0 0;}
+.box_t02{background:url(../img/board/box_t.gif) repeat-x top;}
+.box_t03{width:5px; background:url(../img/board/box.gif) no-repeat right 0;}
+.box_le{background:url(../img/board/box_le.gif) repeat-y left;}
+.box_cen{padding:3px 15px}
+.box_ri{background:url(../img/board/box_ri.gif) repeat-y right;}
+.box_f01{width:5px; height:5px; background:url(../img/board/box.gif) no-repeat 0 bottom;}
+.box_f02{background:url(../img/board/box_f.gif) repeat-x bottom;}
+.box_f03{width:5px; background:url(../img/board/box.gif) no-repeat right bottom;}
+.box_cont{width:100%; border:0; margin:0 auto;}
+.box_cont th,.box_cont td{text-align:left; padding:3px 0 2px 0;}
+.box_cont th{font-weight:normal; padding:0 0 0 7px; background:url(../img/board/dot.gif) no-repeat 0 10px;}
+
+.tr_bg td{background:#F0F6F9;}
+/*0705 추가*/
+.tr_over td{background:#fff url(../img/board/tr_over.gif) repeat-x bottom;}
+.tr_over td, .tr_over p, .tr_over a{color:#000;}
+.tr_over a:hover{text-decoration:underline;}
+.tr_select{background:#fff url(../img/board/tr_select.gif) repeat-x top;}
+.tr_select td, .tr_select p, .tr_select a{color:#003366;}
+.tr_select a:hover{text-decoration:underline;}
+
+/*0705 추가*/
+.list{width:100%; margin-top:1px; border-top:2px solid #5CA0D0;}
+.list thead th{text-align:center; padding:3px 0; border-right:1px solid #D4D4D4; border-bottom:1px solid #5CA0D0; background:#fff url(../img/board/th_bg.gif) repeat-x bottom;}
+.list thead th,.list thead th a{color:#4772A5;}
+.list thead th img{vertical-align:middle; margin:-1px 0 0 2px;}
+.list tfoot td{font-size:0; line-height:0; height:2px; background:url(../img/board/tfoot.gif) repeat-x top;}
+.list tbody td{text-align:center; padding:3px 0 2px 0; border-right:1px solid #D4D4D4;border-top:1px solid #D4D4D4;}
+.list tbody td p{text-align:left; margin:0 6px;}
+.list tbody td p span{display:block; font-size:12px; padding:0 0 2px 7px; background:url(../img/board/arr_ico.gif) no-repeat 0 7px;}
+.list tbody td p.txt_ri{text-align:right;}
+.list tbody td select{font-size:12px; color:#666;}
+.list tbody td p input{font-size:12px; height:18px; border:1px solid #ccc;}
+.list tbody td textarea{font-size:12px; border:1px solid #ccc;}
+.list tbody td a:hover{text-decoration:underline;}/*0705추가*/
+.list_le{border-left:1px solid #D4D4D4;}
+.list .btn_list{margin:0 0 0 4px;}/*0712추가*/
+.list .btn_list span{padding:0 !important; margin:0 !important;}/*0712추가*/
+.list .btn_list a p{padding:2px 0 0 0 !important; margin:0 !important;}/*0712추가*/
+.list .btn_list a:hover{text-decoration:none;}/*0712추가*/
+
+.sub_table{clear:both; width:100%; border-top:2px solid #5CA0D0;}
+.sub_table th{text-align:left; color:#4772A5; padding:3px 8px 3px 10px; border-right:1px solid #D4D4D4; border-bottom:1px solid #D4D4D4;background:#fff url(../img/board/th_bg.gif) repeat-x bottom;}
+.sub_table th img{vertical-align:middle; margin:1px 3px;}
+.sub_table td{padding:3px 8px 3px 10px; border-right:1px solid #D4D4D4; border-bottom:1px solid #D4D4D4;}
+.sub_table td img{vertical-align:middle; margin:1px 0 1px 3px;}
+.sub_table td input{height:18px; vertical-align:middle; padding: 0px 2px 0px 1px; margin:1px 0px 1px 3px; border:1px solid #ccc;} /* 2010-08-02 김윤식 padding추가 */
+.sub_table td select{font-size:12px; color:#666;margin:1px 0 1px 3px;}
+.sub_table td textarea{font-size:12px; color:#666; text-align:left; margin:10px auto;border:1px solid #ccc;}
+.sub_table .btn_list{margin:0 0 0 4px;}/*0712추가*/
+.sub_table .btn_list span{padding:0 !important; margin:0 !important;}/*0712추가*/
+.sub_table .btn_list a p{padding:2px 0 0 0 !important; margin:0 !important;}/*0712추가*/
+.sub_table .btn_list a:hover{text-decoration:none;}/*0712추가*/
+.sub_table .btn_list img{padding:0 !important; margin:0 !important;}/*0712추가*/
+
+.scroll_table{width:100%; overflow-y:auto; overflow-x:hidden;}
+.scroll_table .list{width:100%; border-top:none; margin-top:0;}
