@@ -80,8 +80,14 @@ namespace MVC4Base.Models
         {
             return MenuAuthList.Contains(AuthID);
         }
+        /// <summary>
+        /// 쿠키 타입아웃
+        /// </summary>
+        public string CookieTimeout { get; set; }
 
         #endregion == 맴버변수 로그인 사용자 정보 ==
 
+
+        
     }
 }
