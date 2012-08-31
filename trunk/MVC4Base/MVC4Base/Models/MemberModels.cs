@@ -10,9 +10,26 @@ using Neoplus.Framework.Common;
 using Neoplus.Framework.Web;
 using System.Web.UI;
 using System.Web.Security;
+using System.ComponentModel.DataAnnotations;
 
 namespace MVC4Base.Models
 {
+    public class LoginModel
+    {
+        [Required]
+        [Display(Name = "아이디")]
+        public string UserID { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "비밀번호")]
+        public string Password { get; set; }
+
+        [Display(Name = "아이디 저장")]
+        public bool RememberMe { get; set; }
+    }
+
+
     public class UserInfo
     {
         public UserInfo()

@@ -7,6 +7,7 @@ using MVC4Base.Filters;
 
 namespace MVC4Base.Controllers
 {
+    [InitUserInfo(AuthorizeYN="Y")]
     public class HomeController : Controller
     {
         public ActionResult Index()

@@ -53,15 +53,9 @@ namespace MVC4Base.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
+        public ActionResult LogOff(string returnUrl)
         {
             AuthManager.Logout();
-
-            string returnUrl = string.Empty;
-            if (Request.UrlReferrer != null)
-            {
-                returnUrl = Request.UrlReferrer.ToString();
-            }
 
             return RedirectToLocal(returnUrl);
         }

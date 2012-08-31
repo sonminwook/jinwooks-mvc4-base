@@ -1,20 +1,17 @@
 ﻿@{
     MVC4Base.Models.UserInfo userInfo = MVC4Base.Models.AuthManager.UserInfomation;   
 }
-
-@if (userInfo.IsLoginUser)
-{
-    <text>
-        어서오세요, @userInfo.UserName 님(@userInfo.UserID)!
-        @using (Html.BeginForm("LogOff", "Member", FormMethod.Post, new { id = "logoutForm"}))
-        {
-            @Html.AntiForgeryToken()
-            <a href="javascript:document.getElementById('logoutForm').submit()">로그아웃</a>
-        }
-    </text>
-} else {
-    <ul>
-        <li>@Html.ActionLink("가입하기", "Register", "Member", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("로그인", "Login", "Member", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
-}
+<ul class="top_info">
+    <li class="none_bg">
+    @using (Html.BeginForm("LogOff", "Member", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <a href="javascript:document.getElementById('logoutForm').submit()">
+            <img src="/Content/img/btn/ko-kr/logout.gif" width="55" height="16" class="logout" alt="로그아웃"/>
+        </a>
+    }
+    </li>
+    <li class="none_bg"><a href="@Url.Action("Index","Admin")">관리자</a></li>
+    <li><a href="#none">환경설정</a></li>
+    <li><a href="#none">직원검색</a></li>
+</ul>
