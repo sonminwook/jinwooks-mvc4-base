@@ -1,45 +1,68 @@
 ﻿@model MVC4Base.Models.LoginModel
-
 @{
-    ViewBag.Title = "Log in";
+    ViewBag.Title = "로그인";
+    Layout = "";
 }
-
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-</hgroup>
-
-<section id="loginForm">
-<h2>Use a local account to log in.</h2>
-@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>Log in Form</legend>
-        <ol>
-            <li>
-                @Html.LabelFor(m => m.UserID)
-                @Html.TextBoxFor(m => m.UserID)
-                @Html.ValidationMessageFor(m => m.UserID)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password)
-                @Html.ValidationMessageFor(m => m.Password)
-            </li>
-            <li>
-                @Html.CheckBoxFor(m => m.RememberMe)
-                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
-            </li>
-        </ol>
-        <input type="submit" value="Log in" />
-    </fieldset>
-    <p>
-        @Html.ActionLink("Register", "Register") if you don't have an account.
-    </p>
-}
-</section>
-
-@section Scripts {
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
-}
+    @Scripts.Render("~/bundles/Neoplus")
+    <style type="text/css">
+        .input-validation-error
+        {
+            border: 2px solid Red;
+        }
+        .field-validation-error
+        {
+            color: Blue;
+        }
+    </style>
+    @if (!ViewData.ModelState.IsValid)
+    {     
+        <script type="text/javascript">
+            var errors = @Html.Raw(
+                Json.Encode(
+                    string.Join(
+                        Environment.NewLine, 
+                        ViewData.ModelState.Where(x => x.Value.Errors.Count > 0).SelectMany(x => x.Value.Errors).Select(error => error.ErrorMessage))));
+                        alert(errors);     
+        </script> 
+    }
+</head>
+<body>
+    <div class="login_wrap">
+        @using (Html.BeginForm("Login", "Member", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "loginForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="login_box">
+                <h1 style="height: 34px;">
+                    <img src="/Content/img/login/logo_neo.gif" width="152" height="34" alt="로고" /></h1>
+                <div class="login_bg">
+                    <ul>
+                        <li style="padding-bottom: 14px;"><span>
+                            <img src="/Content/img/login/id.gif" width="50" height="20" alt="아이디" /></span>
+                            <span>@Html.TextBoxFor(m => m.UserID)
+                                @Html.ValidationMessageFor(m => m.UserID)</span> </li>
+                        <li><span>
+                            <img src="/Content/img/login/pw.gif" width="50" height="20" alt="비밀번호" /></span>
+                            <span>@Html.PasswordFor(m => m.Password, new { onkeydown = "if(event.keyCode == 13){document.getElementById('loginForm').submit();}" })
+                                @Html.ValidationMessageFor(m => m.Password)</span> </li>
+                    </ul>
+                    <a href="javascript:document.getElementById('loginForm').submit()">
+                        <img src="/Content/img/login/bt_login.gif" width="61" height="55" alt="로그인" /></a>
+                    <p>
+                        <span>@Html.CheckBoxFor(m => m.RememberMe)
+                        </span>
+                        <img src="/Content/img/login/id_save.gif" alt="아이디 저장" />
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+</body>
+</html>

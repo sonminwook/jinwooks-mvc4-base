@@ -10,6 +10,8 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/Neoplus")
+
+    
 </head>
 <body>
     <!--전체 감싸기/상단백그라운드-->
@@ -22,14 +24,7 @@
             <!--top-->
             <div class="top">
                 <!--상단 바로가기-->
-                <ul class="top_info">
-                    <li class="none_bg"><a href="#none">
-                        <img src="/Content/img/btn/ko-kr/logout.gif" width="55" height="16" class="logout" /></a></li>
-                    <li class="none_bg"><a href="#none">관리자</a></li>
-                    <li><a href="#none">환경설정</a></li>
-                    <li><a href="#none">직원검색</a></li>
-                    <li><a href="#none">언어선택</a><img src="/Content/img/Curtureflags/16/ko-KR.gif" class="flag" /></li>
-                </ul>
+                @Html.Partial("_LoginPartial")
                 <!--//상단 바로가기-->
                 <div style="clear: both; width: 100%;">
                     @Html.Partial("_TopMenu")
