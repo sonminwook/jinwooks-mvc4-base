@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/Content/css/default.css" rel="stylesheet" type="text/css">
+<link href="/Content/css/popup.css" rel="stylesheet" type="text/css">
+<link href="/Content/css/board.css" rel="stylesheet" type="text/css">
+<title>대한전선</title>
+</head>
+
+<body>
+<div class="pop_wrap">
+	<!--상단 타이틀영역-->
+  <div class="pop_title">
+  	<h1>메인 코드명 검색</h1>
+  </div>
+	<!--//상단 타이틀영역-->
+  
+	<!--콘텐츠 영역 감싸기--><!--style로 width와 height값 지정. div 안에 스크롤 생성. 전체 팝업창 크기는 width+20px/height+76px-->
+  <div class="pop_cont_wrap" style="width:500px; height:400px;">
+    <div class="pop_cont">
+    	<!--상단버튼영역,board.css-->
+      <div class="top_btn" style="margin-top:0;">
+      	<div class="ri">
+        	<div class="btn_list"><a href=""><span><img src="/Content/img/btn/btn_top_inquiry.gif" width="23" height="20" /></span><p>조회</p></a></div>
+        </div>
+      </div>
+      <!--//상단버튼영역-->
+      <!--조회조건 박스, board.css-->
+      <table class="box" cellspacing="0" cellpadding="0">
+  			<tr>
+    			<td class="box_t01"> </td>
+    			<td class="box_t02"> </td>
+    			<td class="box_t03"> </td>
+  			</tr>
+        <tr>
+    			<td class="box_le">&nbsp;</td>
+    			<td class="box_cen">
+          	<table class="box_cont" cellspacing="0" cellpadding="0">
+            	<col width="15%" />
+            	<col width="" />
+ 							<tr>
+    						<th>코드&#47;이름</th>
+    						<td><input type="text" style="width:200px;" /></td>
+   						</tr>
+						</table></td>
+    			<td class="box_ri">&nbsp;</td>
+  			</tr>
+        <tr>
+    			<td class="box_f01"> </td>
+    			<td class="box_f02"> </td>
+    			<td class="box_f03"> </td>
+  			</tr>
+			</table>
+      <!--//조회조건 박스-->
+      
+      <!--리스트 테이블-->
+      <table class="list" cellspacing="0" cellpadding="0">
+      	<col width="10%" />
+      	<col width="25%" />
+      	<col width="25%" />
+      	<col width="40%" />
+      	<thead>
+        	<tr>
+          	<th class="list_le">번호</th>
+            <th>코드</th>
+            <th>이름</th>
+            <th>설명</th>
+          </tr>
+        </thead>
+        <tfoot>
+        	<tr>
+        		<td colspan="4"> </td>
+          </tr>
+				</tfoot>
+        <tbody>
+        	<tr>
+        		<td class="list_le">10</td>
+        		<td>0001</td>
+        		<td>홍길동</td>
+        		<td>
+            	<div class="btn_list"><a href=""><span><img src="/Content/img/btn/btn_top_inquiry.gif" width="23" height="20" /></span><p>조회</p></a></div>
+              <div class="btn_list"><a href=""><span><img src="/Content/img/btn/btn_top_inquiry.gif" width="23" height="20" /></span><p>조회</p></a></div></td>
+          </tr>
+        	<tr class="tr_bg">
+        		<td class="list_le">9</td>
+        		<td>0001</td>
+        		<td>홍길동</td>
+        		<td><p>별정직</p></td>
+          </tr>
+        	<tr>
+        		<td class="list_le">8</td>
+        		<td>0001</td>
+        		<td>홍길동</td>
+        		<td><p>별정직</p></td>
+          </tr>
+        	<tr class="tr_bg">
+        		<td class="list_le">7</td>
+        		<td>0001</td>
+        		<td>홍길동</td>
+        		<td><p>별정직</p></td>
+          </tr>
+        	<tr>
+        		<td class="list_le">6</td>
+        		<td>0001</td>
+        		<td>홍길동</td>
+        		<td><p>별정직</p></td>
+          </tr>
+        	<tr class="tr_bg">
+        		<td class="list_le">5</td>
+        		<td>0001</td>
+        		<td>홍길동</td>
+        		<td><p>별정직</p></td>
+          </tr>
+        	<tr>
+        		<td class="list_le">4</td>
+        		<td>0001</td>
+        		<td>홍길동</td>
+        		<td><p>별정직</p></td>
+          </tr>
+        	<tr class="tr_bg">
+        		<td class="list_le">3</td>
+        		<td>0001</td>
+        		<td>홍길동</td>
+        		<td><p>별정직</p></td>
+          </tr>
+        	<tr>
+        		<td class="list_le">2</td>
+        		<td>0001</td>
+        		<td>홍길동</td>
+        		<td><p>별정직</p></td>
+          </tr>
+        	<tr class="tr_bg">
+        		<td class="list_le">1</td>
+        		<td>0001</td>
+        		<td>홍길동</td>
+        		<td><p>별정직</p></td>
+          </tr>
+        </tbody>
+      </table>
+      <!--//리스트 테이블-->
+      
+      <!--페이지 리스트 버튼-->
+      <div class="list_btn">
+      	<div class="btn_left">총 <em>1,000</em>건(1/100Page)</div>
+        <div class="btn_right">
+        	<a href=""><img src="/Content/img/board/btn_front.gif" width="20" height="15" /></a>
+        	<a href=""><img src="/Content/img/board/btn_pre.gif" width="16" height="15" /></a>
+        	<a href="" class="list_btn_on">1</a>
+          <a href="">2</a>
+          <a href="">3</a>
+          <a href="">4</a>
+          <a href="">5</a>
+        	<a href=""><img src="/Content/img/board/btn_next.gif" width="16" height="15" /></a>
+        	<a href=""><img src="/Content/img/board/btn_end.gif" width="20" height="15" /></a>
+        </div>
+      </div>
+      <!--//페이지 리스트 버튼-->      
+
+    </div>
+  </div>
+  <!--//콘텐츠 영역 감싸기-->
+  
+  <!--하단 닫기 버튼-->
+  <div class="close">
+  	<a href=""><img src="/Content/img/btn/ko-kr/btn_close.gif" width="45" height="16" /></a>
+  </div>
+  <!--//하단 닫기 버튼-->
+</div>
+</body>
+</html>

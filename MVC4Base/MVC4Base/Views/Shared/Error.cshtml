@@ -4,7 +4,8 @@
     ViewBag.Title = "Error";
 }
 
-<hgroup class="title">
-    <h1 class="error">죄송합니다. 작업도중 에러가 발생했습니다.</h1>
-    <h2 class="error">빠른 시일내에 복구하도록 하겠습니다.</h2>
-</hgroup>
+죄송합니다. 작업도중 에러가 발생했습니다.<br />
+빠른 시일내에 복구하도록 하겠습니다.<br />
+<br />
+[상세내용]<br />
+@Model.Exception.ToString();

@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="Content/css/default.css" rel="stylesheet" type="text/css">
+<link href="Content/css/popup.css" rel="stylesheet" type="text/css">
+<link href="Content/css/board.css" rel="stylesheet" type="text/css">
+<title>대한전선</title>
+</head>
+
+<body>
+<div class="pop_wrap">
+	<!--상단 타이틀영역-->
+  <div class="pop_title">
+  	<h1>부서검색</h1>
+  </div>
+	<!--//상단 타이틀영역-->
+  
+	<!--콘텐츠 영역 감싸기--><!--style로 width와 height값 지정. div 안에 스크롤 생성. 전체 팝업창 크기는 width+20px/height+76px-->
+  <div class="pop_cont_wrap" style="width:500px; height:400px;">
+    <div class="pop_cont">
+      <!--조회조건 박스, board.css-->
+      <table class="box" cellspacing="0" cellpadding="0">
+  			<tr>
+    			<td class="box_t01"> </td>
+    			<td class="box_t02"> </td>
+    			<td class="box_t03"> </td>
+  			</tr>
+        <tr>
+    			<td class="box_le">&nbsp;</td>
+    			<td class="box_cen">
+          	<table class="box_cont" cellspacing="0" cellpadding="0">
+            	<col width="10%" />
+            	<col width="" />
+ 							<tr>
+    						<th>회 사</th>
+    						<td><select style="width:300px;"><option>전체</option></select></td>
+   						</tr>
+						</table></td>
+    			<td class="box_ri">&nbsp;</td>
+  			</tr>
+        <tr>
+    			<td class="box_f01"> </td>
+    			<td class="box_f02"> </td>
+    			<td class="box_f03"> </td>
+  			</tr>
+			</table>
+      <!--//조회조건 박스-->
+      
+      <!--부서검색 트리메뉴-->
+      <div class="pop_tree" style="width:478px; height:310px;">
+      	<ul class="organ">
+					<li class="depth1">
+          	<a href="" class="depth1_on">개발팀</a>
+            <!--2depth-->
+						<ul class="tree2">
+							<li class="depth2"><a href="">PMS개발팀</a></li>
+							<li class="depth_end">
+              	<a href="">EP개발팀</a>
+                <!--3depth-->
+									<ul class="tree3">
+										<li><a href="">3depth menu</a></li>
+										<li>
+                    	<a href="">3depth menu</a>
+											<!--4depth-->
+											<ul class="tree4">
+												<li><a href="">4depth menu</a></li>
+												<li class="depth3_end"><a href="">4depth menu</a></li>
+											</ul>
+											<!--//4depth-->
+										</li>
+										<li class="depth3_end"><a href="">3depth menu</a></li>
+									</ul>
+								<!--3depth-->
+              </li>
+            </ul>
+            <!--//2depth-->
+         	</li>
+          <li class="depth1"><a href="">1depth menu</a></li>
+          <li class="depth1" style="background:none;"><a href="">1depth menu</a></li>
+				</ul><!--//트리메뉴-->
+			</div>
+      <!--//부서검색 트리메뉴-->
+    </div>
+  </div>
+  <!--//콘텐츠 영역 감싸기-->
+  
+  <!--하단 닫기 버튼-->
+  <div class="close">
+  	<a href=""><img src="Content/img/btn/ko-kr/btn_close.gif" width="45" height="16" /></a>
+  </div>
+  <!--//하단 닫기 버튼-->
+</div>
+</body>
+</html>
