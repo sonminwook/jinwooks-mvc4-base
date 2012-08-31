@@ -45,7 +45,8 @@ namespace MVC4Base
             //네오플러스 자바스크립트 추가
             bundles.Add(new ScriptBundle("~/bundles/Neoplus").Include(
                         "~/Scripts/Common.js",
-                        "~/Scripts/NeoplusWebControl.js"));
+                        "~/Scripts/NeoplusWebControl.js",
+                        "~/Scripts/topmenu.js"));
         }
     }
 }
