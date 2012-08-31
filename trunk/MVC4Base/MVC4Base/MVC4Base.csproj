@@ -190,7 +190,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AuthManager.cs" />
     <Compile Include="Models\DebugWindowManager.cs" />
-    <Compile Include="Models\UserInfo.cs" />
+    <Compile Include="Models\MemberModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
