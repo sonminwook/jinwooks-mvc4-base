@@ -1,5 +1,6 @@
 ﻿@{
-    MVC4Base.Models.UserInfo userInfo = MVC4Base.Models.AuthManager.UserInfomation;   
+    MVC4Base.Models.UserInfo userInfo = MVC4Base.Models.AuthManager.UserInfomation;
+    string strMessage = MVC4Base.Models.DebugWindowManager.Print();
 }
 
         @{ if (Request.IsLocal){
@@ -9,10 +10,7 @@
                 <div id="debugWindow" style="background-color: #ffffff; color:Black; padding: 10px 10px 10px 10px;
                     width: 500px; height: 500px; font-size: 10pt; display: none; text-align: left;
                     overflow: scroll;">
-                    [로그인 정보]<br />
-                    1) 사용자ID : @(userInfo.IsLoginUser ? userInfo.UserID : "Guest")<br />
-                    2) 사용자이름 : @(userInfo.IsLoginUser ? userInfo.UserName : "손 님")<br />
-                    3) 로그인한 시간 : @(userInfo.IsLoginUser ? userInfo.LoginTime : "로그인하지 않은 사용자")<br />
+                    @Html.Raw(strMessage)
                 </div>
                 <input type="button" onclick="showDebugXml()" style="font-size:10pt;background-color: Black; color: white; height:30px;border:0 solid #ffffff"
                     value="열기"/>

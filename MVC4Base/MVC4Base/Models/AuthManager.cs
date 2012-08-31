@@ -167,18 +167,16 @@ namespace MVC4Base.Models
         /// <param name="pageRole"></param>
         public static void CheckLoginUser()
         {
-            var UserInfoTemp = UserInfomation;
-
-            if (UserInfoTemp.UserID == string.Empty)
-            {
-                Logout();
-                return;
-            }
-
-            UserInfoTemp.LoginIP = HttpContext.Current.Request.UserHostAddress;
             // 1.1 쿠키가 있는지 체크한다.
             if (System.Web.HttpContext.Current.Request.Cookies["AuthManagerLoginInfo"] != null)
             {
+                // 쿠키의 내용이 없는 경우 로그아웃
+                if (string.IsNullOrEmpty(System.Web.HttpContext.Current.Request.Cookies["AuthManagerLoginInfo"].Value))
+                {
+                    Logout();
+                    return;
+                }
+
                 // 1.2 쿠키값을 읽어 들인다.
                 string strCookieValue = System.Web.HttpContext.Current.Request.Cookies["AuthManagerLoginInfo"].Value.Replace("*", "+");
 
@@ -195,10 +193,9 @@ namespace MVC4Base.Models
                 if (strArrCookieValues[2].Equals(System.Web.HttpContext.Current.Request.UserHostAddress))
                 {
                     // 세션에 들어 있는 Hash테이블을 파싱하여 사용자 정보를 프로퍼티에 바인딩한다.
-                    if (System.Web.HttpContext.Current.Session["AuthManagerLoginInfo"] != null)
+                    if (System.Web.HttpContext.Current.Session["AuthManagerLoginInfo"] != null &&
+                        !string.IsNullOrEmpty(UserInfomation.UserName))
                     {
-                        // 세션에서 사용자 정보를 바인딩한다.
-                        UserInfoTemp.IsLoginUser = true;
                         if (!HttpContext.Current.User.Identity.IsAuthenticated)
                         {
                             FormsAuthentication.SetAuthCookie(UserInfomation.UserID, false);
@@ -212,8 +209,6 @@ namespace MVC4Base.Models
                         ReSetUserInfo(strArrCookieValues[0], strArrCookieValues[1], strArrCookieValues[2], out  strProcessCode);
                         if (string.IsNullOrEmpty(strProcessCode))
                         {
-                            // 세션에 있는 사용자 정보를 바인딩한다.
-                            UserInfoTemp.IsLoginUser = true;
                             if (!HttpContext.Current.User.Identity.IsAuthenticated)
                             {
                                 FormsAuthentication.SetAuthCookie(UserInfomation.UserID, false);
@@ -222,9 +217,11 @@ namespace MVC4Base.Models
                     }
                 }
             }
-
-            ChangeUserInfomation(UserInfoTemp);
-
+            else if (UserInfomation.UserID == string.Empty)
+            {
+                Logout();
+                return;
+            }
         }
 
         /// <summary>
@@ -289,7 +286,7 @@ namespace MVC4Base.Models
                 }
             }
 
-            //변경사항 저장
+            //사용자 변경된 내용 저장
             ChangeUserInfomation(UserInfoTemp);
         }
 
@@ -368,8 +365,10 @@ namespace MVC4Base.Models
             oCryptoManager.Password = drw["LoginIP"].ToString();
             // 1.5 사용자ID, LoginTime, LoginIP의 문자열을 합쳐서 암호화 문자열 생성
             oCookie.Value = oCryptoManager.Encrypt(strCookieValue).Replace("+", "*");
-            // 1.6 쿠키 굽기
+            // 1.6 쿠키설정
             System.Web.HttpContext.Current.Response.Cookies.Add(oCookie);
+            // 1.7 시간제한
+            System.Web.HttpContext.Current.Response.Cookies["AuthManagerLoginInfo"].Expires = DateTime.Now.AddMinutes(Int32.Parse(ConfigurationManager.AppSettings["AuthManagerCookieTimeout"]));
 
             #endregion == 로그인용 쿠키 ==
         }
@@ -397,7 +396,8 @@ namespace MVC4Base.Models
             Info.UserName = drw["UserName"].ToString();
             Info.LoginTime = drw["LoginTime"].ToString();
             Info.LoginIP = drw["LoginIP"].ToString();
-
+            Info.IsLoginUser = true;
+            Info.CookieTimeout = System.Web.HttpContext.Current.Response.Cookies["AuthManagerLoginInfo"].Expires.ToString();
             // 2.3 세션에 사용자 정보 해쉬테이블을 담는다.
             System.Web.HttpContext.Current.Session["AuthManagerLoginInfo"] = Info;
 
