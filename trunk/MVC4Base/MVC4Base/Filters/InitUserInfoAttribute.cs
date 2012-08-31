@@ -33,7 +33,7 @@ namespace MVC4Base.Filters
               , filterContext.ActionDescriptor.ActionName);
 
             //04. DebugWindow 정보
-            if (!string.IsNullOrEmpty(AuthManager.UserInfomation.UserID))
+            if (HttpContext.Current.Request.IsLocal && !string.IsNullOrEmpty(AuthManager.UserInfomation.UserID))
             {
                 StringBuilder debug = new StringBuilder();
                 debug.AppendLine("<b>[로그인 정보]</b><br />");
