@@ -46,12 +46,10 @@
                     <ul>
                         <li style="padding-bottom: 14px;"><span>
                             <img src="/Content/img/login/id.gif" width="50" height="20" alt="아이디" /></span>
-                            <span>@Html.TextBoxFor(m => m.UserID)
-                                @Html.ValidationMessageFor(m => m.UserID)</span> </li>
+                            <span>@Html.TextBoxFor(m => m.UserID)</span> </li>
                         <li><span>
                             <img src="/Content/img/login/pw.gif" width="50" height="20" alt="비밀번호" /></span>
-                            <span>@Html.PasswordFor(m => m.Password, new { onkeydown = "if(event.keyCode == 13){document.getElementById('loginForm').submit();}" })
-                                @Html.ValidationMessageFor(m => m.Password)</span> </li>
+                            <span>@Html.PasswordFor(m => m.Password, new { onkeydown = "if(event.keyCode == 13){document.getElementById('loginForm').submit();}" })</span> </li>
                     </ul>
                     <a href="javascript:document.getElementById('loginForm').submit()">
                         <img src="/Content/img/login/bt_login.gif" width="61" height="55" alt="로그인" /></a>
