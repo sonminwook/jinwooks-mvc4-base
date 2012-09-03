@@ -211,6 +211,8 @@
     <Compile Include="Services\DebugWindowService.cs" />
     <Compile Include="Models\MemberModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IAuthService.cs" />
+    <Compile Include="Services\IDebugWindowService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\MVC4Base.mdf" />

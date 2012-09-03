@@ -11,7 +11,7 @@ using MVC4Base.Models;
 
 namespace MVC4Base.Services
 {
-    public class AuthService
+    public class AuthService : MVC4Base.Services.IAuthService
     {
         private Dao.UserInfoDao userInfoDao = null;
 

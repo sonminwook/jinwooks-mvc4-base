@@ -7,7 +7,7 @@ using System.Text;
 
 namespace MVC4Base.Services
 {
-    public class DebugWindowService
+    public class DebugWindowService : MVC4Base.Services.IDebugWindowService
     {
         public void Write(StringBuilder writer)
         {
