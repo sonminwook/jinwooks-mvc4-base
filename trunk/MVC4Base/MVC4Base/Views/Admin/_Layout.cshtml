@@ -1,52 +1,82 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/Neoplus")
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/jqueryval")
-        @Scripts.Render("~/bundles/Neoplus")
-    </head>
-    <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("MVC 관리자 페이지", "Index", "Admin")</p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("사용자", "Index", "Home")</li>
-                            <li>@Html.ActionLink("홈", "Index", "Admin")</li>
-                        </ul>
-                    </nav>
+    
+</head>
+<body>
+    <!--전체 감싸기/상단백그라운드-->
+    <div class="wrap">
+        <!--콘텐츠 가운데 정렬-->
+        <div class="cen">
+            <h1>
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="/Content/img/common/logo_neo.gif" width="175" height="44" alt="메인화면으로 이동" /></a></h1>
+            <!--top-->
+            <div class="top">
+                <!--상단 바로가기-->
+                @Html.Partial("_LoginPartial")
+                <!--//상단 바로가기-->
+                <div style="clear: both; width: 100%;">
+                    @Html.Partial("./_TopMenu")
                 </div>
             </div>
-        </header>
-        <div id="body">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
+            <!--//top-->
+            <p class="clear">
+            </p>
+            <!--좌측 메뉴영역-->
+            <div class="left">
+                @Html.Partial("_LeftLoginInfo")
+                @Html.Partial("./_LeftMenu")
+                <select>
+                    <option>관련 사이트 바로가기</option>
+                </select>
+            </div>
+            <!--//좌측 메뉴영역-->
+            <!--본문 영역-->
+            <div class="sub_wrap">
+                <!--타이틀, 네비게이터-->
+                <div class="sub_title">
+                    <h2>
+                        My Info</h2>
+                    <ul>
+                        <li class="navi_home"></li>
+                        <li>My Page</li>
+                        <li class="navi_on">My Info</li>
+                    </ul>
+                </div>
+                <!--//타이틀, 네비게이터-->
+                <!--상단버튼영역,board.css-->
+                <div class="top_btn">
+                    <div class="ri">
+                        <!--<div class="btn_list"><a href=""><span><img src="/Content/img/btn/btn_top_inquiry.gif" width="23" height="20" /></span><span>조회</span></a></div>-->
+                    </div>
+                </div>
+                <!--//상단버튼영역-->
                 @RenderBody()
-            </section>
-        </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
-                </div>
             </div>
-        </footer>
-
-        @RenderSection("scripts", required: false)
-
-        @Html.Partial("_DebugWindowPartial")
-    </body>
+            <!--//본문 영역-->
+        </div>
+        <!--//콘텐츠 가운데 정렬-->
+        <!--footer-->
+        <div class="footer_wrap">
+            <div class="footer">
+                <h1>
+                    <img src="/Content/img/common/footer_logo_neo.gif" width="137" height="28" alt="Neoplus"/></h1>
+            </div>
+        </div>
+        <!--//footer-->
+    </div>
+    <!--//전체 감싸기-->
+    @Html.Partial("_DebugWindowPartial")
+</body>
 </html>
