@@ -11,6 +11,7 @@ using Neoplus.Framework.Web;
 using System.Web.UI;
 using System.Web.Security;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace MVC4Base.Models
 {
@@ -29,6 +30,72 @@ namespace MVC4Base.Models
         public bool RememberMe { get; set; }
     }
 
+    /// <summary>
+    /// 사용자 권한
+    /// </summary>
+    public enum UserAuthority
+    {
+        /// <summary>
+        /// 관리자 권한
+        /// </summary>
+        [Description("ADMIN")]
+        ADMIN = 0,
+        /// <summary>
+        /// 목록 보기 권한
+        /// </summary>
+        [Description("LIST")]
+        LIST = 1,
+        /// <summary>
+        /// 읽기 권한
+        /// </summary>
+        [Description("READ")]
+        READ = 2,
+        /// <summary>
+        /// 생성 권한
+        /// </summary>
+        [Description("CREATE")]
+        CREATE = 3,
+        /// <summary>
+        /// 수정 권한
+        /// </summary>
+        [Description("UPDATE")]
+        UPDATE = 4,
+        /// <summary>
+        /// 삭제 권한
+        /// </summary>
+        [Description("DELETE")]
+        DELETE = 5,
+        /// <summary>
+        /// 프린트 권한
+        /// </summary>
+        [Description("PRINT")]
+        PRINT = 6,
+        /// <summary>
+        /// 업로드 권한
+        /// </summary>
+	    [Description("UPLOAD")]
+        UPLOAD = 7,
+        /// <summary>
+        /// 다운로드 권환
+        /// </summary>
+	    [Description("DOWNLOAD")]
+        DOWNLOAD = 8,
+        /// <summary>
+        /// 스크랩 권한
+        /// </summary>
+	    [Description("SCRAP")]
+        SCRAP = 9,
+        /// <summary>
+        /// 댓글 권한
+        /// </summary>
+	    [Description("COMMENT")]
+        COMMENT = 10,
+        /// <summary>
+        /// 답글 권한
+        /// </summary>
+	    [Description("REPLY")]
+        REPLY = 11
+    }
 
     public class UserInfo
     {
@@ -76,7 +143,10 @@ namespace MVC4Base.Models
         /// </summary>
         public bool IsLoginUser { get; set; }
 
-        //사용자 권한 정보
+        #endregion == 맴버변수 로그인 사용자 정보 ==
+
+
+        #region == 맴버변수 로그인 사용자 권한 정보 ==
 
         /// <summary>
         /// 현재 메뉴ID
@@ -93,18 +163,18 @@ namespace MVC4Base.Models
         /// <summary>
         /// 권한이 있는지 여부
         /// </summary>
-        public bool HasAuthority(string AuthID)
+        public bool HasAuthority(UserAuthority AuthID)
         {
-            return MenuAuthList.Contains(AuthID);
+            return MenuAuthList.Contains(AuthID.ToString());
         }
         /// <summary>
         /// 쿠키 타입아웃
         /// </summary>
         public string CookieTimeout { get; set; }
 
-        #endregion == 맴버변수 로그인 사용자 정보 ==
+        #endregion == 맴버변수 로그인 사용자 권한 정보 ==
 
 
-        
+
     }
 }

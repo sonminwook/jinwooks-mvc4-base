@@ -14,7 +14,7 @@ namespace MVC4Base.Controllers
     /// </summary>
     public class MemberController : Controller
     {
-        private AuthService authService = null;
+        private IAuthService authService = null;
 
         //
         // GET: /Member/Login
