@@ -39,15 +39,17 @@ namespace MVC4Base.Controllers
         [AllowAnonymous]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            string processCode = string.Empty;
-            if (authService.Login(model.UserID, model.Password, model.RememberMe, out processCode))
-            {
-                return RedirectToLocal(returnUrl);
-            }
-
             if (ModelState.IsValid)
             {
-                ModelState.AddModelError("", "아이디 또는 비밀번호가 일치하지 않습니다.");
+                string processCode = string.Empty;
+                if (authService.Login(model.UserID, model.Password, model.RememberMe, out processCode))
+                {
+                    return RedirectToLocal(returnUrl);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "아이디 또는 비밀번호가 일치하지 않습니다.");
+                }
             }
 
             return View(model);
