@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <title>@ViewBag.Title - 관리자 페이지</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/Content/css")
@@ -19,12 +19,12 @@
         <!--콘텐츠 가운데 정렬-->
         <div class="cen">
             <h1>
-                <a href="@Url.Action("Index", "Home")">
+                <a href="@Url.Action("Index", "Admin")">
                     <img src="/Content/img/common/logo_neo.gif" width="175" height="44" alt="메인화면으로 이동" /></a></h1>
             <!--top-->
             <div class="top">
                 <!--상단 바로가기-->
-                @Html.Partial("_LoginPartial")
+                @Html.Partial("./_LoginPartial")
                 <!--//상단 바로가기-->
                 <div style="clear: both; width: 100%;">
                     @Html.Partial("./_TopMenu")

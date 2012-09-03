@@ -1,11 +1,60 @@
 ﻿@model System.Web.Mvc.HandleErrorInfo
-
 @{
     ViewBag.Title = "Error";
+    Layout = "";
 }
-
-죄송합니다. 작업도중 에러가 발생했습니다.<br />
-빠른 시일내에 복구하도록 하겠습니다.<br />
-<br />
-[상세내용]<br />
-@Model.Exception.ToString();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/Neoplus")
+</head>
+<body>
+    <!--전체 감싸기/상단백그라운드-->
+    <div class="wrap">
+        <!--콘텐츠 가운데 정렬-->
+        <div class="cen">
+            <h1>
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="/Content/img/common/logo_neo.gif" width="175" height="44" alt="메인화면으로 이동" /></a></h1>
+            <!--top-->
+            <div class="top">
+                <!--상단 바로가기-->
+                @Html.Partial("_LoginPartial")
+                <!--//상단 바로가기-->
+                <div style="clear: both; width: 100%;">
+                </div>
+            </div>
+            <!--//top-->
+            <p class="clear">
+            </p>
+            <!--본문 영역-->
+            <div class="sub_wrap">
+                죄송합니다. 작업도중 에러가 발생했습니다.<br />
+                빠른 시일내에 복구하도록 하겠습니다.<br />
+                <br />
+                [상세내용]<br />
+                @Model.Exception.ToString();
+            </div>
+            <!--//본문 영역-->
+        </div>
+        <!--//콘텐츠 가운데 정렬-->
+        <!--footer-->
+        <div class="footer_wrap">
+            <div class="footer">
+                <h1>
+                    <img src="/Content/img/common/footer_logo_neo.gif" width="137" height="28" alt="Neoplus" /></h1>
+            </div>
+        </div>
+        <!--//footer-->
+    </div>
+    <!--//전체 감싸기-->
+</body>
+</html>
