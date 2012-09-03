@@ -47,7 +47,7 @@ namespace MVC4Base.Filters
                 debug.AppendFormat(" 1) 페이지ID : {0}_{1}<br />"
                     , filterContext.ActionDescriptor.ControllerDescriptor.ControllerName
                     , filterContext.ActionDescriptor.ActionName);
-                debug.AppendFormat(" 2) 페이지 권한 : {0}<br />", string.Join(",",authService.UserInfomation.MenuAuthList));
+                debug.AppendFormat(" 2) 페이지 권한 : {0}<br />", authService.UserInfomation.MenuAuthList.Count == 0 ? "권한 없음" : string.Join(",", authService.UserInfomation.MenuAuthList));
                 debugWindowService.Write(debug);
             }
 
