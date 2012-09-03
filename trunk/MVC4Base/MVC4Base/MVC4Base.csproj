@@ -220,6 +220,7 @@
     </Content>
     <Content Include="Config\Dao.xml" />
     <Content Include="Config\Services.xml" />
+    <Content Include="Config\Filters.xml" />
     <Content Include="Content\css\board.css" />
     <Content Include="Content\css\default.css" />
     <Content Include="Content\css\popup.css" />

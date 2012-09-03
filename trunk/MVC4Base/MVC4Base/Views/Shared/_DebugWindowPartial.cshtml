@@ -1,6 +1,6 @@
 ﻿@{
-    MVC4Base.Models.UserInfo userInfo = MVC4Base.Models.AuthManager.UserInfomation;
-    string strMessage = MVC4Base.Models.DebugWindowManager.Print();
+    MVC4Base.Models.UserInfo userInfo = MVC4Base.Services.AuthService.UserInfomation;
+    string strMessage = MVC4Base.Services.DebugWindowService.Print();
 }
 
         @{ if (Request.IsLocal){

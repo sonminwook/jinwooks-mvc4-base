@@ -5,11 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using System.Text;
 
-namespace MVC4Base.Models
+namespace MVC4Base.Services
 {
     public class DebugWindowService
     {
-        public static void Write(StringBuilder writer)
+        public void Write(StringBuilder writer)
         {
             if (HttpContext.Current.Session["DebugWindow"] != null)
             {
@@ -18,7 +18,7 @@ namespace MVC4Base.Models
             HttpContext.Current.Session["DebugWindow"] = writer.ToString();
         }
 
-        public static string Print()
+        public string Print()
         {
             string strResult = string.Empty;
             if (HttpContext.Current.Session["DebugWindow"] != null)
