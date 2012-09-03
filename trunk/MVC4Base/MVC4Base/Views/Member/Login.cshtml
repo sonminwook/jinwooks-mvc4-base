@@ -25,6 +25,7 @@
     @if (!ViewData.ModelState.IsValid)
     {     
         <script type="text/javascript">
+            // 에러메시지를 alert로 표시한다.
             var errors = @Html.Raw(
                 Json.Encode(
                     string.Join(
