@@ -1,0 +1,616 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Neoplus.Framework.DataAccess</name>
+    </assembly>
+    <members>
+        <member name="T:Neoplus.Framework.DataAccess.SQLDataHelper">
+            <summary>
+            - 작  성  자 : Neoplus 김윤식<para></para>
+            - 최초작성일 : 2000.04.01<para></para>
+            - 최초작업내용 : 최종작업<para></para>
+            - 최종수정자 : <para></para>
+            - 최종수정일 : 년 월 일<para></para>
+            - 주요변경로그<para></para>
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.SQLDataHelper.#ctor">
+            <summary>
+            MS-SQL용 DataHelper<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.SQLDataHelper.ExecuteReader(System.String,System.Data.SqlClient.SqlParameter[],System.Data.CommandType)">
+            <summary>
+            SqlDataReader반환
+            ** 반드시 사용후 SqlDataReader를 close 시켜야 한다. ** <para></para>
+            Close를 하지 않으면 연결된 상태가 지속되어 가비지컬렉터가 객체를 해제하기 전에 다시 연결이 중첩되어 발생할 경우 풀링에러가 발생할 수 있다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="commandType"></param>
+            <returns>SqlDataReader</returns>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.SQLDataHelper.ExecuteReader(System.String,System.String,System.Data.SqlClient.SqlParameter[],System.Data.CommandType)">
+            <summary>
+            SqlDataReader반환
+            ** 반드시 사용후 SqlDataReader를 close 시켜야 한다. ** <para></para>
+            Close를 하지 않으면 연결된 상태가 지속되어 가비지컬렉터가 객체를 해제하기 전에 다시 연결이 중첩되어 발생할 경우 풀링에러가 발생할 수 있다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="alias"></param>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="commandType"></param>
+            <returns>SqlDataReader</returns>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.SQLDataHelper.GetDataSet(System.String,System.Data.SqlClient.SqlParameter[],System.Data.CommandType)">
+            <summary>
+            일반 데이타셋 반환<para></para>
+            * DataSet[0] 조회된 결과값<para></para>
+            * DataSet[1] 조회된 결과건수<para></para>
+            * SP에서 페이징 처리시 페이지의 시작은 1페이지부터 입니다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="commandType"></param>
+            <returns>DataSet</returns>
+        </member>
+        <!-- 잘못된 형식의 XML 주석은 "M:Neoplus.Framework.DataAccess.SQLDataHelper.GetDataSet(System.String,System.String,System.Data.SqlClient.SqlParameter[],System.Data.CommandType)" 멤버에 대해 무시됩니다. -->
+        <member name="M:Neoplus.Framework.DataAccess.SQLDataHelper.GetDataSet(System.String,System.Data.SqlClient.SqlParameter[],System.Data.CommandType,System.Int32,System.Int32)">
+            <summary>
+            페이징용 데이타셋 반환(프레임워크에서 처리)<para></para>
+            쿼리는 일반쿼리를 사용할 수 있습니다. FrameWork에서 해당페이지의 해당 자료만큼만 반환하여 줍니다.<para></para>
+            절대 쿼리에서 페이징 처리를 하지 않습니다.<para></para>
+            * DataSet[0] 조회된 결과값<para></para>
+            * DataSet[1] 조회된 결과건수<para></para>
+            * 페이지의 시작은 1페이지부터 입니다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="commandType"></param>
+            <param name="pageIndex">페이지는 1페이지 부터 시작합니다.</param>
+            <param name="pageSize"></param>
+            <returns>DataSet</returns>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.SQLDataHelper.GetDataSet(System.String,System.String,System.Data.SqlClient.SqlParameter[],System.Data.CommandType,System.Int32,System.Int32)">
+            <summary>
+            페이징용 데이타셋 반환(프레임워크에서 처리)<para></para>
+            쿼리는 일반쿼리를 사용할 수 있습니다. FrameWork에서 해당페이지의 해당 자료만큼만 반환하여 줍니다.<para></para>
+            절대 쿼리에서 페이징 처리를 하지 않습니다.<para></para>
+            * DataSet[0] 조회된 결과값<para></para>
+            * DataSet[1] 조회된 결과건수<para></para>
+            * 페이지의 시작은 1페이지부터 입니다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="commandType"></param>
+            <param name="pageIndex">페이지는 1페이지 부터 시작합니다.</param>
+            <param name="pageSize"></param>
+            <returns>DataSet</returns>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.SQLDataHelper.GetDataSet(System.String,System.String,System.Data.SqlClient.SqlParameter[],System.Data.CommandType,System.String,System.Int32,System.Int32)">
+            <summary>
+            페이징용 데이타셋 반환(프레임워크에서 처리)<para></para>
+            쿼리는 일반쿼리를 사용할 수 있습니다. FrameWork에서 해당페이지의 해당 자료만큼만 반환하여 줍니다.<para></para>
+            절대 쿼리에서 페이징 처리를 하지 않습니다.<para></para>
+            * DataSet[0] 조회된 결과값<para></para>
+            * DataSet[1] 조회된 결과건수<para></para>
+            * 페이지의 시작은 1페이지부터 입니다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="alias">연결문자열 별칭</param>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="commandType"></param>
+            <param name="tableName"></param>
+            <param name="pageIndex">조회할 페이지 페이지는 1부터 시작합니다. </param>
+            <param name="pageSize">한페이지에 보여줄 건수</param>
+            <returns>DataSet</returns>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.SQLDataHelper.Execute(System.String,System.Data.SqlClient.SqlParameter[],System.Data.CommandType)">
+            <summary>
+            Sql문을 실행하고 결과행을 반환한다.<para></para>
+            System.Transaction 사용<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="commandType"></param>
+            <returns>int</returns>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.SQLDataHelper.Execute(System.String,System.String,System.Data.SqlClient.SqlParameter[],System.Data.CommandType)">
+            <summary>
+            Sql문을 실행하고 결과행을 반환한다.
+            System.Transaction 사용
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="alias">연결문자열 별칭</param>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="commandType"></param>
+            <returns>int</returns>		
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.SQLDataHelper.ExecuteNonTran(System.String,System.Data.SqlClient.SqlParameter[],System.Data.CommandType)">
+            <summary>
+            Sql문을 실행하고 결과행을 반환한다.<para></para>
+            트렌젝션을 사용하지 않는다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="commandType"></param>
+            <returns>int</returns>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.SQLDataHelper.ExecuteNonTran(System.String,System.String,System.Data.SqlClient.SqlParameter[],System.Data.CommandType)">
+            <summary>
+            Sql문을 실행하고 결과행을 반환한다. <para></para>
+            트렌젝션을 사용하지 않는다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="alias">연결문자열 별칭</param>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="commandType"></param>
+            <returns>int</returns>		
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.SQLDataHelper.ExecuteMultiple(System.String,System.Data.SqlClient.SqlParameter[],System.String[0:,0:])">
+            <summary>
+            여러행 멀티 처리 트렌젝션 처리되어 있음
+            System.Transaction.TransactionScope 사용
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="paramValues"></param>
+            <returns>int</returns>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.SQLDataHelper.ExecuteMultiple(System.String,System.String,System.Data.SqlClient.SqlParameter[],System.String[0:,0:])">
+            <summary>
+            여러행 멀티 처리 트렌젝션 처리되어 있음
+            System.Transaction.TransactionScope 사용
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="alias"></param>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="paramValues"></param>
+            <returns>int</returns>
+        </member>
+        <!-- 잘못된 형식의 XML 주석은 "M:Neoplus.Framework.DataAccess.SQLDataHelper.ExecuteScalar(System.String,System.Data.SqlClient.SqlParameter[],System.Data.CommandType)" 멤버에 대해 무시됩니다. -->
+        <member name="M:Neoplus.Framework.DataAccess.SQLDataHelper.ExecuteScalar(System.String,System.String,System.Data.SqlClient.SqlParameter[],System.Data.CommandType)">
+            <summary>
+            단일항목 가져오기<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="alias"></param>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="commandType"></param>
+            <returns>object</returns>
+        </member>
+        <member name="T:Neoplus.Framework.DataAccess.OracleDataHelper">
+            <summary>
+            - 작  성  자 : Neoplus 김윤식<para></para>
+            - 최초작성일 : 2000.04.01<para></para>
+            - 최초작업내용 : 최종작업<para></para>
+            - 최종수정자 : <para></para>
+            - 최종수정일 : 년 월 일<para></para>
+            - 주요변경로그<para></para>
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.OracleDataHelper.#ctor">
+            <summary>
+            오라클용 DataHelper<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.OracleDataHelper.ExecuteReader(System.String,System.Data.OracleClient.OracleParameter[],System.Data.CommandType)">
+            <summary>
+            OracleDataReader반환
+            ** 반드시 최종 사용후 OracleDataReader 를 close 시켜야 한다. ** <para></para>
+            Close를 하지 않으면 연결된 상태가 지속되어 가비지컬렉터가 객체를 해제하기 전에 다시 연결이 중첩되어 발생할 경우 풀링에러가 발생할 수 있다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="commandType"></param>
+            <returns>OracleDataReader</returns>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.OracleDataHelper.ExecuteReader(System.String,System.String,System.Data.OracleClient.OracleParameter[],System.Data.CommandType)">
+            <summary>
+            OracleDataReader반환
+            ** 반드시 최종 사용후 OracleDataReader 를 close 시켜야 한다. ** <para></para>
+            Close를 하지 않으면 연결된 상태가 지속되어 가비지컬렉터가 객체를 해제하기 전에 다시 연결이 중첩되어 발생할 경우 풀링에러가 발생할 수 있다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="alias"></param>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="commandType"></param>
+            <returns>OracleDataReader</returns>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.OracleDataHelper.GetDataSet(System.String,System.Data.OracleClient.OracleParameter[],System.Data.CommandType)">
+            <summary>
+            일반 데이타셋 반환<para></para>
+            * DataSet[0] 조회된 결과값<para></para>
+            * SP에서 페이징 쿼리를 할경우 페이지의 시작은 1페이지부터 입니다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="commandType"></param>
+            <returns>DataSet</returns>
+        </member>
+        <!-- 잘못된 형식의 XML 주석은 "M:Neoplus.Framework.DataAccess.OracleDataHelper.GetDataSet(System.String,System.String,System.Data.OracleClient.OracleParameter[],System.Data.CommandType)" 멤버에 대해 무시됩니다. -->
+        <member name="M:Neoplus.Framework.DataAccess.OracleDataHelper.GetDataSet(System.String,System.Data.OracleClient.OracleParameter[],System.Data.CommandType,System.Int32,System.Int32)">
+            <summary>
+            페이징용 데이타셋 반환(프레임워크에서 처리)<para></para>
+            쿼리는 일반쿼리를 사용할 수 있습니다. FrameWork에서 해당페이지의 해당 자료만큼만 반환하여 줍니다.<para></para>
+            절대 쿼리에서 페이징 처리를 하지 않습니다.<para></para>
+            * DataSet[0] 조회된 결과값<para></para>
+            * 페이지의 시작은 1페이지부터 입니다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="commandType"></param>
+            <param name="pageIndex">페이지는 1페이지부터 시작합니다.</param>
+            <param name="pageSize"></param>
+            <returns>DataSet</returns>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.OracleDataHelper.GetDataSet(System.String,System.String,System.Data.OracleClient.OracleParameter[],System.Data.CommandType,System.Int32,System.Int32)">
+            <summary>
+            페이징용 데이타셋 반환(프레임워크에서 처리)<para></para>
+            쿼리는 일반쿼리를 사용할 수 있습니다. FrameWork에서 해당페이지의 해당 자료만큼만 반환하여 줍니다.<para></para>
+            절대 쿼리에서 페이징 처리를 하지 않습니다.<para></para>
+            * DataSet[0] 조회된 결과값<para></para>
+            * 페이지의 시작은 1페이지부터 입니다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="alias"></param>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="commandType"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.OracleDataHelper.GetDataSet(System.String,System.String,System.Data.OracleClient.OracleParameter[],System.Data.CommandType,System.String,System.Int32,System.Int32)">
+            <summary>
+            페이징용 데이타셋 반환(프레임워크에서 처리)<para></para>
+            쿼리는 일반쿼리를 사용할 수 있습니다. FrameWork에서 해당페이지의 해당 자료만큼만 반환하여 줍니다.<para></para>
+            절대 쿼리에서 페이징 처리를 하지 않습니다.<para></para>
+            * DataSet[0] 조회된 결과값<para></para>
+            * 페이지의 시작은 1페이지부터 입니다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="alias"></param>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="commandType"></param>
+            <param name="tableName"></param>
+            <param name="pageIndex">조회할 페이지 *페이지는 1페이지 부터 시작합니다.</param>
+            <param name="pageSize">페이지에 보여줄 건수</param>
+            <returns>DataSet</returns>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.OracleDataHelper.Execute(System.String,System.Data.OracleClient.OracleParameter[],System.Data.CommandType)">
+            <summary>
+            Sql문을 실행하고 결과행을 반환한다.<para></para>
+            System.Transaction 사용<para></para>
+            1) "'oramts.dll'을(를) 로드할 수 없습니다."라는 오류를 만난다면 아래와 같이 처리한다.<para></para> 
+               "oramts1x.dbg, oramts1x.dll, oramts.dll" 3개의 파일을 "oracle\product\1x.x.x\client_1\BIN"폴더에 복사한다. <para></para>
+            2) 오라클에서 트랜잭션 처리를 위해서는 연결문자열에 "Enlist=false" 를 넣어주어야 MS-DTC와 통신이 가능하다.<para></para>
+               ex) value="Data Source=NET_TEST;User ID=scott;Password=tiger;Enlist=false"<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="commandType"></param>
+            <returns>int</returns>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.OracleDataHelper.Execute(System.String,System.String,System.Data.OracleClient.OracleParameter[],System.Data.CommandType)">
+            <summary>
+            Sql문을 실행하고 결과행을 반환한다.<para></para>
+            System.Transaction 사용<para></para>
+            1) "'oramts.dll'을(를) 로드할 수 없습니다."라는 오류를 만난다면 아래와 같이 처리한다.<para></para> 
+               "oramts1x.dbg, oramts1x.dll, oramts.dll" 3개의 파일을 "oracle\product\1x.x.x\client_1\BIN"폴더에 복사한다. <para></para>
+            2) 오라클에서 트랜잭션 처리를 위해서는 연결문자열에 "Enlist=false" 를 넣어주어야 MS-DTC와 통신이 가능하다.<para></para>
+               ex) value="Data Source=NET_TEST;User ID=scott;Password=tiger;Enlist=false"<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="alias">연결문자열 별칭</param>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="commandType"></param>
+            <returns>int</returns>		
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.OracleDataHelper.ExecuteNonTran(System.String,System.Data.OracleClient.OracleParameter[],System.Data.CommandType)">
+            <summary>
+            Sql문을 실행하고 결과행을 반환한다.<para></para>
+            System.Transaction 사용<para></para>
+            1) "'oramts.dll'을(를) 로드할 수 없습니다."라는 오류를 만난다면 아래와 같이 처리한다.<para></para> 
+               "oramts1x.dbg, oramts1x.dll, oramts.dll" 3개의 파일을 "oracle\product\1x.x.x\client_1\BIN"폴더에 복사한다. <para></para>
+            2) 오라클에서 트랜잭션 처리를 위해서는 연결문자열에 "Enlist=false" 를 넣어주어야 MS-DTC와 통신이 가능하다.<para></para>
+               ex) value="Data Source=NET_TEST;User ID=scott;Password=tiger;Enlist=false"<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="commandType"></param>
+            <returns>int</returns>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.OracleDataHelper.ExecuteNonTran(System.String,System.String,System.Data.OracleClient.OracleParameter[],System.Data.CommandType)">
+            <summary>
+            Sql문을 실행하고 결과행을 반환한다.<para></para>
+            System.Transaction 사용<para></para>
+            1) "'oramts.dll'을(를) 로드할 수 없습니다."라는 오류를 만난다면 아래와 같이 처리한다.<para></para> 
+               "oramts1x.dbg, oramts1x.dll, oramts.dll" 3개의 파일을 "oracle\product\1x.x.x\client_1\BIN"폴더에 복사한다. <para></para>
+            2) 오라클에서 트랜잭션 처리를 위해서는 연결문자열에 "Enlist=false" 를 넣어주어야 MS-DTC와 통신이 가능하다.<para></para>
+               ex) value="Data Source=NET_TEST;User ID=scott;Password=tiger;Enlist=false"<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="alias">연결문자열 별칭</param>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="commandType"></param>
+            <returns>int</returns>		
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.OracleDataHelper.ExecuteMultiple(System.String,System.Data.OracleClient.OracleParameter[],System.String[0:,0:])">
+            <summary>
+            여러행 멀티 처리 트렌젝션 처리되어 있음<para></para>
+            System.Transaction.TransactionScope 사용<para></para>
+            1) "'oramts.dll'을(를) 로드할 수 없습니다."라는 오류를 만난다면 아래와 같이 처리한다.<para></para> 
+               "oramts1x.dbg, oramts1x.dll, oramts.dll" 3개의 파일을 "oracle\product\1x.x.x\client_1\BIN"폴더에 복사한다. <para></para>
+            2) 오라클에서 트랜잭션 처리를 위해서는 연결문자열에 "Enlist=false" 를 넣어주어야 MS-DTC와 통신이 가능하다.<para></para>
+               ex) value="Data Source=NET_TEST;User ID=scott;Password=tiger;Enlist=false"<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="paramValues"></param>
+            <returns>int</returns>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.OracleDataHelper.ExecuteMultiple(System.String,System.String,System.Data.OracleClient.OracleParameter[],System.String[0:,0:])">
+            <summary>
+            여러행 멀티 처리 트렌젝션 처리되어 있음<para></para>
+            System.Transaction.TransactionScope 사용<para></para>
+            1) "'oramts.dll'을(를) 로드할 수 없습니다."라는 오류를 만난다면 아래와 같이 처리한다.<para></para> 
+               "oramts1x.dbg, oramts1x.dll, oramts.dll" 3개의 파일을 "oracle\product\1x.x.x\client_1\BIN"폴더에 복사한다. <para></para>
+            2) 오라클에서 트랜잭션 처리를 위해서는 연결문자열에 "Enlist=false" 를 넣어주어야 MS-DTC와 통신이 가능하다.<para></para>
+               ex) value="Data Source=NET_TEST;User ID=scott;Password=tiger;Enlist=false"<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="alias"></param>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="paramValues"></param>
+            <returns>int</returns>
+        </member>
+        <!-- 잘못된 형식의 XML 주석은 "M:Neoplus.Framework.DataAccess.OracleDataHelper.ExecuteScalar(System.String,System.Data.OracleClient.OracleParameter[],System.Data.CommandType)" 멤버에 대해 무시됩니다. -->
+        <member name="M:Neoplus.Framework.DataAccess.OracleDataHelper.ExecuteScalar(System.String,System.String,System.Data.OracleClient.OracleParameter[],System.Data.CommandType)">
+            <summary>
+            단일항목 가져오기<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="alias"></param>
+            <param name="commandText"></param>
+            <param name="sqlParameters"></param>
+            <param name="commandType"></param>
+            <returns>object</returns>
+        </member>
+        <member name="T:Neoplus.Framework.DataAccess.Common">
+            <summary>
+            - 작  성  자 : Neoplus 김윤식<para></para>
+            - 최초작성일 : 2010.02.11<para></para>
+            - 최초작업내용 : 최종작업<para></para>
+            - 최종수정자 : <para></para>
+            - 최종수정일 : 년 월 일<para></para>
+            - 주요변경로그<para></para>
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.Common.GetConnectionString(System.String)">
+            <summary>
+            연결문자열을 반환한다.<para></para>
+            * 기본 연결문자열 별칭 "SMILE"<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="alias"></param>
+            <returns>string</returns>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.Common.GetCommandTimeout">
+            <summary>
+            쿼리연결 제한시간을 지정한다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.Common.AddParameter(System.Data.IDbCommand,System.Data.IDbDataParameter)">
+            <summary>
+             컴맨트객체에 파라메터를 대입한다.<para></para>
+             파라메터 입력시 null을 입력하면 System.DBNull.Value로 치환하여 준다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="cmd"></param>
+            <param name="param"></param> 
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.Common.GetQueryLogMode">
+            <summary>
+            쿼리추정상태를 반환합니다.<para></para>
+            Web.Config "QueryLogMode"항목에 on, off로 추적상태를 반환. <para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.Common.GetQueryLogPath">
+            <summary>
+            쿼리추정로그를 저장할 경로를 반환합니다.<para></para>
+            Web.Config "QueryLogPath"항목 로그를 저장할 경로 지정 <para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.Common.WriteQueryLog(System.Data.SqlClient.SqlCommand,System.Boolean,System.String)">
+            <summary>
+            SQL쿼리의 추적 내용을 로그에 남긴다<para></para>
+            MS-SQL을 사용할때 쿼리를 남깁니다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="cmd"></param>
+            <param name="markEndLine"></param>
+            <param name="addInfo"></param>
+        </member>
+        <member name="M:Neoplus.Framework.DataAccess.Common.WriteQueryLog(System.Data.OracleClient.OracleCommand,System.Boolean,System.String)">
+            <summary>
+            SQL쿼리의 추적 내용을 로그에 남긴다<para></para>
+            Oracle을 사용할때 쿼리를 남깁니다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="cmd"></param>
+            <param name="markEndLine"></param>
+            <param name="addInfo"></param>
+        </member>
+    </members>
+</doc>
