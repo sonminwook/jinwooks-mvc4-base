@@ -45,11 +45,11 @@ namespace MVC4Base.Controllers
                 return RedirectToLocal(returnUrl);
             }
 
-            //모델이 아무 이상이 없을때
             if (ModelState.IsValid)
             {
                 ModelState.AddModelError("", "아이디 또는 비밀번호가 일치하지 않습니다.");
             }
+
             return View(model);
         }
 
