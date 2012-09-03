@@ -1,0 +1,830 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Neoplus.Framework.Web</name>
+    </assembly>
+    <members>
+        <member name="T:Neoplus.Framework.Web.PerformanceLog">
+            <summary>
+            TimeStamp에 대한 요약 설명입니다.
+            </summary>
+            <example>
+            <code>
+            TimeStamp ts = new TimeStamp(); // at the start of a method
+            ts.TimeStampLog(this, MethodInfo.GetCurrentMethod().Name); // at the end of a method
+            </code>
+            </example>
+        </member>
+        <member name="M:Neoplus.Framework.Web.PerformanceLog.#ctor">
+            <summary>
+            TimeStamp Class를 생성하고 이때 현재 Tick값을 저장하는 생성자
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.Web.PerformanceLog.WritePerformanceLog(System.Int64)">
+            <summary>
+            현재 Tick값과 생성될 때의 Tick값의 차로 경과한 Tick값을 구하고 로그 파일에 남기는 메소드<para></para>
+            
+            </summary>
+        </member>
+        <member name="T:Neoplus.Framework.Web.Constant">
+            <summary>
+            Constant에 대한 요약 설명입니다.
+            </summary>
+        </member>
+        <member name="T:Neoplus.Framework.Web.MailManager">
+            <summary>
+            Email을 발송합니다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2011년 04월 05일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MailManager.#ctor">
+            <summary>
+            웹에서 지정한 데이타로 엑셀을 만들어 다운로드 합니다.<para></para>
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MailManager.SendMail(System.String,System.String,System.String,System.String,Neoplus.Framework.Web.MailManager.MailBodyType)">
+            <summary>
+            메일을 발송한다.<para></para>
+            메일본문의 형식을 선택할 수 있다.<para></para>
+            - 작  성  자 : 김윤식 (kys@noeplus.co.kr) (주)네오플러스<para></para>
+            - 최초작성일 : 2011.04.05<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            - 작업  내용 :  <para></para>
+            Web.Config에 "SmtpClient:Host"항목을 추가 하고 보내는 메일서버를 설정합니다.<para></para>
+            Web.Config에 "SmtpClient:Port"항목을 추가 하고 SMTP에서 사용하는 Port를 지정합니다. 기본은 포트는 "21"입니다.<para></para>
+            </summary>
+            <param name="mailFrom">보내는 Email ex)"kys@neoplus.co.kr" 또는 이름을 표시하고자 하면 "kys@neoplus.co.kr|김윤식"</param>
+            <param name="mailTo">받는 Email 여러사람을 보낼때는 ";"로 구분합니다. ex) kys@neoplus.co.kr;testuser@neoplus.co.kr </param>
+            <param name="mailSubject">제목</param>
+            <param name="mailBody">본문</param>
+            <param name="mailBodyType">본문형식</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MailManager.SendMail(System.String,System.String,System.String,System.String,Neoplus.Framework.Web.MailManager.MailBodyType,Neoplus.Framework.Web.MailManager.MailPrioritys)">
+            <summary>
+            메일을 발송한다.<para></para>
+            메일본문의 형식을 선택할 수 있다.<para></para>
+            - 작  성  자 : 김윤식 (kys@noeplus.co.kr) (주)네오플러스<para></para>
+            - 최초작성일 : 2011.04.05<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            - 작업  내용 :  <para></para>
+            Web.Config에 "SmtpClient:Host"항목을 추가 하고 보내는 메일서버를 설정합니다.<para></para>
+            Web.Config에 "SmtpClient:Port"항목을 추가 하고 SMTP에서 사용하는 Port를 지정합니다. 기본은 포트는 "21"입니다.<para></para>
+            </summary>
+            <param name="mailFrom">보내는 Email ex)"kys@neoplus.co.kr" 또는 이름을 표시하고자 하면 "kys@neoplus.co.kr|김윤식"</param>
+            <param name="mailTo">받는 Email 여러사람을 보낼때는 ";"로 구분합니다. ex) kys@neoplus.co.kr;testuser@neoplus.co.kr </param>
+            <param name="mailSubject">제목</param>
+            <param name="mailBody">본문</param>
+            <param name="mailBodyType">본문형식</param>
+            <param name="mailPrioritys">메일 중요도</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MailManager.SendMail(System.String,System.String,System.String,System.String,System.String,Neoplus.Framework.Web.MailManager.MailBodyType)">
+            <summary>
+            메일을 발송한다.<para></para>
+            메일본문의 형식을 선택할 수 있다.<para></para>
+            - 작  성  자 : 김윤식 (kys@noeplus.co.kr) (주)네오플러스<para></para>
+            - 최초작성일 : 2011.04.05<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            - 작업  내용 :  <para></para>
+            Web.Config에 "SmtpClient:Host"항목을 추가 하고 보내는 메일서버를 설정합니다.<para></para>
+            Web.Config에 "SmtpClient:Port"항목을 추가 하고 SMTP에서 사용하는 Port를 지정합니다. 기본은 포트는 "21"입니다.<para></para>
+            </summary>
+            <param name="mailFrom">보내는 Email ex)"kys@neoplus.co.kr" 또는 이름을 표시하고자 하면 "kys@neoplus.co.kr|김윤식"</param>
+            <param name="mailTo">받는 Email, 여러사람을 보낼때는 ";"로 구분합니다. ex) kys@neoplus.co.kr;testuser@neoplus.co.kr </param>
+            <param name="mailCC">참조 Email, 여러사람을 보낼때는 ";"로 구분합니다. ex) kys@neoplus.co.kr;testuser@neoplus.co.kr </param>
+            <param name="mailSubject">제목</param>
+            <param name="mailBody">본문</param>
+            <param name="mailBodyType">본문형식</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MailManager.SendMail(System.String,System.String,System.String,System.String,System.String,Neoplus.Framework.Web.MailManager.MailBodyType,Neoplus.Framework.Web.MailManager.MailPrioritys)">
+            <summary>
+            메일을 발송한다.<para></para>
+            메일본문의 형식을 선택할 수 있다.<para></para>
+            - 작  성  자 : 김윤식 (kys@noeplus.co.kr) (주)네오플러스<para></para>
+            - 최초작성일 : 2011.04.05<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            - 작업  내용 :  <para></para>
+            Web.Config에 "SmtpClient:Host"항목을 추가 하고 보내는 메일서버를 설정합니다.<para></para>
+            Web.Config에 "SmtpClient:Port"항목을 추가 하고 SMTP에서 사용하는 Port를 지정합니다. 기본은 포트는 "21"입니다.<para></para>
+            </summary>
+            <param name="mailFrom">보내는 Email ex)"kys@neoplus.co.kr" 또는 이름을 표시하고자 하면 "kys@neoplus.co.kr|김윤식"</param>
+            <param name="mailTo">받는 Email, 여러사람을 보낼때는 ";"로 구분합니다. ex) kys@neoplus.co.kr;testuser@neoplus.co.kr </param>
+            <param name="mailCC">참조 Email, 여러사람을 보낼때는 ";"로 구분합니다. ex) kys@neoplus.co.kr;testuser@neoplus.co.kr </param>
+            <param name="mailSubject">제목</param>
+            <param name="mailBody">본문</param>
+            <param name="mailBodyType">본문형식</param>
+            <param name="mailPrioritys">메일 중요도</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MailManager.SendMail(System.String,System.String[],System.String,System.String,Neoplus.Framework.Web.MailManager.MailBodyType)">
+            <summary>
+            메일을 발송한다.<para></para>
+            메일본문의 형식을 선택할 수 있다.<para></para>
+            - 작  성  자 : 김윤식 (kys@noeplus.co.kr) (주)네오플러스<para></para>
+            - 최초작성일 : 2011.04.05<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            - 작업  내용 :  <para></para>
+            Web.Config에 "SmtpClient:Host"항목을 추가 하고 보내는 메일서버를 설정합니다.<para></para>
+            Web.Config에 "SmtpClient:Port"항목을 추가 하고 SMTP에서 사용하는 Port를 지정합니다. 기본은 포트는 "21"입니다.<para></para>
+            </summary>
+            <param name="mailFrom">보내는 Email ex)"kys@neoplus.co.kr" 또는 이름을 표시하고자 하면 "kys@neoplus.co.kr|김윤식"</param>
+            <param name="mailTo">받는 Email, String배열로 넘깁니다.</param>
+            <param name="mailSubject">제목</param>
+            <param name="mailBody">본문</param>
+            <param name="mailBodyType">본문형식</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MailManager.SendMail(System.String,System.String[],System.String,System.String,Neoplus.Framework.Web.MailManager.MailBodyType,Neoplus.Framework.Web.MailManager.MailPrioritys)">
+            <summary>
+            메일을 발송한다.<para></para>
+            메일본문의 형식을 선택할 수 있다.<para></para>
+            - 작  성  자 : 김윤식 (kys@noeplus.co.kr) (주)네오플러스<para></para>
+            - 최초작성일 : 2011.04.05<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            - 작업  내용 :  <para></para>
+            Web.Config에 "SmtpClient:Host"항목을 추가 하고 보내는 메일서버를 설정합니다.<para></para>
+            Web.Config에 "SmtpClient:Port"항목을 추가 하고 SMTP에서 사용하는 Port를 지정합니다. 기본은 포트는 "21"입니다.<para></para>
+            </summary>
+            <param name="mailFrom">보내는 Email ex)"kys@neoplus.co.kr" 또는 이름을 표시하고자 하면 "kys@neoplus.co.kr|김윤식"</param>
+            <param name="mailTo">받는 Email, String배열로 넘깁니다.</param>
+            <param name="mailSubject">제목</param>
+            <param name="mailBody">본문</param>
+            <param name="mailBodyType">본문형식</param>
+            <param name="mailPrioritys">메일 중요도</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MailManager.SendMail(System.String,System.String[],System.String[],System.String,System.String,Neoplus.Framework.Web.MailManager.MailBodyType)">
+            <summary>
+            메일을 발송한다.<para></para>
+            메일본문의 형식을 선택할 수 있다.<para></para>
+            - 작  성  자 : 김윤식 (kys@noeplus.co.kr) (주)네오플러스<para></para>
+            - 최초작성일 : 2011.04.05<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            - 작업  내용 :  <para></para>
+            Web.Config에 "SmtpClient:Host"항목을 추가 하고 보내는 메일서버를 설정합니다.<para></para>
+            Web.Config에 "SmtpClient:Port"항목을 추가 하고 SMTP에서 사용하는 Port를 지정합니다. 기본은 포트는 "21"입니다.<para></para>
+            </summary>
+            <param name="mailFrom">보내는 Email ex)"kys@neoplus.co.kr" 또는 이름을 표시하고자 하면 "kys@neoplus.co.kr|김윤식"</param>
+            <param name="mailTo">받는 Email, String배열로 넘깁니다.</param>
+            <param name="mailCC">참조 Email, String배열로 넘깁니다.</param>
+            <param name="mailSubject">제목</param>
+            <param name="mailBody">본문</param>
+            <param name="mailBodyType">본문형식</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MailManager.SendMail(System.String,System.String[],System.String[],System.String,System.String,Neoplus.Framework.Web.MailManager.MailBodyType,Neoplus.Framework.Web.MailManager.MailPrioritys)">
+            <summary>
+            메일을 발송한다.<para></para>
+            메일본문의 형식을 선택할 수 있다.<para></para>
+            - 작  성  자 : 김윤식 (kys@noeplus.co.kr) (주)네오플러스<para></para>
+            - 최초작성일 : 2011.04.05<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            - 작업  내용 :  <para></para>
+            Web.Config에 "SmtpClient:Host"항목을 추가 하고 보내는 메일서버를 설정합니다.<para></para>
+            Web.Config에 "SmtpClient:Port"항목을 추가 하고 SMTP에서 사용하는 Port를 지정합니다. 기본은 포트는 "21"입니다.<para></para>
+            </summary>
+            <param name="mailFrom">보내는 Email ex)"kys@neoplus.co.kr" 또는 이름을 표시하고자 하면 "kys@neoplus.co.kr|김윤식"</param>
+            <param name="mailTo">받는 Email, String배열로 넘깁니다.</param>
+            <param name="mailCC">참조 Email, String배열로 넘깁니다.</param>
+            <param name="mailSubject">제목</param>
+            <param name="mailBody">본문</param>
+            <param name="mailBodyType">본문형식</param>
+            <param name="mailPrioritys">메일 중요도</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MailManager.SendMail(System.String,System.String,System.String,System.String,Neoplus.Framework.Web.MailManager.MailBodyType,Neoplus.Framework.Web.MailManager.MailPrioritys,System.Web.UI.WebControls.FileUpload)">
+            <summary>
+            메일을 발송한다.<para></para>
+            메일본문의 형식을 선택할 수 있다.<para></para>
+            - 작  성  자 : 김윤식 (kys@noeplus.co.kr) (주)네오플러스<para></para>
+            - 최초작성일 : 2011.04.05<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            - 작업  내용 :  <para></para>
+            Web.Config에 "SmtpClient:Host"항목을 추가 하고 보내는 메일서버를 설정합니다.<para></para>
+            Web.Config에 "SmtpClient:Port"항목을 추가 하고 SMTP에서 사용하는 Port를 지정합니다. 기본은 포트는 "21"입니다.<para></para>
+            </summary>
+            <param name="mailFrom">보내는 Email</param>
+            <param name="mailTo">받는 Email 여러사람을 보낼때는 ";"로 구분합니다. ex) kys@neoplus.co.kr;testuser@neoplus.co.kr </param>
+            <param name="mailSubject">제목</param>
+            <param name="mailBody">본문</param>
+            <param name="mailBodyType">본문형식</param>
+            <param name="mailPrioritys">메일 중요도</param>
+            <param name="fileUpload">파일업로드객체를 지정하면 파일업로드 객체에 있는 파일을 첨부하여 보낸다.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MailManager.SendMail(System.String,System.String,System.String,System.String,System.String,Neoplus.Framework.Web.MailManager.MailBodyType,Neoplus.Framework.Web.MailManager.MailPrioritys,System.Web.UI.WebControls.FileUpload)">
+            <summary>
+            메일을 발송한다.<para></para>
+            메일본문의 형식을 선택할 수 있다.<para></para>
+            - 작  성  자 : 김윤식 (kys@noeplus.co.kr) (주)네오플러스<para></para>
+            - 최초작성일 : 2011.04.05<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            - 작업  내용 :  <para></para>
+            Web.Config에 "SmtpClient:Host"항목을 추가 하고 보내는 메일서버를 설정합니다.<para></para>
+            Web.Config에 "SmtpClient:Port"항목을 추가 하고 SMTP에서 사용하는 Port를 지정합니다. 기본은 포트는 "21"입니다.<para></para>
+            </summary>
+            <param name="mailFrom">보내는 Email</param>
+            <param name="mailTo">받는 Email, 여러사람을 보낼때는 ";"로 구분합니다. ex) kys@neoplus.co.kr;testuser@neoplus.co.kr </param>
+            <param name="mailCC">참조 Email, 여러사람을 보낼때는 ";"로 구분합니다. ex) kys@neoplus.co.kr;testuser@neoplus.co.kr </param>
+            <param name="mailSubject">제목</param>
+            <param name="mailBody">본문</param>
+            <param name="mailBodyType">본문형식</param>
+            <param name="mailPrioritys">메일 중요도</param>
+            <param name="fileUpload">파일업로드객체를 지정하면 파일업로드 객체에 있는 파일을 첨부하여 보낸다.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MailManager.SendMail(System.String,System.String[],System.String,System.String,Neoplus.Framework.Web.MailManager.MailBodyType,Neoplus.Framework.Web.MailManager.MailPrioritys,System.Web.UI.WebControls.FileUpload)">
+            <summary>
+            메일을 발송한다.<para></para>
+            메일본문의 형식을 선택할 수 있다.<para></para>
+            - 작  성  자 : 김윤식 (kys@noeplus.co.kr) (주)네오플러스<para></para>
+            - 최초작성일 : 2011.04.05<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            - 작업  내용 :  <para></para>
+            Web.Config에 "SmtpClient:Host"항목을 추가 하고 보내는 메일서버를 설정합니다.<para></para>
+            Web.Config에 "SmtpClient:Port"항목을 추가 하고 SMTP에서 사용하는 Port를 지정합니다. 기본은 포트는 "21"입니다.<para></para>
+            </summary>
+            <param name="mailFrom">보내는 Email</param>
+            <param name="mailTo">받는 Email, String배열로 넘깁니다.</param>
+            <param name="mailSubject">제목</param>
+            <param name="mailBody">본문</param>
+            <param name="mailBodyType">본문형식</param>
+            <param name="mailPrioritys">메일 중요도</param>
+            <param name="fileUpload">파일업로드객체를 지정하면 파일업로드 객체에 있는 파일을 첨부하여 보낸다.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MailManager.SendMail(System.String,System.String[],System.String[],System.String,System.String,Neoplus.Framework.Web.MailManager.MailBodyType,Neoplus.Framework.Web.MailManager.MailPrioritys,System.Web.UI.WebControls.FileUpload)">
+            <summary>
+            메일을 발송한다.<para></para>
+            메일본문의 형식을 선택할 수 있다.<para></para>
+            - 작  성  자 : 김윤식 (kys@noeplus.co.kr) (주)네오플러스<para></para>
+            - 최초작성일 : 2011.04.05<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            - 작업  내용 :  <para></para>
+            Web.Config에 "SmtpClient:Host"항목을 추가 하고 보내는 메일서버를 설정합니다.<para></para>
+            Web.Config에 "SmtpClient:Port"항목을 추가 하고 SMTP에서 사용하는 Port를 지정합니다. 기본은 포트는 "21"입니다.<para></para>
+            </summary>
+            <param name="mailFrom">보내는 Email</param>
+            <param name="mailTo">받는 Email, String배열로 넘깁니다.</param>
+            <param name="mailCC">참조 Email, String배열로 넘깁니다.</param>
+            <param name="mailSubject">제목</param>
+            <param name="mailBody">본문</param>
+            <param name="mailBodyType">본문형식</param>
+            <param name="mailPrioritys">메일 중요도</param>
+            <param name="fileUpload">파일업로드객체를 지정하면 파일업로드 객체에 있는 파일을 첨부하여 보낸다.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MailManager.SendMail(System.String,System.String,System.String,System.String,Neoplus.Framework.Web.MailManager.MailBodyType,Neoplus.Framework.Web.MailManager.MailPrioritys,System.String)">
+            <summary>
+            메일을 발송한다.<para></para>
+            메일본문의 형식을 선택할 수 있다.<para></para>
+            - 작  성  자 : 김윤식 (kys@noeplus.co.kr) (주)네오플러스<para></para>
+            - 최초작성일 : 2011.04.05<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            - 작업  내용 :  <para></para>
+            Web.Config에 "SmtpClient:Host"항목을 추가 하고 보내는 메일서버를 설정합니다.<para></para>
+            Web.Config에 "SmtpClient:Port"항목을 추가 하고 SMTP에서 사용하는 Port를 지정합니다. 기본은 포트는 "21"입니다.<para></para>
+            </summary>
+            <param name="mailFrom">보내는 Email</param>
+            <param name="mailTo">받는 Email 여러사람을 보낼때는 ";"로 구분합니다. ex) kys@neoplus.co.kr;testuser@neoplus.co.kr </param>
+            <param name="mailSubject">제목</param>
+            <param name="mailBody">본문</param>
+            <param name="mailBodyType">본문형식</param>
+            <param name="mailPrioritys">메일 중요도</param>
+            <param name="attachmentFiles">첨부할 파일명 Full경로를 지정합니다. ex) C:\Test\Test.doc </param>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MailManager.SendMail(System.String,System.String,System.String,System.String,System.String,Neoplus.Framework.Web.MailManager.MailBodyType,Neoplus.Framework.Web.MailManager.MailPrioritys,System.String)">
+            <summary>
+            메일을 발송한다.<para></para>
+            메일본문의 형식을 선택할 수 있다.<para></para>
+            - 작  성  자 : 김윤식 (kys@noeplus.co.kr) (주)네오플러스<para></para>
+            - 최초작성일 : 2011.04.05<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            - 작업  내용 :  <para></para>
+            Web.Config에 "SmtpClient:Host"항목을 추가 하고 보내는 메일서버를 설정합니다.<para></para>
+            Web.Config에 "SmtpClient:Port"항목을 추가 하고 SMTP에서 사용하는 Port를 지정합니다. 기본은 포트는 "21"입니다.<para></para>
+            </summary>
+            <param name="mailFrom">보내는 Email</param>
+            <param name="mailTo">받는 Email, 여러사람을 보낼때는 ";"로 구분합니다. ex) kys@neoplus.co.kr;testuser@neoplus.co.kr </param>
+            <param name="mailCC">참조 Email, 여러사람을 보낼때는 ";"로 구분합니다. ex) kys@neoplus.co.kr;testuser@neoplus.co.kr </param>
+            <param name="mailSubject">제목</param>
+            <param name="mailBody">본문</param>
+            <param name="mailBodyType">본문형식</param>
+            <param name="mailPrioritys">메일 중요도</param>
+            <param name="attachmentFiles">첨부할 파일명 Full경로를 지정합니다. ex) C:\Test\Test.doc </param>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MailManager.SendMail(System.String,System.String[],System.String,System.String,Neoplus.Framework.Web.MailManager.MailBodyType,Neoplus.Framework.Web.MailManager.MailPrioritys,System.String)">
+            <summary>
+            메일을 발송한다.<para></para>
+            메일본문의 형식을 선택할 수 있다.<para></para>
+            - 작  성  자 : 김윤식 (kys@noeplus.co.kr) (주)네오플러스<para></para>
+            - 최초작성일 : 2011.04.05<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            - 작업  내용 :  <para></para>
+            Web.Config에 "SmtpClient:Host"항목을 추가 하고 보내는 메일서버를 설정합니다.<para></para>
+            Web.Config에 "SmtpClient:Port"항목을 추가 하고 SMTP에서 사용하는 Port를 지정합니다. 기본은 포트는 "21"입니다.<para></para>
+            </summary>
+            <param name="mailFrom">보내는 Email</param>
+            <param name="mailTo">받는 Email, String배열로 넘깁니다.</param>
+            <param name="mailSubject">제목</param>
+            <param name="mailBody">본문</param>
+            <param name="mailBodyType">본문형식</param>
+            <param name="mailPrioritys">메일 중요도</param>
+            <param name="attachmentFiles">첨부할 파일명 Full경로를 지정합니다. ex) C:\Test\Test.doc </param>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MailManager.SendMail(System.String,System.String[],System.String[],System.String,System.String,Neoplus.Framework.Web.MailManager.MailBodyType,Neoplus.Framework.Web.MailManager.MailPrioritys,System.String)">
+            <summary>
+            메일을 발송한다.<para></para>
+            메일본문의 형식을 선택할 수 있다.<para></para>
+            - 작  성  자 : 김윤식 (kys@noeplus.co.kr) (주)네오플러스<para></para>
+            - 최초작성일 : 2011.04.05<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            - 작업  내용 :  <para></para>
+            Web.Config에 "SmtpClient:Host"항목을 추가 하고 보내는 메일서버를 설정합니다.<para></para>
+            Web.Config에 "SmtpClient:Port"항목을 추가 하고 SMTP에서 사용하는 Port를 지정합니다. 기본은 포트는 "21"입니다.<para></para>
+            </summary>
+            <param name="mailFrom">보내는 Email</param>
+            <param name="mailTo">받는 Email, String배열로 넘깁니다.</param>
+            <param name="mailCC">참조 Email, String배열로 넘깁니다.</param>
+            <param name="mailSubject">제목</param>
+            <param name="mailBody">본문</param>
+            <param name="mailBodyType">본문형식</param>
+            <param name="mailPrioritys">메일 중요도</param>
+            <param name="attachmentFiles">첨부할 파일명 Full경로를 지정합니다. ex) C:\Test\Test.doc </param>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MailManager.SendMail(System.String,System.String[],System.String[],System.String,System.String,Neoplus.Framework.Web.MailManager.MailBodyType,Neoplus.Framework.Web.MailManager.MailPrioritys,System.Web.UI.WebControls.FileUpload,System.String)">
+            <summary>
+            입력된 정보를 메일로 발송한다.<para></para>
+            메일본문의 형식을 선택할 수 있으며, 첨부파일을 보낼 수 있다.<para></para>
+            - 작  성  자 : 김윤식 (kys@noeplus.co.kr) (주)네오플러스<para></para>
+            - 최초작성일 : 2010.12.24<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            - 작업  내용 : <para></para>
+            Web.Config에 "SmtpClient:Host"항목을 추가 하고 보내는 메일서버를 설정합니다.<para></para>
+            Web.Config에 "SmtpClient:Port"항목을 추가 하고 SMTP에서 사용하는 Port를 지정합니다. 기본은 포트는 "21"입니다.<para></para>
+            </summary>
+            <param name="mailFrom">보내는 Email ex)"kys@neoplus.co.kr" 또는 이름을 표시하고자 하면 "kys@neoplus.co.kr|김윤식"</param>
+            <param name="mailTo">받는 Email주소 String[]</param>
+            <param name="mailCC">참조 Email주소 String[]</param>
+            <param name="mailSubject">메일 제목</param>
+            <param name="mailBody">메일 내용</param>
+            <param name="mailBodyType">메일 내용 HTML여부</param>
+            <param name="mailPrioritys">메일 중요도</param>
+            <param name="fileUpload">파일업로드객체를 지정하면 파일업로드 객체에 있는 파일을 첨부하여 보낸다.</param>
+            <param name="attachmentFiles">첨부할 파일명 Full경로를 지정합니다. ex) C:\Test\Test.doc </param>
+            <returns></returns>
+        </member>
+        <member name="T:Neoplus.Framework.Web.MailManager.MailBodyType">
+            <summary>
+            메일 발송 타입 설정
+            </summary>
+        </member>
+        <member name="T:Neoplus.Framework.Web.MailManager.MailPrioritys">
+            <summary>
+            메일 중요도
+            </summary>
+        </member>
+        <member name="T:Neoplus.Framework.Web.ExcelDownload">
+            <summary>
+            웹에서 지정한 데이타로 엑셀을 만들어 다운로드 합니다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2010년 04월 13일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.Web.ExcelDownload.#ctor">
+            <summary>
+            웹에서 지정한 데이타로 엑셀을 만들어 다운로드 합니다.<para></para>
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.Web.ExcelDownload.HtmlTableToHtml(System.Web.UI.Page,System.Web.UI.HtmlControls.HtmlGenericControl)">
+            <summary>
+            HtmlTable을 기반으로 Html 파일을 만들어 Client로 내려보낸다. <para></para>
+            - 작  성  자 : 김윤식(kys@neoplus.co.kr) Neoplus<para></para>
+            - 최초작성일 : 2010년 04월 13일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="page"></param>
+            <param name="htmlTable"></param>
+        </member>
+        <member name="M:Neoplus.Framework.Web.ExcelDownload.HtmlTableToExcel(System.Web.UI.Page,System.Web.UI.HtmlControls.HtmlGenericControl,System.String)">
+            <summary>
+            HtmlTable을 기반으로 Excel 파일을 만들어 Client로 내려보낸다. <para></para>
+            - 작  성  자 : 김윤식(kys@neoplus.co.kr) Neoplus<para></para>
+            - 최초작성일 : 2010년 04월 13일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="page"></param>
+            <param name="htmlTable"></param>
+            <param name="addHtml"></param>
+        </member>
+        <member name="M:Neoplus.Framework.Web.ExcelDownload.HtmlStringToExcel(System.Web.UI.Page,System.String,System.String)">
+            <summary>
+            Html테그로 만들어진 문자열을 엑셀로 내보낸다.<para></para>
+            * 파일명은 이름만지정합니다. 확장자는 붙이지 마십시오.<para></para>
+            </summary>
+            <param name="page"></param>
+            <param name="filename"></param>
+            <param name="htmlString"></param>
+        </member>
+        <member name="M:Neoplus.Framework.Web.ExcelDownload.DataTableToExcel(System.Web.UI.Page,System.Data.DataTable,System.String)">
+            <summary>
+            DataTable을 기반으로 Excel을 만들어 Client로 내려보낸다. <para></para>
+            - 작  성  자 : 김윤식(kys@neoplus.co.kr) Neoplus<para></para>
+            - 최초작성일 : 2010년 04월 13일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="page"></param>
+            <param name="dataTable"></param>
+            <param name="addHtml"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.Web.ExcelDownload.DataTableToExcel(System.Web.UI.Page,System.Data.DataTable,System.String,System.String)">
+            <summary>
+            DataTable을 기반으로 Excel을 만들어 Client로 내려보낸다. <para></para>
+            - 작  성  자 : 김윤식(kys@neoplus.co.kr) Neoplus<para></para>
+            - 최초작성일 : 2010년 04월 13일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="page"></param>
+            <param name="dataTable"></param>
+            <param name="addHtml"></param>
+            <param name="fileName">파일명 확장자명은 빼고 이름만..</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.Web.ExcelDownload.DataTableToExcel(System.Web.UI.Page,System.Data.DataTable,System.String[0:,0:],System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="page"></param>
+            <param name="dataTable"></param>
+            <param name="excelHeadInfo"></param>
+            <param name="addHtml"></param>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.Web.ExcelDownload.GridViewToExcel(System.Web.UI.Page,System.Web.UI.WebControls.GridView,System.String,System.String)">
+            <summary>
+            GridView를 통해서 엑셀내보내기<para></para>
+            * 파일명은 이름만지정합니다. 확장자는 붙이지 마십시오.<para></para>
+            * aspx.cs 페이지에 다음의 이벤트 헨들러를 추가한다.<para></para> 
+              public override void VerifyRenderingInServerForm(Control control) { } <para></para>
+            </summary>
+            <param name="page"></param>
+            <param name="grdView">그리드뷰 객체</param>
+            <param name="filename">저장할 파일명 확장자는 붙이지 마십시오.</param>
+            <param name="addHtml">추가할 헤더내용이 있으면 이곳에 만들어 넣는다.</param>
+        </member>
+        <member name="T:Neoplus.Framework.Web.LoginCookieManager">
+            <summary>
+            LoginCookie를 생성하고 해석합니다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.Web.LoginCookieManager.BuildCookieString(System.String,System.String)">
+            <summary>
+            로그인용 쿠키를 생성합니다.<para></para>
+            입려된 문자열은 userIP를 키값으로 128비트로 암호화하고 Base64로 인코딩하여 반환됩니다.<para></para>  
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="stringValue">배열 또는 단일 문자열</param>
+            <param name="userIP">IP주소 또는 클라이언트의 유일한 키</param>
+            <returns>Base64인코딩 문자열</returns>
+        </member>
+        <member name="M:Neoplus.Framework.Web.LoginCookieManager.ParseCookieString(System.String,System.String)">
+            <summary>
+            로그인용 쿠키 해석<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+            <param name="cookie">현재 쿠키값</param>
+            <param name="userIP">IP주소 또는 클라이언트의 유일한 키</param>/// 
+            <returns>문자열</returns>
+        </member>
+        <member name="T:Neoplus.Framework.Web.CompressDownload">
+            <summary>
+            선택한 파일을 다운로드 합니다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2011년 04월 01일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.Web.CompressDownload.#ctor">
+            <summary>
+            웹에서 지정한 데이타로 엑셀을 만들어 다운로드 합니다.<para></para>
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.Web.CompressDownload.DownloadCompressFolder(System.Web.UI.Page,System.String,System.String,Neoplus.Framework.Common.CompressManager.SubFolderInclude)">
+            <summary>
+            지정한 폴더의 파일을 압축하고 Client에 다운로드 시킨다.<para></para>
+            압축시 파일을 생성하지 않습니다. <para></para>
+            압축율은 최대로 자동 설정된다.<para></para>
+            파일생성시간은 현재 시간으로 자동 생성된다.<para></para>
+            </summary>
+            <param name="page">페이지객체</param>
+            <param name="sourceFolder">원본폴더: 압축할 파일이 있는 폴더</param>
+            <param name="compressFileName">압축한 ZIP파일명</param>
+            <param name="subFolderInclude">압출시 하위 폴더의 파일도 압축할지 여부 선택</param>
+        </member>
+        <member name="M:Neoplus.Framework.Web.CompressDownload.DownloadCompressFolder(System.Web.UI.Page,System.String,System.String,Neoplus.Framework.Common.CompressManager.SubFolderInclude,Neoplus.Framework.Common.CompressManager.CompressLevel,System.DateTime)">
+            <summary>
+            지정한 폴더의 파일을 압축하고 Client에 다운로드 시킨다.<para></para>
+            압축시 파일을 생성하지 않습니다. <para></para>
+            </summary>
+            <param name="page">페이지객체</param>
+            <param name="sourceFolder">원본폴더: 압축할 파일이 있는 폴더</param>
+            <param name="compressFileName">압축한 ZIP파일명</param>
+            <param name="subFolderInclude">압출시 하위 폴더의 파일도 압축할지 여부 선택</param>
+            <param name="compressLevel">압축 레벨 0~9까지 9가 가장 압축율이 좋은것</param>
+            <param name="compressDateTime">압축파일의 생성 시간</param>
+        </member>
+        <member name="M:Neoplus.Framework.Web.CompressDownload.DownloadCompressFiles(System.Web.UI.Page,System.String,System.String[],System.String)">
+            <summary>
+            지정한 폴더의 파일을 압축하고 Client에 다운로드 시킨다.<para></para>
+            압축시 파일을 생성하지 않습니다. <para></para>
+            압축율은 최대로 자동 설정된다.<para></para>
+            파일생성시간은 현재 시간으로 자동 생성된다.<para></para>
+            </summary>
+            <param name="page">페이지객체</param>
+            <param name="sourceFolder">원본폴더: 압축할 파일이 있는 폴더</param>
+            <param name="sourceFiles">원본파일들: 압축할 파일들</param>
+            <param name="compressFileName">압축한 ZIP파일명</param>
+        </member>
+        <member name="M:Neoplus.Framework.Web.CompressDownload.DownloadCompressFiles(System.Web.UI.Page,System.String,System.String[],System.String,Neoplus.Framework.Common.CompressManager.CompressLevel,System.DateTime)">
+            <summary>
+            지정한 폴더의 파일을 압축하고 Client에 다운로드 시킨다.<para></para>
+            압축시 파일을 생성하지 않습니다. <para></para>
+            </summary>
+            <param name="page">페이지객체</param>
+            <param name="sourceFolder">원본폴더: 압축할 파일이 있는 폴더</param>
+            <param name="sourceFiles">원본파일들: 압축할 파일들</param>
+            <param name="compressFileName">압축한 ZIP파일명</param>
+            <param name="compressLevel">압축 레벨 0~9까지 9가 가장 압축율이 좋은것</param>
+            <param name="compressDateTime">압축파일의 생성 시간</param>
+        </member>
+        <member name="T:Neoplus.Framework.Web.MessageManager">
+            <summary>
+            각종 메세지창을 실행합니다.<para></para>
+            - 작  성  자 : 김윤식(totoropia@gmail.com) Neoplus<para></para>
+            - 최초작성일 : 2009년 04월 16일<para></para>
+            - 최초수정자 : <para></para>
+            - 최초수정일 : <para></para>
+            - 주요변경로그 <para></para>
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MessageManager.CallUserFunction(System.Web.HttpResponse,System.String)">
+            <summary>
+            폼로드 되기 전에 자바스크립트 해당 함수를 먼저 띠우기<para></para>
+            UpdatePanel에 속한 이벤트에서는 사용불가 합니다.<para></para>
+            response.Write 사용<para></para>
+            </summary>
+            <param name="response"></param>
+            <param name="strFunction">실행할 JavaScript 함수</param>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MessageManager.AlertBack(System.Web.HttpResponse)">
+            <summary>
+            자바스크립트 alert 띄운 후 전 페이지로 이동<para></para>
+            UpdatePanel에 속한 이벤트에서는 사용불가 합니다.<para></para>
+            response.Write 사용<para></para>
+            메세지: 정보가 부족합니다.<para></para>
+            </summary>
+            <param name="response"></param>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MessageManager.AlertBeforeLoad(System.Web.HttpResponse,System.String)">
+            <summary>
+            페이지 로드 되기 전에 먼저  자바스크립트 alert 띄우기 <para></para>
+            UpdatePanel에 속한 이벤트에서는 사용불가 합니다.<para></para>
+            response.Write 사용<para></para>
+            </summary>
+            <param name="response">Response 개체</param>
+            <param name="message">알림 메시지</param>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MessageManager.AlertMoveUrl(System.Web.HttpResponse,System.String,System.String)">
+            <summary>
+            자바스크립트 alert 띄운 후 원하는 페이지로 이동<para></para>
+            UpdatePanel에 속한 이벤트에서는 사용불가 합니다.<para></para>
+            response.Write 사용
+            </summary>
+            <param name="response">Response 개체</param>
+            <param name="message">알림 메시지</param>
+            <param name="url">이동할 페이지 URL</param>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MessageManager.AlertClose(System.Web.HttpResponse,System.String)">
+            <summary>
+            자바스크립트 알림창 후 페이지 닫기<para></para>
+            UpdatePanel에 속한 이벤트에서는 사용불가 합니다.<para></para>
+            response.Write 사용<para></para>
+            </summary>
+            <param name="page">페이지 개체</param>
+            <param name="message">알림 내용</param>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MessageManager.AlertMessage(System.Web.UI.Page,System.String)">
+            <summary>
+            사용자에게 메세지를 보여줍니다.<para></para>
+            UpdatePanel에 속하지 않는 이벤트용<para></para>
+            미리정의된 코드를 입력하면 해당 메세지가 반환됨.<para></para>
+            코드가아닌 일반 메세지 입력시 메세지를 그대로 반환함. <para></para>
+            Message.xml에 등록된 메세지를 이용합니다. <para></para>
+            </summary>
+            <param name="page"></param>
+            <param name="message">메세지공통코드 또는 일반메세지</param>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MessageManager.AlertMessage(System.Web.UI.Page,System.String,System.String)">
+            <summary>
+            사용자에게 메세지를 보여줍니다.<para></para>
+            UpdatePanel에 속하지 않는 이벤트용<para></para>
+            미리정의된 코드를 입력하면 해당 메세지가 반환됨.<para></para>
+            코드가아닌 일반 메세지 입력시 메세지를 그대로 반환함. <para></para>
+            Message.xml에 등록된 메세지를 이용합니다. <para></para>
+            </summary>
+            <param name="page"></param>
+            <param name="message"></param>
+            <param name="addInfo"></param>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MessageManager.AlertMessage(System.Web.UI.Page,System.String,System.Web.UI.UpdatePanel)">
+            <summary>
+            사용자에게 메세지를 보여줍니다.<para></para>
+            UpdatePanel에 속하지 않는 이벤트용<para></para>
+            미리정의된 코드를 입력하면 해당 메세지가 반환됨.<para></para>
+            코드가아닌 일반 메세지 입력시 메세지를 그대로 반환함. <para></para>
+            Message.xml에 등록된 메세지를 이용합니다. <para></para>
+            </summary>
+            <param name="page"></param>
+            <param name="message"></param>
+            <param name="addInfo"></param>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MessageManager.AlertMessage(System.Web.UI.Page,System.String,System.String,System.Web.UI.UpdatePanel)">
+            <summary>
+            사용자에게 메세지를 보여줍니다.<para></para>
+            UpdatePanel을 사용하는 이벤트용<para></para>
+            미리정의된 코드를 입력하면 해당 메세지가 반환됨.<para></para>
+            코드가아닌 일반 메세지 입력시 메세지를 그대로 반환함. <para></para>
+            Message.xml에 등록된 메세지를 이용합니다. <para></para>
+            </summary>
+            <param name="page"></param>
+            <param name="message">메세지공통코드 또는 일반메세지</param>
+            <param name="updatePanel"></param>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MessageManager.AlertMessageMoveUrl(System.Web.UI.Page,System.String,System.String)">
+            <summary>
+            자바스크립트 알림창 후 페이지 이동<para></para>
+            UpdatePanel에 속하지 않는 이벤트용<para></para>
+            미리정의된 코드를 입력하면 해당 메세지가 반환됨.<para></para>
+            코드가아닌 일반 메세지 입력시 메세지를 그대로 반환함. <para></para>
+            Message.xml에 등록된 메세지를 이용합니다. <para></para>
+            </summary>
+            <param name="page">페이지 개체</param>
+            <param name="message">알림 내용</param>
+            <param name="url">이동할 페이지 URL</param>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MessageManager.AlertMessageMoveUrl(System.Web.UI.Page,System.String,System.String,System.Web.UI.UpdatePanel)">
+            <summary>
+            자바스크립트 알림창 후 페이지 이동<para></para>
+            UpdatePanel을 사용하는 이벤트용<para></para>
+            미리정의된 코드를 입력하면 해당 메세지가 반환됨.<para></para>
+            코드가아닌 일반 메세지 입력시 메세지를 그대로 반환함. <para></para>
+            Message.xml에 등록된 메세지를 이용합니다. <para></para>
+            </summary>
+            <param name="page"></param>
+            <param name="message"></param>
+            <param name="url"></param>
+            <param name="updatePanel"></param>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MessageManager.AlertMessageMoveUrl(System.Web.UI.Page,System.String,System.String,System.String,System.String)">
+            <summary>
+            자바스크립트 알림창 후 부모창/self 아이프레임 페이지 이동<para></para>
+            UpdatePanel에 속하지 않는 이벤트용<para></para>
+            미리정의된 코드를 입력하면 해당 메세지가 반환됨.<para></para>
+            코드가아닌 일반 메세지 입력시 메세지를 그대로 반환함. <para></para>
+            Message.xml에 등록된 메세지를 이용합니다. <para></para>
+            </summary>
+            <param name="page">페이지 개체</param>
+            <param name="message">알림 내용</param>
+            /// <param name="url">이동 아이프레임 명</param>
+            /// <param name="targetUrl">타겟에 따라 이동할 페이지 URL</param>
+            <param name="url">이동할 페이지 URL</param>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MessageManager.AlertMessageMoveUrl(System.Web.UI.Page,System.String,System.String,System.String,System.String,System.Web.UI.UpdatePanel)">
+            <summary>
+            자바스크립트 알림창 후 부모창/self 아이프레임 페이지 이동<para></para>
+            UpdatePanel을 사용하는 이벤트용<para></para>
+            미리정의된 코드를 입력하면 해당 메세지가 반환됨.<para></para>
+            코드가아닌 일반 메세지 입력시 메세지를 그대로 반환함. <para></para>
+            Message.xml에 등록된 메세지를 이용합니다. <para></para>
+            </summary>
+            <param name="page"></param>
+            <param name="message"></param>
+            <param name="ifrName"></param>
+            <param name="targetUrl"></param>
+            <param name="url"></param>
+            <param name="updatePanel"></param>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MessageManager.CallUserFunction(System.Web.UI.Page,System.String)">
+            <summary>
+            자바스크립트 함수 실행<para></para>
+            UpdatePanel에 속하지 않는 이벤트용<para></para>
+            미리정의된 코드를 입력하면 해당 메세지가 반환됨.<para></para>
+            코드가아닌 일반 메세지 입력시 메세지를 그대로 반환함. <para></para>
+            Message.xml에 등록된 메세지를 이용합니다. <para></para>
+            </summary>
+            <param name="page"></param>
+            <param name="strFunction"></param>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MessageManager.CallUserFunction(System.Web.UI.Page,System.String,System.Web.UI.UpdatePanel)">
+            <summary>
+            자바스크립트 함수 실행<para></para>
+            UpdatePanel을 사용하는 이벤트용<para></para>
+            미리정의된 코드를 입력하면 해당 메세지가 반환됨.<para></para>
+            코드가아닌 일반 메세지 입력시 메세지를 그대로 반환함. <para></para>
+            Message.xml에 등록된 메세지를 이용합니다. <para></para>
+            </summary>
+            <param name="page"></param>
+            <param name="strFunction"></param>
+            <param name="updatePanel"></param>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MessageManager.ErrorMessage(System.Web.UI.Page,System.Exception)">
+            <summary>
+            오류메세지를 출력하고 오류를 로그에 등록합니다.
+            UpdatePanel에 속하지 않는 이벤트용<para></para>
+            </summary>
+            <param name="page"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="M:Neoplus.Framework.Web.MessageManager.ErrorMessage(System.Web.UI.Page,System.Exception,System.Web.UI.UpdatePanel)">
+            <summary>
+            오류메세지를 출력하고 오류를 로그에 등록합니다.
+            UpdatePanel을 사용하는 이벤트용<para></para>
+            </summary>
+            <param name="page"></param>
+            <param name="ex"></param>
+            <param name="updatePanel"></param>
+        </member>
+    </members>
+</doc>

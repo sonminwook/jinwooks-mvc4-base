@@ -1,0 +1,292 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Neoplus.Framework.AnyGantt</name>
+    </assembly>
+    <members>
+        <member name="T:Neoplus.Framework.AnyGantt.Settings">
+            <summary>
+            Settings의 요약 설명입니다.
+            </summary>
+        </member>
+        <member name="T:Neoplus.Framework.AnyGantt.Arg">
+            <summary>
+            Arg의 요약 설명입니다.
+            </summary>
+        </member>
+        <member name="T:Neoplus.Framework.AnyGantt.Tasks">
+            <summary>
+            Tasks의 요약 설명입니다.
+            </summary>
+        </member>
+        <member name="T:Neoplus.Framework.AnyGantt.ResourceChart">
+            <summary>
+            ResourceChart의 요약 설명입니다.
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.AnyGantt.AnyGantt.LoadXml(System.String)">
+            <summary>
+            Xml String을 받아서 클래스 구조를 채웁니다.
+            </summary>
+            <param name="xmlStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.AnyGantt.AnyGantt.Transform(System.String)">
+            <summary>
+            해당 xsl과 Transform
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.AnyGantt.AnyGantt.ToString">
+            <summary>
+            클래스에 담겨있는 내용을 Xml String으로 반환합니다.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Neoplus.Framework.AnyGantt.AnyGantt.#ctor">
+            <summary>
+            AnyGantt
+            web.config에 AppSettings에 AnyGanttTemplate:Default항목이 추가되어야 합니다
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.AnyGantt.AnyGantt.DataBind">
+            <summary>
+            Task 정보로 DataBind
+            적용 컬럼
+            id : 태스크 아이디
+            from : 이전 태스크
+            connectorType 타입 : FinishStart, StartStart
+            name : 태스크 이름
+            parent : 부모 태스크 아이디
+            progress : 진행 여부 %
+            actual_start : 시작일
+            actual_end : 종료일
+            baseline_start : 기본 시작일
+            baseline_end : 기본 종료일
+            level : 차수
+            expanded : 확장여부
+            selected : 선택여부
+            allow_edit : 수정허용 여부
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.AnyGantt.AnyGantt.SetChartTitle(System.String)">
+            <summary>
+            차트의 제목을 설정합니다.
+            </summary>
+            <param name="title">차트 제목</param>
+        </member>
+        <member name="M:Neoplus.Framework.AnyGantt.AnyGantt.SetColumns(Neoplus.Framework.AnyGantt.Columns,System.String)">
+            <summary>
+            Columns을 설정합니다.
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.AnyGantt.AnyGantt.SetResources(Neoplus.Framework.AnyGantt.Resources)">
+            <summary>
+            Resources를 설정합니다.
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.AnyGantt.AnyGantt.SetPeriods(Neoplus.Framework.AnyGantt.Periods)">
+            <summary>
+            Periods를 설정합니다.
+            </summary>
+        </member>
+        <member name="T:Neoplus.Framework.AnyGantt.Action">
+            <summary>
+            Action의 요약 설명입니다.
+            </summary>
+        </member>
+        <member name="T:Neoplus.Framework.AnyGantt.Navigation">
+            <summary>
+            Navigation의 요약 설명입니다.
+            </summary>
+        </member>
+        <member name="T:Neoplus.Framework.AnyGantt.Connectors">
+            <summary>
+            Connectors의 요약 설명입니다.
+            </summary>
+        </member>
+        <member name="T:Neoplus.Framework.AnyGantt.Locale">
+            <summary>
+            Locale의 요약 설명입니다.
+            </summary>
+        </member>
+        <member name="T:Neoplus.Framework.AnyGantt.Connector">
+            <summary>
+            Connector의 요약 설명입니다.
+            </summary>
+        </member>
+        <member name="F:Neoplus.Framework.AnyGantt.FormatType.RowNum">
+            <summary>
+            Row index (task, resource)
+            </summary>
+        </member>
+        <member name="F:Neoplus.Framework.AnyGantt.FormatType.ID">
+            <summary>
+            Identifier (task, resource)  
+            </summary>
+        </member>
+        <member name="F:Neoplus.Framework.AnyGantt.FormatType.Name">
+            <summary>
+            Name (task, resource)  
+            </summary>
+        </member>
+        <member name="F:Neoplus.Framework.AnyGantt.FormatType.ActualStart">
+            <summary>
+            Actual start (task). If task has several intervals - this refers to the first interval start. If you have resource project - the first period start.
+            </summary>
+        </member>
+        <member name="F:Neoplus.Framework.AnyGantt.FormatType.ActualEnd">
+            <summary>
+            Actual end (task). If task has several intervals - this refers to the last interval end. If you have resource project - the last period end.
+            </summary>
+        </member>
+        <member name="F:Neoplus.Framework.AnyGantt.FormatType.BaselineStart">
+            <summary>
+            Task only. Baseline start. If task has several intervals - this refers to the first interval start.
+            </summary>
+        </member>
+        <member name="F:Neoplus.Framework.AnyGantt.FormatType.BaselineEnd">
+            <summary>
+            Task only. Baseline end. If task has several intervals - this refers to the last interval start.
+            </summary>
+        </member>
+        <member name="F:Neoplus.Framework.AnyGantt.FormatType.Complete">
+            <summary>
+            Task only. Progress (without %)
+            </summary>
+        </member>
+        <member name="F:Neoplus.Framework.AnyGantt.FormatType.CompleteDate">
+            <summary>
+            Task only. Progress date.  
+            </summary>
+        </member>
+        <member name="F:Neoplus.Framework.AnyGantt.FormatType.PeriodStart">
+            <summary>
+            Resource only. Period start. 
+            </summary>
+        </member>
+        <member name="F:Neoplus.Framework.AnyGantt.FormatType.PeriodEnd">
+            <summary>
+            Resource only. Period end.
+            </summary>
+        </member>
+        <member name="F:Neoplus.Framework.AnyGantt.FormatType.IntervalStart">
+            <summary>
+            Task only. Interval start.
+            </summary>
+        </member>
+        <member name="F:Neoplus.Framework.AnyGantt.FormatType.IntervalEnd">
+            <summary>
+            Task only. Interval End. 
+            </summary>
+        </member>
+        <member name="F:Neoplus.Framework.AnyGantt.FormatType.Duration">
+            <summary>
+            The duration of actual time for tasks or period duration. 
+            </summary>
+        </member>
+        <member name="F:Neoplus.Framework.AnyGantt.FormatType.BaselineDuration">
+            <summary>
+            Task only. Baseline plan duration.  
+            </summary>
+        </member>
+        <member name="F:Neoplus.Framework.AnyGantt.CellAlignType.Left">
+            <summary>
+            align text to the left. 
+            </summary>
+        </member>
+        <member name="F:Neoplus.Framework.AnyGantt.CellAlignType.Right">
+            <summary>
+            align text to the right.
+            </summary>
+        </member>
+        <member name="F:Neoplus.Framework.AnyGantt.CellAlignType.Center">
+            <summary>
+            center align.
+            </summary>
+        </member>
+        <member name="F:Neoplus.Framework.AnyGantt.CellAlignType.LeftLevelPadding">
+            <summary>
+            align text to the left with margin, that depends on level of task or resource nesting. Margin is set in cell style.
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.AnyGantt.Columns.AddColumn(Neoplus.Framework.AnyGantt.Column)">
+            <summary>
+            컬럼을 추가합니다.
+            </summary>
+        </member>
+        <member name="M:Neoplus.Framework.AnyGantt.Columns.AddColumn(System.String,System.String,Neoplus.Framework.AnyGantt.CellAlignType,Neoplus.Framework.AnyGantt.FormatType)">
+            <summary>
+            컬럼을 추가합니다.
+            </summary>
+            <param name="text">상단 제목</param>
+            <param name="width">가로 길이</param>
+            <param name="format">컬럼 포맷</param>
+            <returns>Column</returns>
+        </member>
+        <member name="M:Neoplus.Framework.AnyGantt.Columns.AddColumn(System.String,System.String,Neoplus.Framework.AnyGantt.CellAlignType,System.String)">
+            <summary>
+            컬럼을 추가합니다.
+            </summary>
+            <param name="text">상단 제목</param>
+            <param name="width">가로 길이</param>
+            <param name="format">컬럼 포맷</param>
+            <returns>Column</returns>
+        </member>
+        <member name="T:Neoplus.Framework.AnyGantt.Task">
+            <summary>
+            Task의 요약 설명입니다.
+            </summary>
+        </member>
+        <member name="T:Neoplus.Framework.AnyGantt.Timeline">
+            <summary>
+            Timeline의 요약 설명입니다.
+            </summary>
+        </member>
+        <member name="T:Neoplus.Framework.AnyGantt.Key">
+            <summary>
+            Key의 요약 설명입니다.
+            </summary>
+        </member>
+        <member name="T:Neoplus.Framework.AnyGantt.DataGrid">
+            <summary>
+            DataGrid의 요약 설명입니다.
+            </summary>
+        </member>
+        <member name="T:Neoplus.Framework.AnyGantt.AnyGanttHelper">
+            <summary>
+            AnyGanttHelper의 요약 설명입니다.
+            </summary>
+        </member>
+        <member name="T:Neoplus.Framework.AnyGantt.Scale">
+            <summary>
+            Scale의 요약 설명입니다.
+            </summary>
+        </member>
+        <member name="T:Neoplus.Framework.AnyGantt.Gradient">
+            <summary>
+            Gradient의 요약 설명입니다.
+            </summary>
+        </member>
+        <member name="T:Neoplus.Framework.AnyGantt.Background">
+            <summary>
+            Background의 요약 설명입니다.
+            </summary>
+        </member>
+        <member name="T:Neoplus.Framework.AnyGantt.Styles">
+            <summary>
+            Style의 요약 설명입니다.
+            </summary>
+        </member>
+        <member name="T:Neoplus.Framework.AnyGantt.ProjectChart">
+            <summary>
+            Project_chart의 요약 설명입니다.
+            </summary>
+        </member>
+        <member name="T:Neoplus.Framework.AnyGantt.Fill">
+            <summary>
+            Fill의 요약 설명입니다.
+            </summary>
+        </member>
+    </members>
+</doc>
