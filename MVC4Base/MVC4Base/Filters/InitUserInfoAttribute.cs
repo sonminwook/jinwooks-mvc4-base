@@ -43,6 +43,11 @@ namespace MVC4Base.Filters
                 debug.AppendFormat(" 5) 쿠키 타임아웃 예정시간 : {0}<br />", authService.UserInfomation.CookieTimeout == "0001-01-01 오전 12:00:00" ? "만료됨" : authService.UserInfomation.CookieTimeout);
                 debug.AppendFormat(" 6) 세션 타임아웃 예정시간 : {0}<br />", DateTime.Now.AddMinutes(HttpContext.Current.Session.Timeout).ToString("yyyy-MM-dd HH:mm:ss"));
 
+                debug.AppendLine("<br /><b>[페이지 정보]</b><br />");
+                debug.AppendFormat(" 1) 페이지ID : {0}_{1}<br />"
+                    , filterContext.ActionDescriptor.ControllerDescriptor.ControllerName
+                    , filterContext.ActionDescriptor.ActionName);
+                debug.AppendFormat(" 2) 페이지 권한 : {0}<br />", string.Join(",",authService.UserInfomation.MenuAuthList));
                 debugWindowService.Write(debug);
             }
 
