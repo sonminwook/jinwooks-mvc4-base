@@ -5,7 +5,6 @@
     <li class="none_bg">
     @using (Html.BeginForm("LogOff", "Member", FormMethod.Post, new { id = "logoutForm" }))
     {
-        @Html.AntiForgeryToken()
         <a href="javascript:document.getElementById('logoutForm').submit()">
             <img src="/Content/img/btn/ko-kr/logout.gif" width="55" height="16" class="logout" alt="로그아웃"/>
         </a>
