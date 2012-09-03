@@ -1,0 +1,64 @@
+﻿@{
+    MVC4Base.Models.UserInfo userInfo = ((MVC4Base.Services.AuthService)Spring.Context.Support.ContextRegistry.GetContext().GetObject("AuthService", typeof(MVC4Base.Services.AuthService))).UserInfomation;     
+}
+<!--트리메뉴영역-->
+<table class="left_menu" cellspacing="0" cellpadding="0">
+    <tr>
+        <td class="left_menu_t01">
+        </td>
+        <td class="left_menu_t02">
+        </td>
+        <td class="left_menu_t03">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" class="left_menu">
+            <h2>
+                <span>업무현황</span></h2>
+            <!--트리메뉴-->
+            <ul class="tree">
+                <li class="depth1"><a href="">공지사항</a></li>
+                <li class="depth1"><a href="">일정</a></li>
+                <li class="depth1"><a href="">토론</a></li>
+                <li class="depth1"><a href="" class="depth1_on">1depth menu</a>
+                    <!--2depth-->
+                    <ul class="tree2">
+                        <li class="depth2"><a href="">2depth menu</a></li>
+                        <li class="depth2"><a href="">2depth menu</a>
+                            <!--3depth-->
+                            <ul class="tree3">
+                                <li><a href="">3depth menu</a></li>
+                                <li><a href="">3depth menu</a>
+                                    <!--4depth-->
+                                    <ul class="tree4">
+                                        <li><a href="">4depth menu</a></li>
+                                        <li class="depth3_end"><a href="">4depth menu</a></li>
+                                    </ul>
+                                    <!--//4depth-->
+                                </li>
+                                <li class="depth3_end"><a href="">3depth menu</a></li>
+                            </ul>
+                            <!--3depth-->
+                        </li>
+                        <li class="depth2"><a href="">2depth menu</a></li>
+                        <li class="depth2"><a href="">2depth menu</a></li>
+                        <li class="depth_end"><a href="">2depth menu</a></li>
+                    </ul>
+                    <!--//2depth-->
+                </li>
+                <li class="depth1"><a href="">1depth menu</a></li>
+                <li class="depth1"><a href="">1depth menu</a></li>
+            </ul>
+            <!--//트리메뉴-->
+        </td>
+    </tr>
+    <tr>
+        <td class="left_menu_f01">
+        </td>
+        <td class="left_menu_f02">
+        </td>
+        <td class="left_menu_f03">
+        </td>
+    </tr>
+</table>
+<!--//트리메뉴영역-->
