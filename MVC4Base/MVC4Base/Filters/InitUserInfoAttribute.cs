@@ -14,8 +14,8 @@ namespace MVC4Base.Filters
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public class InitUserInfoAttribute : System.Web.Mvc.ActionFilterAttribute
     {
-        private AuthService authService = null;
-        private DebugWindowService debugWindowService = null;
+        private IAuthService authService = null;
+        private IDebugWindowService debugWindowService = null;
 
         public override void OnActionExecuting(System.Web.Mvc.ActionExecutingContext filterContext)
         {
