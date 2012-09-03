@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+  
+  <object id="HomeController" type="MVC4Base.Controllers.HomeController, MVC4Base" singleton="false">
+  </object>
+  
+  <object id="AccountController" type="MVC4Base.Controllers.AccountController, MVC4Base" singleton="false">
+  </object>
+
+  <object id="AdminController" type="MVC4Base.Controllers.AdminController, MVC4Base" singleton="false">
+  </object>
+
+  <object id="MemberController" type="MVC4Base.Controllers.MemberController, MVC4Base" singleton="false">
+  </object>
+</objects>

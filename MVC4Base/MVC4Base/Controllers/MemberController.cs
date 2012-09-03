@@ -52,7 +52,6 @@ namespace MVC4Base.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult LogOff(string returnUrl)
         {
             AuthManager.Logout();
