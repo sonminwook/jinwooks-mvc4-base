@@ -7,20 +7,23 @@ using System.Collections;
 using System.Configuration;
 using System.Web.Security;
 using System.Web.UI;
+using MVC4Base.Models;
 
-namespace MVC4Base.Models
+namespace MVC4Base.Services
 {
     public class AuthService
     {
+        private Dao.UserInfoDao userInfoDao = null;
+
         /// <summary>
         /// 세션에 있는 로그인 정보를 반환한다.(변경불가!!)
         /// </summary>
-        public static UserInfo UserInfomation 
+        public UserInfo UserInfomation 
         { 
             get 
             {
-                if(HttpContext.Current.Session["AuthManagerLoginInfo"] != null){
-                    return (UserInfo)System.Web.HttpContext.Current.Session["AuthManagerLoginInfo"];
+                if(HttpContext.Current.Session["AuthServiceLoginInfo"] != null){
+                    return (UserInfo)System.Web.HttpContext.Current.Session["AuthServiceLoginInfo"];
                  }else{
                     return new UserInfo();
                  }
@@ -31,10 +34,10 @@ namespace MVC4Base.Models
         /// 로그인 정보를 변경합니다.
         /// </summary>
         /// <param name="userInfo"></param>
-        private static void ChangeUserInfomation(UserInfo userInfo)
+        private void ChangeUserInfomation(UserInfo userInfo)
         {
             /// 로그인 정보를 변경하려면 UserInfo 전체를 다시 할당해야합니다.
-            HttpContext.Current.Session["AuthManagerLoginInfo"] = userInfo;
+            HttpContext.Current.Session["AuthServiceLoginInfo"] = userInfo;
         }
 
         #region 로그인 관련 부분
@@ -43,7 +46,7 @@ namespace MVC4Base.Models
         /// 사용자 플랫폼 가져오기
         /// </summary>
         /// <returns></returns>
-        public static string GetUserPlatform()
+        public string GetUserPlatform()
         {
             string strPlatform = string.Empty;
 
@@ -76,7 +79,7 @@ namespace MVC4Base.Models
         /// <param name="isSaveID">아이디 저장여부</param>
         /// <param name="processCode">결과 메시지</param>
         /// <returns></returns>
-        public static bool Login(string userID, string password, bool isSaveID, out string processCode)
+        public bool Login(string userID, string password, bool isSaveID, out string processCode)
         {
             string strProcessCode = string.Empty;
             processCode = string.Empty;
@@ -86,11 +89,7 @@ namespace MVC4Base.Models
             DataSet ds = null;
             try
             {
-                ds = new DataSet();
-
-                Dao.UserInfoDao oClass = new Dao.UserInfoDao();
-
-                ds = oClass.GetUserInfo(userID, password,
+                ds = userInfoDao.GetUserInfo(userID, password,
                                              request.UserHostAddress,
                                              request.UserAgent.ToString(),
                                              request.Browser.Id.ToString(),
@@ -143,21 +142,21 @@ namespace MVC4Base.Models
         /// <summary>
         /// 로그아웃
         /// </summary>
-        public static void Logout()
+        public void Logout()
         {
             // 쿠키 삭제
             if (!System.Web.HttpContext.Current.Request.IsLocal)
             {
-                System.Web.HttpContext.Current.Response.Cookies["AuthManagerLoginInfo"].Domain = ConfigurationManager.AppSettings["CookieDomain"];  // Web.Config에 있는 도메인
+                System.Web.HttpContext.Current.Response.Cookies["AuthServiceLoginInfo"].Domain = ConfigurationManager.AppSettings["CookieDomain"];  // Web.Config에 있는 도메인
             }
 
-            System.Web.HttpContext.Current.Response.Cookies["AuthManagerLoginInfo"].Value = null;
-            System.Web.HttpContext.Current.Response.Cookies["AuthManagerLoginInfo"].Values.Clear();
-            System.Web.HttpContext.Current.Response.Cookies["AuthManagerLoginInfo"].Expires = System.DateTime.Now.AddDays(-1);
+            System.Web.HttpContext.Current.Response.Cookies["AuthServiceLoginInfo"].Value = null;
+            System.Web.HttpContext.Current.Response.Cookies["AuthServiceLoginInfo"].Values.Clear();
+            System.Web.HttpContext.Current.Response.Cookies["AuthServiceLoginInfo"].Expires = System.DateTime.Now.AddDays(-1);
 
 
             // 세션삭제
-            System.Web.HttpContext.Current.Session["AuthManagerLoginInfo"] = null; // 사용자정보 세션삭제
+            System.Web.HttpContext.Current.Session["AuthServiceLoginInfo"] = null; // 사용자정보 세션삭제
             System.Web.HttpContext.Current.Session.RemoveAll(); // 세션 클리어
         }
 
@@ -165,20 +164,20 @@ namespace MVC4Base.Models
         /// 로그인 체크
         /// </summary>
         /// <param name="pageRole"></param>
-        public static void CheckLoginUser()
+        public void CheckLoginUser()
         {
             // 1.1 쿠키가 있는지 체크한다.
-            if (System.Web.HttpContext.Current.Request.Cookies["AuthManagerLoginInfo"] != null)
+            if (System.Web.HttpContext.Current.Request.Cookies["AuthServiceLoginInfo"] != null)
             {
                 // 쿠키의 내용이 없는 경우 로그아웃
-                if (string.IsNullOrEmpty(System.Web.HttpContext.Current.Request.Cookies["AuthManagerLoginInfo"].Value))
+                if (string.IsNullOrEmpty(System.Web.HttpContext.Current.Request.Cookies["AuthServiceLoginInfo"].Value))
                 {
                     Logout();
                     return;
                 }
 
                 // 1.2 쿠키값을 읽어 들인다.
-                string strCookieValue = System.Web.HttpContext.Current.Request.Cookies["AuthManagerLoginInfo"].Value.Replace("*", "+");
+                string strCookieValue = System.Web.HttpContext.Current.Request.Cookies["AuthServiceLoginInfo"].Value.Replace("*", "+");
 
                 // 1.3 암호화 Class객체 생성 
                 Neoplus.Framework.Common.CryptoManager oCryptoManager = new Neoplus.Framework.Common.CryptoManager();
@@ -193,7 +192,7 @@ namespace MVC4Base.Models
                 if (strArrCookieValues[2].Equals(System.Web.HttpContext.Current.Request.UserHostAddress))
                 {
                     // 세션에 들어 있는 Hash테이블을 파싱하여 사용자 정보를 프로퍼티에 바인딩한다.
-                    if (System.Web.HttpContext.Current.Session["AuthManagerLoginInfo"] != null &&
+                    if (System.Web.HttpContext.Current.Session["AuthServiceLoginInfo"] != null &&
                         !string.IsNullOrEmpty(UserInfomation.UserName))
                     {
                         if (!HttpContext.Current.User.Identity.IsAuthenticated)
@@ -227,14 +226,12 @@ namespace MVC4Base.Models
         /// <summary>
         /// 로그남기기
         /// </summary>
-        public static void InsertVisitLog(string controllerName, string actionName)
+        public void InsertVisitLog(string controllerName, string actionName)
         {
             HttpRequest request = System.Web.HttpContext.Current.Request;
             HttpRequest response = System.Web.HttpContext.Current.Request;
 
-            Dao.UserInfoDao oClass = new Dao.UserInfoDao();
-
-            oClass.InsertVisitLog(string.Format("{0}_{1}",controllerName, actionName), 
+            userInfoDao.InsertVisitLog(string.Format("{0}_{1}",controllerName, actionName), 
                             request.UserHostAddress,
                             UserInfomation.UserID,
                             request.UserAgent.ToString(),
@@ -248,7 +245,7 @@ namespace MVC4Base.Models
         /// <summary>
         /// 권한 가져오기
         /// </summary>
-        public static void CheckAuthority(string controllerName, string actionName)
+        public void CheckAuthority(string controllerName, string actionName)
         {
             var UserInfoTemp = UserInfomation;
             UserInfoTemp.CurrentMenuID = string.Format("{0}_{1}", controllerName, actionName);
@@ -257,14 +254,10 @@ namespace MVC4Base.Models
             if (UserInfomation.IsLoginUser)
             {
                 DataSet ds = null;
-                Dao.UserInfoDao oUserInfo = null;
 
                 try
                 {
-                    ds = new DataSet();
-                    oUserInfo = new Dao.UserInfoDao();
-
-                    ds = oUserInfo.GetAuthority(UserInfomation.UserID, UserInfomation.CurrentMenuID);
+                    ds = userInfoDao.GetAuthority(UserInfomation.UserID, UserInfomation.CurrentMenuID);
 
                     if (ds.Tables.Count > 1)
                     {
@@ -298,17 +291,13 @@ namespace MVC4Base.Models
         /// <summary>
         /// 사용자 정보를 DB에서 읽어와서 다시 세션에 담는다.
         /// </summary>
-        private static void ReSetUserInfo(string userID, string loginTime, string userIP, out string processCode)
+        private void ReSetUserInfo(string userID, string loginTime, string userIP, out string processCode)
         {
             DataSet ds = null;
-            Dao.UserInfoDao oUserInfo = null;
 
             try
             {
-                ds = new DataSet();
-                oUserInfo = new Dao.UserInfoDao();
-
-                ds = oUserInfo.ReGetUserInfo(userID, loginTime, userIP, out processCode);
+                ds = userInfoDao.ReGetUserInfo(userID, loginTime, userIP, out processCode);
 
                 if (string.IsNullOrEmpty(processCode))
                 {
@@ -326,7 +315,7 @@ namespace MVC4Base.Models
         /// DB에서 로그인정보가 정확하면 사용자 정보로 로그인 쿠키와 세션을 생성해 준다.
         /// </summary>
         /// <param name="ds"></param>
-        private static void MakeLoginInfo(DataSet ds)
+        private void MakeLoginInfo(DataSet ds)
         {
             // 로그인 인증용 쿠키를 생성한다.
             MakeCookie(ds);
@@ -339,7 +328,7 @@ namespace MVC4Base.Models
         /// 로그인 인증용 쿠키를 만든다.
         /// </summary>
         /// <param name="ds"></param>
-        private static void MakeCookie(DataSet ds)
+        private void MakeCookie(DataSet ds)
         {
             DataRow drw = ds.Tables[0].Rows[0];
 
@@ -347,7 +336,7 @@ namespace MVC4Base.Models
 
             // 1. 로그인용 쿠키를 생성한다.
             // 1.1 쿠키객체 생성
-            HttpCookie oCookie = new HttpCookie("AuthManagerLoginInfo");
+            HttpCookie oCookie = new HttpCookie("AuthServiceLoginInfo");
 
             // 쿠키 도메인 지정
             // 로컬일때는 도메인을 지정하지 않는다. (개발상태라고 본다.)
@@ -368,7 +357,7 @@ namespace MVC4Base.Models
             // 1.6 쿠키설정
             System.Web.HttpContext.Current.Response.Cookies.Add(oCookie);
             // 1.7 시간제한
-            System.Web.HttpContext.Current.Response.Cookies["AuthManagerLoginInfo"].Expires = DateTime.Now.AddMinutes(Int32.Parse(ConfigurationManager.AppSettings["AuthManagerCookieTimeout"]));
+            System.Web.HttpContext.Current.Response.Cookies["AuthServiceLoginInfo"].Expires = DateTime.Now.AddMinutes(Int32.Parse(ConfigurationManager.AppSettings["AuthServiceCookieTimeout"]));
 
             #endregion == 로그인용 쿠키 ==
         }
@@ -377,7 +366,7 @@ namespace MVC4Base.Models
         /// 사용자 정보를 담고 있는 세션을 만든다.
         /// </summary>
         /// <param name="ds"></param>
-        private static void MakeSession(DataSet ds)
+        private void MakeSession(DataSet ds)
         {
 
             DataRow drw = ds.Tables[0].Rows[0];
@@ -385,8 +374,8 @@ namespace MVC4Base.Models
             #region == 사용자 정보 세션 생성 ==
 
             // 세션이 있으면 삭제한다.
-            if (System.Web.HttpContext.Current.Session["AuthManagerLoginInfo"] != null)
-                System.Web.HttpContext.Current.Session.Remove("AuthManagerLoginInfo");
+            if (System.Web.HttpContext.Current.Session["AuthServiceLoginInfo"] != null)
+                System.Web.HttpContext.Current.Session.Remove("AuthServiceLoginInfo");
 
             // 2. 세션에 담을 정보를 바인딩 한다.
             UserInfo Info = new UserInfo();
@@ -397,9 +386,9 @@ namespace MVC4Base.Models
             Info.LoginTime = drw["LoginTime"].ToString();
             Info.LoginIP = drw["LoginIP"].ToString();
             Info.IsLoginUser = true;
-            Info.CookieTimeout = System.Web.HttpContext.Current.Response.Cookies["AuthManagerLoginInfo"].Expires.ToString();
+            Info.CookieTimeout = System.Web.HttpContext.Current.Response.Cookies["AuthServiceLoginInfo"].Expires.ToString();
             // 2.3 세션에 사용자 정보 해쉬테이블을 담는다.
-            System.Web.HttpContext.Current.Session["AuthManagerLoginInfo"] = Info;
+            System.Web.HttpContext.Current.Session["AuthServiceLoginInfo"] = Info;
 
             #endregion == 사용자 정보 세션 생성 ==
         }

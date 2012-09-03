@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+  <!-- 로그인 체크 필터 -->
+  <object id="InitUserInfoAttribute" type="MVC4Base.Filters.InitUserInfoAttribute, MVC4Base" singleton="false">
+    <property name="authService" ref="AuthService"/>
+    <property name="debugWindowService" ref="DebugWindowService"/>
+  </object>
+</objects>

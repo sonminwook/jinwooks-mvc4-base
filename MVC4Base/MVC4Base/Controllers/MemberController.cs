@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MVC4Base.Models;
 using MVC4Base.Filters;
+using MVC4Base.Services;
 
 namespace MVC4Base.Controllers
 {
@@ -14,6 +15,8 @@ namespace MVC4Base.Controllers
     [InitUserInfo]
     public class MemberController : Controller
     {
+        private AuthService authService = null;
+
         //
         // GET: /Member/Login
 
@@ -36,7 +39,7 @@ namespace MVC4Base.Controllers
         public ActionResult Login(LoginModel model, string returnUrl)
         {
             string processCode = string.Empty;
-            if (AuthService.Login(model.UserID, model.Password, model.RememberMe, out processCode))
+            if (authService.Login(model.UserID, model.Password, model.RememberMe, out processCode))
             {
                 return RedirectToLocal(returnUrl);
             }
@@ -54,7 +57,7 @@ namespace MVC4Base.Controllers
         [HttpPost]
         public ActionResult LogOff(string returnUrl)
         {
-            AuthService.Logout();
+            authService.Logout();
 
             return RedirectToLocal(returnUrl);
         }
