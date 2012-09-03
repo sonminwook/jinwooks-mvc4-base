@@ -218,6 +218,8 @@
     <Content Include="App_Data\MVC4Base_log.LDF">
       <DependentUpon>MVC4Base.mdf</DependentUpon>
     </Content>
+    <Content Include="Config\Dao.xml" />
+    <Content Include="Config\Services.xml" />
     <Content Include="Content\css\board.css" />
     <Content Include="Content\css\default.css" />
     <Content Include="Content\css\popup.css" />
