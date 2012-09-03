@@ -201,15 +201,15 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Dac\UserInfo.cs" />
+    <Compile Include="Dao\UserInfoDao.cs" />
     <Compile Include="Filters\InitUserInfoAttribute.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\AuthManager.cs" />
-    <Compile Include="Models\DebugWindowManager.cs" />
+    <Compile Include="Services\AuthService.cs" />
+    <Compile Include="Services\DebugWindowService.cs" />
     <Compile Include="Models\MemberModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -651,6 +651,7 @@
   <ItemGroup>
     <Content Include="Views\Shared\_LeftMenu.cshtml" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
