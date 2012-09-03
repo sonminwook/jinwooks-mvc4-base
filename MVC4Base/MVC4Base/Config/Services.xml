@@ -7,4 +7,9 @@
   <!-- 화면 디버깅 관련 -->
   <object id="DebugWindowService" type="MVC4Base.Services.DebugWindowService, MVC4Base" singleton="false" scope="request">
   </object>
+
+  <!-- 회원 관리 관련 -->
+  <object id="MemberService" type="MVC4Base.Services.MemberService, MVC4Base" singleton="false">
+    <property name="memberDao" ref="MemberDao"/>
+  </object>
 </objects>
