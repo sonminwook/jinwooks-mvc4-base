@@ -1,8 +1,7 @@
 ﻿@{
-    MVC4Base.Models.UserInfo userInfo = MVC4Base.Services.AuthService.UserInfomation;
-    string strMessage = MVC4Base.Services.DebugWindowService.Print();
+    MVC4Base.Models.UserInfo userInfo = ((MVC4Base.Services.AuthService)Spring.Context.Support.ContextRegistry.GetContext().GetObject("AuthService", typeof(MVC4Base.Services.AuthService))).UserInfomation;
+    string strMessage = ((MVC4Base.Services.DebugWindowService)Spring.Context.Support.ContextRegistry.GetContext().GetObject("DebugWindowService", typeof(MVC4Base.Services.DebugWindowService))).Print();
 }
-
         @{ if (Request.IsLocal){
              
             <div style="position: absolute; z-index: 100000000; top: 0; right: 0; background-color: #000000;

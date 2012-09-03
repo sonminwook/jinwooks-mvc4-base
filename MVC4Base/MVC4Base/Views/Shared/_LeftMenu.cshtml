@@ -1,5 +1,5 @@
 ﻿@{
-    MVC4Base.Models.UserInfo userInfo = MVC4Base.Services.AuthService.UserInfomation;   
+    MVC4Base.Models.UserInfo userInfo = ((MVC4Base.Services.AuthService)Spring.Context.Support.ContextRegistry.GetContext().GetObject("AuthService", typeof(MVC4Base.Services.AuthService))).UserInfomation;     
 }
 <!--트리메뉴영역-->
 <table class="left_menu" cellspacing="0" cellpadding="0">

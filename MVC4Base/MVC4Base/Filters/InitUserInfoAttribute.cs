@@ -17,11 +17,6 @@ namespace MVC4Base.Filters
         private AuthService authService = null;
         private DebugWindowService debugWindowService = null;
 
-        /// <summary>
-        /// 로그인 확인후 로그인 페이지로 이동여부
-        /// </summary>
-        public string AuthorizeYN { get; set; }
-
         public override void OnActionExecuting(System.Web.Mvc.ActionExecutingContext filterContext)
         {
             //01. 로그인정보를 확인하여 세션에 담는다.
@@ -55,7 +50,7 @@ namespace MVC4Base.Filters
             int count = filterContext.ActionDescriptor.GetCustomAttributes(true)
                 .Where(n => n.GetType().ToString() == "System.Web.Mvc.AllowAnonymousAttribute").Count();
 
-            if (count == 0 && AuthorizeYN == "Y" && !authService.UserInfomation.IsLoginUser)
+            if (count == 0 && !authService.UserInfomation.IsLoginUser)
             {
                 HttpContext.Current.Response.RedirectToRoute(
                     new { controller = "Member", action = "Login", returnUrl= filterContext.HttpContext.Request.Url.ToString() });

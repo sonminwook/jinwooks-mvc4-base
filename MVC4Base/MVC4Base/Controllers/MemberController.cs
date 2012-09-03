@@ -12,7 +12,6 @@ namespace MVC4Base.Controllers
     /// <summary>
     /// 로그인 관련 컨트롤러
     /// </summary>
-    [InitUserInfo]
     public class MemberController : Controller
     {
         private AuthService authService = null;
@@ -23,6 +22,7 @@ namespace MVC4Base.Controllers
         /// <summary>
         /// 로그인 페이지 이동시
         /// </summary>
+        [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -36,6 +36,7 @@ namespace MVC4Base.Controllers
         /// </summary>
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
             string processCode = string.Empty;
@@ -55,6 +56,7 @@ namespace MVC4Base.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult LogOff(string returnUrl)
         {
             authService.Logout();

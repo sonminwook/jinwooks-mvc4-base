@@ -11,7 +11,7 @@ namespace MVC4Base
         {
             filters.Add(new HandleErrorAttribute());
             //필터 등록하기
-            filters.Add(ContextRegistry.GetContext().GetObject("InitUserInfoAttribute", typeof(System.Web.Mvc.ActionFilterAttribute))); //사용자 권한 필터
+            filters.Add(ContextRegistry.GetContext().GetObject("InitUserInfoAttribute", typeof(MVC4Base.Filters.InitUserInfoAttribute))); //사용자 권한 필터
         }
     }
 }
