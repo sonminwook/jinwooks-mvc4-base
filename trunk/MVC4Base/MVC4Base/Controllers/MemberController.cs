@@ -36,7 +36,7 @@ namespace MVC4Base.Controllers
         public ActionResult Login(LoginModel model, string returnUrl)
         {
             string processCode = string.Empty;
-            if (AuthManager.Login(model.UserID, model.Password, model.RememberMe, out processCode))
+            if (AuthService.Login(model.UserID, model.Password, model.RememberMe, out processCode))
             {
                 return RedirectToLocal(returnUrl);
             }
@@ -54,7 +54,7 @@ namespace MVC4Base.Controllers
         [HttpPost]
         public ActionResult LogOff(string returnUrl)
         {
-            AuthManager.Logout();
+            AuthService.Logout();
 
             return RedirectToLocal(returnUrl);
         }
