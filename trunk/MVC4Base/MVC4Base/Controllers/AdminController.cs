@@ -35,30 +35,30 @@ namespace MVC4Base.Controllers
             //목록보기 권한이 있을때
             if (authService.UserInfomation.HasAuthority(UserAuthority.LIST))
             {
-                ViewBag.Message = "목록보기 권한이 있어요.";
+                //회원 목록 세팅
             }
             else
             {
-                ViewBag.Message = "목록보기 권한이 없어요.";
+                ModelState.AddModelError("", "목록보기 권한이 없습니다.");
             }
 
             return View();
         }
 
         /// <summary>
-        /// 회원 등록 페이지 /Admin/MemberCreate
+        /// 회원 등록/수정 페이지 /Admin/MemberEdit
         /// </summary>
         /// <returns></returns>
-        public ActionResult MemberCreate()
+        public ActionResult MemberEdit(MemeberModel model)
         {
-            //목록보기 권한이 있을때
-            if (authService.UserInfomation.HasAuthority(UserAuthority.CREATE))
+            if (authService.UserInfomation.HasAuthority(UserAuthority.CREATE)
+                || authService.UserInfomation.HasAuthority(UserAuthority.UPDATE))
             {
-                ViewBag.Message = "목록보기 권한이 있어요.";
+                // 회원 정보 세팅
             }
             else
             {
-                ViewBag.Message = "목록보기 권한이 없어요.";
+                ModelState.AddModelError("", "권한이 없습니다.");
             }
 
             return View();
@@ -71,21 +71,29 @@ namespace MVC4Base.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult MemberAction()
+        public ActionResult MemberAction(MemeberModel model)
         {
             if (ModelState.IsValid)
             {
-                //처리에 성공했을 경우
-                if (true)
+                if (authService.UserInfomation.HasAuthority(UserAuthority.CREATE)
+                || authService.UserInfomation.HasAuthority(UserAuthority.UPDATE))
                 {
-                    return RedirectToActionPermanent("Member");
+                    //처리에 성공했을 경우
+                    if (true)
+                    {
+                        return RedirectToActionPermanent("Member");
+                    }
+                    //실패하였을 경우
+                    ModelState.AddModelError("", "실패하였습니다.");
                 }
-                //실패하였을 경우
-                ModelState.AddModelError("", "실패하였습니다.");
+                else
+                {
+                    ModelState.AddModelError("", "권한이 없습니다.");
+                }
             }
 
             //목록으로 돌아가기
-            return MemberAction();
+            return MemberEdit(model);
         }
 
         #endregion 회원 관리

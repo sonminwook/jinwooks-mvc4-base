@@ -12,9 +12,13 @@ using System.Web.UI;
 using System.Web.Security;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using System.Web.Mvc;
 
 namespace MVC4Base.Models
 {
+    /// <summary>
+    /// 로그인 관련 모델
+    /// </summary>
     public class LoginModel
     {
         [Required]
@@ -28,6 +32,32 @@ namespace MVC4Base.Models
 
         [Display(Name = "아이디 저장")]
         public bool RememberMe { get; set; }
+    }
+
+    /// <summary>
+    /// 회원 정보 수정 관련 모델
+    /// </summary>
+    public class MemeberModel
+    {
+        [Required]
+        [Display(Name = "아이디")]
+        public string UserID { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "현재 비밀번호")]
+        public string OldPassword { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "{0}는 {2}자리 이상만 가능합니다.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "새 비밀번호")]
+        public string NewPassword { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "새 비밀번호 확인")]
+        [Compare("NewPassword", ErrorMessage = "새 비밀번호와 일치하지 않습니다.")]
+        public string ConfirmPassword { get; set; }
     }
 
     /// <summary>
