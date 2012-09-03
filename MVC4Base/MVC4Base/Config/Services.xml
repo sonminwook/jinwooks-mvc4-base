@@ -5,6 +5,6 @@
     <property name="userInfoDao" ref="UserInfoDao"/>
   </object>
   <!-- 화면 디버깅 관련 -->
-  <object id="DebugWindowService" type="MVC4Base.Services.DebugWindowService, MVC4Base" singleton="false">
+  <object id="DebugWindowService" type="MVC4Base.Services.DebugWindowService, MVC4Base" singleton="false" scope="request">
   </object>
 </objects>
