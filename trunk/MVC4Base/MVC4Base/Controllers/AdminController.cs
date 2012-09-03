@@ -7,9 +7,6 @@ using MVC4Base.Filters;
 
 namespace MVC4Base.Controllers
 {
-    //로그인 정보담기, AuthorizeYN="Y"이고 로그인이 안되어 있으면 로그인페이지로 이동
-    //단 AllowAnonymous 속성을 지정하면 로그인 페이지로 이동하지 않는다.
-    [InitUserInfo(AuthorizeYN = "Y")]
     public class AdminController : Controller
     {
         public ActionResult Index()
