@@ -1,5 +1,21 @@
 ﻿@model MVC4Base.Models.CodeSearchModels
 
+@{
+    Layout = "./_Layout.cshtml";
+    System.Data.DataRowCollection rows = ((System.Data.DataSet)ViewData["DataSet"]).Tables[0].Rows;
+}
+
+<!--타이틀, 네비게이터-->
+<div class="sub_title">
+    <h2>
+        메인코드 관리</h2>
+    <ul>
+        <li class="navi_home"></li>
+        <li>코드 관리</li>
+        <li class="navi_on">메인코드 관리</li>
+    </ul>
+</div>
+<!--//타이틀, 네비게이터-->
 
 @using (Html.BeginForm("MainCodeList", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "searchForm" }))
 {
@@ -62,7 +78,7 @@
     </table>
     <!--//조회조건 박스-->
 
-    @*<!-- 리스트영역 시작 -->
+    <!-- 리스트영역 시작 -->
     <table id="tbList" class="list" cellspacing="0" cellpadding="0">
         <colgroup>
             <col width="25px" />
@@ -78,116 +94,84 @@
             <col width="" />
             <!-- 설명 -->
         </colgroup>
-            <thead>
-                <tr>
-                    <th class="list_le">
-                        <input onclick="WebControl.MultiCheck('chkCheck', this.checked);" style="padding: 0;
-                            margin-top: -2px;" type="checkbox" />
-                    </th>
-                    <th>
-                        No
-                    </th>
-                    <th>
-                        <asp:LinkButton ID="btnSortMainCode" CommandName="lvListSort" OnCommand="ListSort"
-                            CommandArgument="MainCode" runat="server" Text='<%$ Resources:CommonResource, COM_MainCode %>'></asp:LinkButton>
-                    </th>
-                    <th>
-                        <asp:LinkButton ID="btnSortCodeName" CommandName="lvListSort" OnCommand="ListSort"
-                            CommandArgument="CodeName" runat="server" Text='<%$ Resources:CommonResource, COM_CodeName %>'></asp:LinkButton>
-                    </th>
-                    <th>
-                        <asp:LinkButton ID="btnSortUseYN" CommandName="lvListSort" OnCommand="ListSort" CommandArgument="UseYN"
-                            runat="server" Text='<%$ Resources:CommonResource, COM_UseYN %>'></asp:LinkButton>
-                    </th>
-                    <th>
-                        <asp:LinkButton ID="btnSortSortSEQ" CommandName="lvListSort" OnCommand="ListSort"
-                            CommandArgument="SortSEQ" runat="server" Text='<%$ Resources:CommonResource, COM_SortSEQ %>'></asp:LinkButton>
-                    </th>
-                    <th>
-                        <asp:LinkButton ID="btnSortDescription" CommandName="lvListSort" OnCommand="ListSort"
-                            CommandArgument="Description" runat="server" Text='<%$ Resources:CommonResource, COM_Description %>'></asp:LinkButton>
-                    </th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <td colspan="7">
-                    </td>
-                </tr>
-            </tfoot>
-            <tbody>
-                <asp:ListView ID="lvList" runat="server" OnItemDataBound="lvList_ItemDataBound">
-                    <LayoutTemplate>
-                        <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
-                    </LayoutTemplate>
-                    <ItemTemplate>
-                        <tr id="htrList" runat="server" style="cursor: pointer" onmousedown="WebControl.SelectedRow(this);"
-                            onmouseover="WebControl.FocusRow(this, 'over');" onmouseout="WebControl.FocusRow(this, 'out');"
-                            isalternat="0">
-                            <td class="list_le">
-                                <asp:CheckBox ID="chkCheck" runat="server" Style="padding: 0; margin-top: -2px;" />
-                                <asp:HiddenField ID="hhdMainCode" runat="server" />
-                                <asp:HiddenField ID="hhdSubCode" runat="server" />
-                            </td>
-                            <td>
-                                <%# Eval("RowNo")%>
-                            </td>
-                            <td style="text-align: left;">
-                                <%# Eval("MainCode")%>
-                            </td>
-                            <td style="text-align: left;">
-                                <%# Eval("CodeName")%>
-                            </td>
-                            <td>
-                                <%# Eval("UseYN")%>
-                            </td>
-                            <td>
-                                <%# Eval("SortSEQ")%>
-                            </td>
-                            <td style="text-align: left;">
-                                <%# Eval("Description")%>
-                            </td>
-                        </tr>
-                    </ItemTemplate>
-                    <AlternatingItemTemplate>
-                        <tr id="htrList" class="tr_bg" runat="server" style="cursor: pointer" onmousedown="WebControl.SelectedRow(this);"
-                            onmouseover="WebControl.FocusRow(this, 'over');" onmouseout="WebControl.FocusRow(this, 'out');"
-                            isalternat="1">
-                            <td class="list_le">
-                                <asp:CheckBox ID="chkCheck" runat="server" Style="padding: 0; margin-top: -2px;" />
-                                <asp:HiddenField ID="hhdMainCode" runat="server" />
-                                <asp:HiddenField ID="hhdSubCode" runat="server" />
-                            </td>
-                            <td>
-                                <%# Eval("RowNo")%>
-                            </td>
-                            <td style="text-align: left;">
-                                <%# Eval("MainCode")%>
-                            </td>
-                            <td style="text-align: left;">
-                                <%# Eval("CodeName")%>
-                            </td>
-                            <td>
-                                <%# Eval("UseYN")%>
-                            </td>
-                            <td>
-                                <%# Eval("SortSEQ")%>
-                            </td>
-                            <td style="text-align: left;">
-                                <%# Eval("Description")%>
-                            </td>
-                        </tr>
-                    </AlternatingItemTemplate>
-                    <EmptyDataTemplate>
-                        <tr>
-                            <td colspan="7" class="list_le">
-                                <asp:Literal ID="Literal2" runat="server" Text='<%$ Resources:CommonResource, COM_NoData %>'></asp:Literal>
-                            </td>
-                        </tr>
-                    </EmptyDataTemplate>
-                </asp:ListView>
-            </tbody>
-        </colgroup>
+        <thead>
+            <tr>
+                <th class="list_le">
+                    <input onclick="WebControl.MultiCheck('chkCheck', this.checked);" style="padding: 0;
+                        margin-top: -2px;" type="checkbox" />
+                </th>
+                <th>
+                    No
+                </th>
+                <th>
+                    메인코드
+                </th>
+                <th>
+                    코드명
+                </th>
+                <th>
+                    사용
+                </th>
+                <th>
+                    정렬
+                </th>
+                <th>
+                    설명
+                </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="7">
+                </td>
+            </tr>
+        </tfoot>
+        <tbody>
+            @if (rows.Count == 0)
+            {
+                    <tr>
+                        <td colspan="7" class="list_le">
+                            데이터가 없습니다.
+                        </td>
+                    </tr>
+            }
+            else
+            {
+                int iCount = 0;
+                foreach (System.Data.DataRow row in rows)
+                {
+                    iCount++;
+                    
+                    <tr style="cursor: pointer" onmousedown="WebControl.SelectedRow(this);"
+                        onmouseover="WebControl.FocusRow(this, 'over');" onmouseout="WebControl.FocusRow(this, 'out');"
+                        isalternat="@(iCount%2)">
+                        <td class="list_le">
+                            <input type="checkbox" id="chkCheck" style="padding: 0; margin-top: -2px;" />
+                        </td>
+                        <td>
+                            @row["RowNo"].ToString()
+                        </td>
+                        <td style="text-align: left;">
+                            @row["MainCode"].ToString()
+                        </td>
+                        <td style="text-align: left;">
+                            @row["CodeName"].ToString()
+                        </td>
+                        <td>
+                            @row["UseYN"].ToString()
+                        </td>
+                        <td>
+                            @row["SortSEQ"].ToString()
+                        </td>
+                        <td style="text-align: left;">
+                            @row["Description"].ToString()
+                        </td>
+                    </tr>
+                }
+            }
+
+
+        </tbody>
     </table>
     <!-- 리스트 끝 -->
     <!--페이지 리스트 버튼-->
@@ -208,7 +192,7 @@
     <!-- 데이타의 C,U,D 상태를 나타냅니다. -->
     <div style="position: fixed">
         <asp:HiddenField ID="hhdStatus" runat="server" Value="I" />
-    </div>*@
+    </div>
     <!-- 리스트영역 종료 -->
 }
     @*<!-- 상세영역 시작 -->

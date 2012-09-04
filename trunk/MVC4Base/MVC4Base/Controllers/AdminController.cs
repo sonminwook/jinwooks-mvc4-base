@@ -33,7 +33,7 @@ namespace MVC4Base.Controllers
         /// <returns></returns>
         public ActionResult MainCodeList(CodeSearchModels model)
         {
-            ViewBag.DataSet = codeService.GetCodeList(model);
+            ViewData["DataSet"] = codeService.GetCodeList(model);
             return View(model);
         }
 
