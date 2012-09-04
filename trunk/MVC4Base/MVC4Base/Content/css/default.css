@@ -73,14 +73,14 @@ table.my_info{width:100%; margin-bottom:10px; border:0; background:#FFF;}
 	.my_info_t03{width:5px; background:url(../img/left/t_rd.gif) no-repeat right 0;}
 	.my_info_le{background:url(../img/left/le.gif) repeat-y left;}
 		td.my_info{text-align:center; padding-bottom:4px; _padding-bottom:0;}
-		td.my_info dl{width:160px; margin:0 auto; text-align:left; padding-bottom:5px;}
-		td.my_info dt{min-height:21px;_height:21px; margin-bottom:6px; background:url(../img/left/my_info_line.gif) repeat-x bottom;}
+		td.my_info dl{width:160px; margin:0 auto; text-align:left; padding-bottom:0px;}
+		td.my_info dt{min-height:21px;_height:21px; margin-bottom:3px; background:url(../img/left/my_info_line.gif) repeat-x bottom;}
 		td.my_info dt p{color:#1865B4; padding:0 0 0 14px; background:url(../img/left/my_info.gif) no-repeat 2px 2px;}
 		td.my_info dt img{vertical-align:middle; margin:0 3px 0 2px;}
 		td.my_info dd,td.my_info dd a,td.my_info dd span{font-size:11px;}
 		td.my_info dl dd{clear:both; _height:0;}
 		td.my_info dl dd img{float:left; margin:4px 0 0 3px;}
-		td.my_info dl dd a{display:block; float:left; min-height:20px;_height:20px; padding:0 0 0 20px;}
+		td.my_info dl dd a{display:block; float:left; min-height:10px;_height:10px; padding:0 0 0 20px;}
 			.ico01{background:url(../img/left/ico01.gif) no-repeat 4px 2px;}/*결재할문서*/
 			.ico02{background:url(../img/left/ico02.gif) no-repeat 4px 1px;}/*메모보고*/
 			.ico03{background:url(../img/left/ico03.gif) no-repeat 4px 2px;}/*결재중문서*/

@@ -6,6 +6,7 @@
 
   <object id="AdminController" type="MVC4Base.Controllers.AdminController, MVC4Base" singleton="false">
     <property name="authService" ref="AuthService"/>
+    <property name="codeService" ref="CodeService"/>
   </object>
 
   <object id="MemberController" type="MVC4Base.Controllers.MemberController, MVC4Base" singleton="false">
