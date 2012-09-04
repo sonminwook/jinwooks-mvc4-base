@@ -7,7 +7,7 @@ namespace MVC4Base.Dao
 {
     public class MemberDao
     {
-        internal void GetMemberList()
+        public void GetMemberList()
         {
             throw new NotImplementedException();
         }

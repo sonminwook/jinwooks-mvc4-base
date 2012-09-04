@@ -4,6 +4,7 @@
   <object id="AuthService" type="MVC4Base.Services.AuthService, MVC4Base" singleton="true">
     <property name="userInfoDao" ref="UserInfoDao"/>
   </object>
+  
   <!-- 화면 디버깅 관련 -->
   <object id="DebugWindowService" type="MVC4Base.Services.DebugWindowService, MVC4Base" singleton="false" scope="request">
   </object>
@@ -12,4 +13,10 @@
   <object id="MemberService" type="MVC4Base.Services.MemberService, MVC4Base" singleton="false">
     <property name="memberDao" ref="MemberDao"/>
   </object>
+
+  <!-- 코드 관리 관련 -->
+  <object id="CodeService" type="MVC4Base.Services.CodeService, MVC4Base" singleton="false">
+    <property name="codeDao" ref="CodeDao"/>
+  </object>
+  
 </objects>

@@ -12,6 +12,7 @@ namespace MVC4Base.Controllers
     public class AdminController : Controller
     {
         private IAuthService authService = null;
+        private ICodeService codeService = null;
 
         /// <summary>
         /// 관리자 메인페이지 /Admin/Index
@@ -23,6 +24,38 @@ namespace MVC4Base.Controllers
 
             return View();
         }
+
+        #region 메인코드 관리
+
+        /// <summary>
+        /// 메인코드 관리 목록 /Admin/MainCodeList
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MainCodeList(CodeSearchModels model)
+        {
+            ViewBag.DataSet = codeService.GetCodeList(model);
+            return View(model);
+        }
+
+        /// <summary>
+        /// 메인코드 관리 목록 /Admin/MainCode
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MainCodeView()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 메인코드 관리 목록 /Admin/MainCode
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MainCodeAction()
+        {
+            return View();
+        }
+
+        #endregion 메인코드 관리
 
         #region 회원 관리
 

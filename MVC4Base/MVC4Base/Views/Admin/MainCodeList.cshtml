@@ -1,0 +1,302 @@
+﻿@model MVC4Base.Models.CodeSearchModels
+
+
+@using (Html.BeginForm("MainCodeList", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "searchForm" }))
+{
+    <!--상단버튼영역,board.css-->
+    <div class="top_btn">
+        <div class="ri">
+            <div class="btn_list">
+                <a href="javascript:document.getElementById('searchForm').submit()">
+                    <span>
+                        <img src="/Content/img/btn/btn_top_inquiry.gif" width="23" height="20" alt="검색" /></span>검색
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--//상단버튼영역-->
+
+    <!--조회조건 박스, board.css-->
+    <table class="box" cellspacing="0" cellpadding="0">
+        <tr>
+            <td class="box_t01">
+            </td>
+            <td class="box_t02">
+            </td>
+            <td class="box_t03">
+            </td>
+        </tr>
+        <tr>
+            <td class="box_le">
+                &nbsp;
+            </td>
+            <td class="box_cen">
+                <table class="box_cont" cellspacing="0" cellpadding="0">
+                    <col width="80px" />
+                    <col width="" />
+                    <col width="" />
+                    <tr>
+                        <th>
+                            메인코드
+                        </th>
+                        <td>
+                            @Html.TextBoxFor(n => n.MainCode, new { Class="input_border", id="txtSearchValue"})
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="box_ri">
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td class="box_f01">
+            </td>
+            <td class="box_f02">
+            </td>
+            <td class="box_f03">
+            </td>
+        </tr>
+    </table>
+    <!--//조회조건 박스-->
+
+    @*<!-- 리스트영역 시작 -->
+    <table id="tbList" class="list" cellspacing="0" cellpadding="0">
+        <colgroup>
+            <col width="25px" />
+            <col width="30px" />
+            <col width="150px" />
+            <!-- 메인코드 -->
+            <col width="150px" />
+            <!-- 코드명 -->
+            <col width="70px" />
+            <!-- 사용유무 -->
+            <col width="70px" />
+            <!-- 정렬순서 -->
+            <col width="" />
+            <!-- 설명 -->
+        </colgroup>
+            <thead>
+                <tr>
+                    <th class="list_le">
+                        <input onclick="WebControl.MultiCheck('chkCheck', this.checked);" style="padding: 0;
+                            margin-top: -2px;" type="checkbox" />
+                    </th>
+                    <th>
+                        No
+                    </th>
+                    <th>
+                        <asp:LinkButton ID="btnSortMainCode" CommandName="lvListSort" OnCommand="ListSort"
+                            CommandArgument="MainCode" runat="server" Text='<%$ Resources:CommonResource, COM_MainCode %>'></asp:LinkButton>
+                    </th>
+                    <th>
+                        <asp:LinkButton ID="btnSortCodeName" CommandName="lvListSort" OnCommand="ListSort"
+                            CommandArgument="CodeName" runat="server" Text='<%$ Resources:CommonResource, COM_CodeName %>'></asp:LinkButton>
+                    </th>
+                    <th>
+                        <asp:LinkButton ID="btnSortUseYN" CommandName="lvListSort" OnCommand="ListSort" CommandArgument="UseYN"
+                            runat="server" Text='<%$ Resources:CommonResource, COM_UseYN %>'></asp:LinkButton>
+                    </th>
+                    <th>
+                        <asp:LinkButton ID="btnSortSortSEQ" CommandName="lvListSort" OnCommand="ListSort"
+                            CommandArgument="SortSEQ" runat="server" Text='<%$ Resources:CommonResource, COM_SortSEQ %>'></asp:LinkButton>
+                    </th>
+                    <th>
+                        <asp:LinkButton ID="btnSortDescription" CommandName="lvListSort" OnCommand="ListSort"
+                            CommandArgument="Description" runat="server" Text='<%$ Resources:CommonResource, COM_Description %>'></asp:LinkButton>
+                    </th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td colspan="7">
+                    </td>
+                </tr>
+            </tfoot>
+            <tbody>
+                <asp:ListView ID="lvList" runat="server" OnItemDataBound="lvList_ItemDataBound">
+                    <LayoutTemplate>
+                        <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
+                    </LayoutTemplate>
+                    <ItemTemplate>
+                        <tr id="htrList" runat="server" style="cursor: pointer" onmousedown="WebControl.SelectedRow(this);"
+                            onmouseover="WebControl.FocusRow(this, 'over');" onmouseout="WebControl.FocusRow(this, 'out');"
+                            isalternat="0">
+                            <td class="list_le">
+                                <asp:CheckBox ID="chkCheck" runat="server" Style="padding: 0; margin-top: -2px;" />
+                                <asp:HiddenField ID="hhdMainCode" runat="server" />
+                                <asp:HiddenField ID="hhdSubCode" runat="server" />
+                            </td>
+                            <td>
+                                <%# Eval("RowNo")%>
+                            </td>
+                            <td style="text-align: left;">
+                                <%# Eval("MainCode")%>
+                            </td>
+                            <td style="text-align: left;">
+                                <%# Eval("CodeName")%>
+                            </td>
+                            <td>
+                                <%# Eval("UseYN")%>
+                            </td>
+                            <td>
+                                <%# Eval("SortSEQ")%>
+                            </td>
+                            <td style="text-align: left;">
+                                <%# Eval("Description")%>
+                            </td>
+                        </tr>
+                    </ItemTemplate>
+                    <AlternatingItemTemplate>
+                        <tr id="htrList" class="tr_bg" runat="server" style="cursor: pointer" onmousedown="WebControl.SelectedRow(this);"
+                            onmouseover="WebControl.FocusRow(this, 'over');" onmouseout="WebControl.FocusRow(this, 'out');"
+                            isalternat="1">
+                            <td class="list_le">
+                                <asp:CheckBox ID="chkCheck" runat="server" Style="padding: 0; margin-top: -2px;" />
+                                <asp:HiddenField ID="hhdMainCode" runat="server" />
+                                <asp:HiddenField ID="hhdSubCode" runat="server" />
+                            </td>
+                            <td>
+                                <%# Eval("RowNo")%>
+                            </td>
+                            <td style="text-align: left;">
+                                <%# Eval("MainCode")%>
+                            </td>
+                            <td style="text-align: left;">
+                                <%# Eval("CodeName")%>
+                            </td>
+                            <td>
+                                <%# Eval("UseYN")%>
+                            </td>
+                            <td>
+                                <%# Eval("SortSEQ")%>
+                            </td>
+                            <td style="text-align: left;">
+                                <%# Eval("Description")%>
+                            </td>
+                        </tr>
+                    </AlternatingItemTemplate>
+                    <EmptyDataTemplate>
+                        <tr>
+                            <td colspan="7" class="list_le">
+                                <asp:Literal ID="Literal2" runat="server" Text='<%$ Resources:CommonResource, COM_NoData %>'></asp:Literal>
+                            </td>
+                        </tr>
+                    </EmptyDataTemplate>
+                </asp:ListView>
+            </tbody>
+        </colgroup>
+    </table>
+    <!-- 리스트 끝 -->
+    <!--페이지 리스트 버튼-->
+    <div class="list_btn">
+        <div>
+            <nwc:NeoplusPaging ID="pgList" runat="server" TotalListCount="0" ListPerPage="10"
+                FontSize="18" TotalPageCount="0" OnClick="pgList_Click" />
+        </div>
+        <div class="btn_right">
+            <nwc:NeoplusDropDownList ID="ddlListPerPage" runat="server">
+                <asp:ListItem Text="10" Value="10"></asp:ListItem>
+                <asp:ListItem Text="30" Value="30"></asp:ListItem>
+                <asp:ListItem Text="50" Value="50"></asp:ListItem>
+            </nwc:NeoplusDropDownList>
+        </div>
+    </div>
+    <!--// 페이지 리스트 버튼 -->
+    <!-- 데이타의 C,U,D 상태를 나타냅니다. -->
+    <div style="position: fixed">
+        <asp:HiddenField ID="hhdStatus" runat="server" Value="I" />
+    </div>*@
+    <!-- 리스트영역 종료 -->
+}
+    @*<!-- 상세영역 시작 -->
+    <h3>
+        <asp:Literal ID="Literal11" runat="server" Text='<%$ Resources:CommonResource, PAGE_DetailView %>'></asp:Literal></h3>
+    <table id="htblDetail" class="sub_table" cellspacing="0" cellpadding="0">
+        <colgroup>
+            <col style="width: 100px;" />
+            <col  />
+            <col style="width: 100px;" />
+            <col style="width: 50px;" />
+        </colgroup>
+        <tr>
+            <th class="list_le">
+                <asp:Literal ID="Literal5" runat="server" Text='<%$ Resources:CommonResource, COM_MainCode %>'></asp:Literal>
+            </th>
+            <td>
+                <nwc:NeoplusTextBox ID="txtMainCode" runat="server" SourceField="MainCode" PK="True"
+                    Description='<%$ Resources:CommonResource, COM_MainCode %>' onFocus="False" Required="True"
+                    IMEMODE="None" CssClass="input_border" MaxLength="20" Width="98%"></nwc:NeoplusTextBox>
+            </td>
+            <th>
+                <asp:Literal ID="Literal7" runat="server" Text='<%$ Resources:CommonResource, COM_UseYN %>'></asp:Literal>
+            </th>
+            <td>
+                <nwc:NeoplusCheckBox ID="chkUseYN" runat="server" SourceField="UseYN" />
+            </td>
+        </tr>
+        <tr>
+            <th class="list_le" >
+                <asp:Literal ID="Literal6" runat="server" Text='<%$ Resources:CommonResource, COM_CodeName %>'></asp:Literal>
+            </th>
+            <td>
+                <nwc:NeoplusTextBox ID="txtCodeName" runat="server" SourceField="CodeName" PK="False"
+                    Description='<%$ Resources:CommonResource, COM_CodeName %>' onFocus="False" Required="False"
+                    IMEMODE="None" CssClass="input_border" MaxLength="100" Width="90%"></nwc:NeoplusTextBox>
+                <a href="#" onclick="Common.MultiLanguageInput('txtCodeName','hidCodeNameLang');return false;">
+                    <img src="/WebCommon/img/btn/btn_list_languages.gif" width="20" height="20" alt="View" /></a>
+                <input id="hidCodeNameLang" runat="server" sourcefield="CodeNameLang" type="hidden" />
+            </td>
+            <th>
+                <asp:Literal ID="Literal8" runat="server" Text='<%$ Resources:CommonResource, COM_SortSEQ %>'></asp:Literal>
+            </th>
+            <td>
+                <nwc:NeoplusTextBox ID="txtSortSEQ" runat="server" SourceField="SortSEQ" PK="False"
+                    Description='<%$ Resources:CommonResource, COM_SortSEQ %>' onFocus="False" Required="False"
+                    IMEMODE="None" CssClass="input_border" MaxLength="4" Width="20px"></nwc:NeoplusTextBox>
+            </td>
+        </tr>
+        <tr>
+            <th class="list_le" >
+                <asp:Literal ID="Literal9" runat="server" Text='<%$ Resources:CommonResource, COM_Description %>'></asp:Literal>
+            </th>
+            <td colspan="3">
+                <nwc:NeoplusTextBox ID="txtDescription" runat="server" SourceField="Description"
+                    PK="False" Description='<%$ Resources:CommonResource, COM_Description %>' onFocus="False"
+                    Required="False" IMEMODE="None" CssClass="input_border" MaxLength="3000" Width="98%"></nwc:NeoplusTextBox>
+            </td>
+        </tr>
+    </table>
+    <!-- 상세영역 종료 -->
+    <!-- 버튼영역 시작 -->
+    <!--리스트 하단버튼영역,board.css-->
+    <div class="foot_btn">
+        <div class="ri">
+            <div class="btn">
+                <a href="#" onclick="return SetNew();"><span>
+                    <img src="/WebCommon/img/btn/btn_new.gif" width="30" height="30" alt="New" /></span><p>
+                        <asp:Literal ID="Literal2" runat="server" Text='<%$ Resources:CommonResource, CTL_New %>'></asp:Literal></p>
+                </a>
+            </div>
+            <div class="btn">
+                <asp:LinkButton ID="btnSave" runat="server" OnClientClick="return CheckSave();" OnClick="btnSave_Click">
+                    <span>
+                        <img src="/WebCommon/img/btn/btn_save.gif" width="30" height="30" alt="Save" /></span><p>
+                            <asp:Literal ID="Literal3" runat="server" Text='<%$ Resources:CommonResource, CTL_Save %>'></asp:Literal></p>
+                </asp:LinkButton>
+            </div>
+            <div class="btn">
+                <asp:LinkButton ID="btnDelete" runat="server" OnClientClick="return CheckDelete();"
+                    OnClick="btnDelete_Click">
+                    <span>
+                        <img src="/WebCommon/img/btn/btn_del.gif" width="30" height="30" alt="Delete" /></span><p>
+                            <asp:Literal ID="Literal4" runat="server" Text='<%$ Resources:CommonResource, CTL_Delete %>'></asp:Literal></p>
+                </asp:LinkButton>
+            </div>
+        </div>
+    </div>
+    <!--//리스트 하단버튼영역-->
+    <!-- 버튼영역 종료 -->*@
+
