@@ -46,6 +46,8 @@ namespace MVC4Base.Dao
                                         , new SqlParameter("@TitleYN",          model.TitleYN)                  //제목여부
                                         };
 
+
+
             return SQLDataHelper.GetDataSet(strQuery, paramArray, CommandType.StoredProcedure);
         }
     }

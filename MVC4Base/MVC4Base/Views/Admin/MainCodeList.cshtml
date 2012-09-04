@@ -2,7 +2,8 @@
 
 @{
     Layout = "./_Layout.cshtml";
-    System.Data.DataRowCollection rows = ((System.Data.DataSet)ViewData["DataSet"]).Tables[0].Rows;
+    System.Data.DataRowCollection rows = ViewData["DataSet"] != null ? ((System.Data.DataSet)ViewData["DataSet"]).Tables[0].Rows : null;
+    Decimal totalCount = ViewData["DataSet"] != null ? Decimal.Parse(((System.Data.DataSet)ViewData["DataSet"]).Tables[1].Rows[0][0].ToString()) : 0;
 }
 
 <!--타이틀, 네비게이터-->
@@ -17,15 +18,18 @@
 </div>
 <!--//타이틀, 네비게이터-->
 
-@using (Html.BeginForm("MainCodeList", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "searchForm" }))
+@using (Html.BeginForm("MainCodeList", "Admin", new { ReturnUrl = ViewBag.ReturnUrl}, FormMethod.Post, new { id = "searchForm" }))
 {
+    @Html.Hidden("TitleYN", "Y");
     <!--상단버튼영역,board.css-->
     <div class="top_btn">
         <div class="ri">
             <div class="btn_list">
                 <a href="javascript:document.getElementById('searchForm').submit()">
                     <span>
-                        <img src="/Content/img/btn/btn_top_inquiry.gif" width="23" height="20" alt="검색" /></span>검색
+                        
+                        <img src="/Content/img/btn/btn_top_inquiry.gif" width="23" height="20" alt="검색" /></span>
+                        <span>검색</span>
                 </a>
             </div>
         </div>
@@ -53,10 +57,16 @@
                     <col width="" />
                     <tr>
                         <th>
-                            메인코드
+                            @Html.LabelFor(n=>n.MainCode)
                         </th>
                         <td>
-                            @Html.TextBoxFor(n => n.MainCode, new { Class="input_border", id="txtSearchValue"})
+                            @Html.TextBoxFor(n => n.MainCode, 
+                            new { 
+                                Class = "input_border", 
+                                id = "txtSearchValue", 
+                                onchange = "$('#hhdCurrentPageIndex').attr('value','1');",
+                                maxlength = "20"
+                            })
                         </td>
                         <td>
                         </td>
@@ -97,7 +107,7 @@
         <thead>
             <tr>
                 <th class="list_le">
-                    <input onclick="WebControl.MultiCheck('chkCheck', this.checked);" style="padding: 0;
+                    <input onclick="$('input[name=chkCheck]').attr('checked', this.checked);" style="padding: 0;
                         margin-top: -2px;" type="checkbox" />
                 </th>
                 <th>
@@ -127,7 +137,7 @@
             </tr>
         </tfoot>
         <tbody>
-            @if (rows.Count == 0)
+            @if (rows == null || rows.Count == 0)
             {
                     <tr>
                         <td colspan="7" class="list_le">
@@ -144,9 +154,10 @@
                     
                     <tr style="cursor: pointer" onmousedown="WebControl.SelectedRow(this);"
                         onmouseover="WebControl.FocusRow(this, 'over');" onmouseout="WebControl.FocusRow(this, 'out');"
-                        isalternat="@(iCount%2)">
+                        @if (iCount % 2 == 1)
+                        {<text> class="tr_bg"</text>} isalternat="@(iCount % 2)">
                         <td class="list_le">
-                            <input type="checkbox" id="chkCheck" style="padding: 0; margin-top: -2px;" />
+                            <input type="checkbox" name="chkCheck" style="padding: 0; margin-top: -2px;" />
                         </td>
                         <td>
                             @row["RowNo"].ToString()
@@ -161,7 +172,7 @@
                             @row["UseYN"].ToString()
                         </td>
                         <td>
-                            @row["SortSEQ"].ToString()
+                            @row["SortOrder"].ToString()
                         </td>
                         <td style="text-align: left;">
                             @row["Description"].ToString()
@@ -176,28 +187,90 @@
     <!-- 리스트 끝 -->
     <!--페이지 리스트 버튼-->
     <div class="list_btn">
-        <div>
-            <nwc:NeoplusPaging ID="pgList" runat="server" TotalListCount="0" ListPerPage="10"
-                FontSize="18" TotalPageCount="0" OnClick="pgList_Click" />
+        <div id="pglist" style="text-align:center">
+            @Html.HiddenFor(n => n.PageIndex, new { id = "hhdCurrentPageIndex" })
+            @{
+            var PageCount = Math.Ceiling((Decimal)totalCount / Model.PageSize); 
+            PageCount = PageCount == 0 ? 1 : PageCount; //01. 전체 페이징 갯수
+            
+            var PageStart = Model.PageIndex - (Model.PageIndex%10) + 1; //02. 현재 페이징 시작번호
+            var PageEnd = PageStart + 9 < PageCount ? PageStart : PageCount; //03. 현재 페이징 마침번호
+
+            var PrevStart = PageStart - 10 > 0 ? PageStart - 10 : 1; //04. 이전 10페이지
+            var NextStart = PageStart + 10 < PageCount ? PageStart + 10 : PageCount; //05. 다음 10페이지
+                
+            }
+            <table style="width:100%">
+                <tbody>
+                    <tr>
+                        <td style="padding-bottom: 2px; vertical-align: bottom" width="25%" align="left">
+                            <span style="font-family: 굴림; font-size: 9pt">총 @string.Format("{0:###,##0}", totalCount) 건</span>
+                            <span style="font-family: 굴림; font-size: 9pt">&nbsp;(@(Model.PageIndex)/@PageCount.ToString())</span>
+                        </td>
+                        <td style="text-align:center">
+                            @if (Model.PageIndex > 1)
+                            { 
+                            <input style="margin-bottom: -3px" src="/Content/img/board/btn_front.gif" type="image" 
+                            title="처음" onclick="$('#hhdCurrentPageIndex').attr('value','1')" />
+                            <span>&nbsp;</span>
+                            <input style="margin-bottom: -3px" class="aspnetdisabled" src="/Content/img/board/btn_pre.gif" type="image" 
+                            title="이전 10페이지" onclick="$('#hhdCurrentPageIndex').attr('value','@PrevStart')" />
+                            <span style="color: #d7d7d7">&nbsp;|&nbsp;</span>
+                            }
+                            else
+                            {
+                            <input style="margin-bottom: -3px" src="/Content/img/board/btn_front.gif" type="image" title="처음"/>
+                            <span>&nbsp;</span>
+                            <input style="margin-bottom: -3px" class="aspnetdisabled" src="/Content/img/board/btn_pre.gif" type="image" title="이전" />
+                            <span style="color: #d7d7d7">&nbsp;|&nbsp;</span>
+                            }
+                            @for (int i = PageStart; i <= PageEnd; i++)
+                            {   
+                            <a style="font-family: 굴림; color: @(i == Model.PageIndex ? "#f98217" : "black"); font-size: 9pt; font-weight: @(i == Model.PageIndex ? "bold" : "normal"); text-decoration: none;" 
+                            href="#" onclick="javascript:$('#hhdCurrentPageIndex').attr('value','@i');document.getElementById('searchForm').submit();return false;">@i</a>
+                            <span style="color: #d7d7d7">&nbsp;|&nbsp;</span>
+                            }
+                            @if (Model.PageIndex != PageCount)
+                            { 
+                            <input style="margin-bottom: -3px" class="aspnetdisabled" src="/Content/img/board/btn_next.gif" type="image"
+                            title="다음 10 페이지" onclick="$('#hhdCurrentPageIndex').attr('value','@NextStart')" />
+                            <span>&nbsp;</span>
+                            <input style="margin-bottom: -3px" src="/Content/img/board/btn_end.gif" type="image" 
+                            title="마지막" onclick="$('#hhdCurrentPageIndex').attr('value','@PageCount')" />
+                            <span>&nbsp;</span>
+                            }
+                            else
+                            {
+                            <input style="margin-bottom: -3px" class="aspnetdisabled" src="/Content/img/board/btn_next.gif" type="image" title="다음" />
+                            <span>&nbsp;</span>
+                            <input style="margin-bottom: -3px" src="/Content/img/board/btn_end.gif" type="image" title="마지막" />
+                            <span>&nbsp;</span>
+                            }
+                        </td>
+                        <td width="25%">&nbsp;</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="btn_right">
-            <nwc:NeoplusDropDownList ID="ddlListPerPage" runat="server">
-                <asp:ListItem Text="10" Value="10"></asp:ListItem>
-                <asp:ListItem Text="30" Value="30"></asp:ListItem>
-                <asp:ListItem Text="50" Value="50"></asp:ListItem>
-            </nwc:NeoplusDropDownList>
+            @Html.DropDownListFor(n => n.PageSize, new List<SelectListItem>(){
+                new SelectListItem(){Text="10", Value="10"},
+                new SelectListItem(){Text="30", Value="30"},
+                new SelectListItem(){Text="50", Value="50"}
+            }, new { id = "ddlListPerPage", onchange = "$('#hhdCurrentPageIndex').attr('value','1');document.getElementById('searchForm').submit();return false;" })
         </div>
     </div>
     <!--// 페이지 리스트 버튼 -->
+}
     <!-- 데이타의 C,U,D 상태를 나타냅니다. -->
     <div style="position: fixed">
-        <asp:HiddenField ID="hhdStatus" runat="server" Value="I" />
+        @Html.Hidden("hhsStatus", "I")
     </div>
     <!-- 리스트영역 종료 -->
-}
-    @*<!-- 상세영역 시작 -->
+
+    <!-- 상세영역 시작 -->
     <h3>
-        <asp:Literal ID="Literal11" runat="server" Text='<%$ Resources:CommonResource, PAGE_DetailView %>'></asp:Literal></h3>
+        메인코드 상세보기</h3>
     <table id="htblDetail" class="sub_table" cellspacing="0" cellpadding="0">
         <colgroup>
             <col style="width: 100px;" />
@@ -207,15 +280,18 @@
         </colgroup>
         <tr>
             <th class="list_le">
-                <asp:Literal ID="Literal5" runat="server" Text='<%$ Resources:CommonResource, COM_MainCode %>'></asp:Literal>
+@*                @Html.LabelFor(n=>n.MainCode)*@
             </th>
             <td>
-                <nwc:NeoplusTextBox ID="txtMainCode" runat="server" SourceField="MainCode" PK="True"
-                    Description='<%$ Resources:CommonResource, COM_MainCode %>' onFocus="False" Required="True"
-                    IMEMODE="None" CssClass="input_border" MaxLength="20" Width="98%"></nwc:NeoplusTextBox>
+@*                @Html.TextBoxFor(n => n.MainCode, 
+                            new { 
+                                Class = "input_border",
+                                id = "txtMainCode", 
+                                maxlength = "20"
+                            })*@
             </td>
             <th>
-                <asp:Literal ID="Literal7" runat="server" Text='<%$ Resources:CommonResource, COM_UseYN %>'></asp:Literal>
+                사용여부
             </th>
             <td>
                 <nwc:NeoplusCheckBox ID="chkUseYN" runat="server" SourceField="UseYN" />
@@ -282,5 +358,5 @@
         </div>
     </div>
     <!--//리스트 하단버튼영역-->
-    <!-- 버튼영역 종료 -->*@
+    <!-- 버튼영역 종료 -->
 

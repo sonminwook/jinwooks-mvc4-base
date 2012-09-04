@@ -33,7 +33,10 @@ namespace MVC4Base.Controllers
         /// <returns></returns>
         public ActionResult MainCodeList(CodeSearchModels model)
         {
-            ViewData["DataSet"] = codeService.GetCodeList(model);
+            if (ModelState.IsValid)
+            {
+                ViewData["DataSet"] = codeService.GetCodeList(model);
+            }
             return View(model);
         }
 
