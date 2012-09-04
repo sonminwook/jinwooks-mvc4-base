@@ -215,13 +215,6 @@
     <Compile Include="Services\IDebugWindowService.cs" />
     <Compile Include="Services\MemberDao.cs" />
     <Compile Include="Services\MemberService.cs" />
-    <Compile Include="TestPage.aspx.cs">
-      <DependentUpon>TestPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TestPage.aspx.designer.cs">
-      <DependentUpon>TestPage.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\MVC4Base.mdf" />
@@ -560,7 +553,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Config\Controllers.xml" />
     <Content Include="Scripts\topmenu.js" />
-    <Content Include="TestPage.aspx" />
     <Content Include="디자인시안\Admin_기초코드_서브코드.html" />
     <Content Include="디자인시안\Admin_사용자관리.html" />
     <Content Include="디자인시안\Admin_사용자권한그룹관리.html" />
