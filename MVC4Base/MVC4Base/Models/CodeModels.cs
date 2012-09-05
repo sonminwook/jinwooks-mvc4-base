@@ -6,29 +6,67 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MVC4Base.Models
 {
-    public class CodeSearchModels
+    public class PagingModel
     {
-        public CodeSearchModels()
+        public PagingModel()
         {
             PageIndex = 1;
             PageSize = 10;
             Order = string.Empty;
-            MainCode = string.Empty;
-            TitleYN = 'Y';
-            SubCode = string.Empty;
-            CodeName = string.Empty;
+            TotlaCount = 0;
         }
         
-        public int PageIndex { get; set; }
-        public int PageSize { get; set; }
+        public Decimal PageIndex { get; set; }
+        public Decimal PageSize { get; set; }
         public string Order { get; set; }
-        [Display(Name = "메인코드")]
-        [StringLength(20, ErrorMessage = "{0}는 {1}자리까지만 입력이 가능합니다.", MinimumLength = 0)]
-        public string MainCode { get; set; }
-        public char TitleYN { get; set; }
-        [Display(Name = "서브코드")]
-        [StringLength(20, ErrorMessage = "{0}는 {1}자리까지만 입력이 가능합니다.", MinimumLength = 0)]
-        public string SubCode { get; set; }
-        public string CodeName { get; set; }
+        public Decimal TotlaCount { get; set; }
+
+        /// <summary>
+        /// 페이징 갯수
+        /// </summary>
+        public Decimal PageCount {
+            get {
+                Decimal v = Math.Ceiling((Decimal)TotlaCount / PageSize);
+                return v == 0 ? 1 : v;
+            }
+        }
+
+        /// <summary>
+        /// 페이징 나열 시작 번호
+        /// </summary>
+        public Decimal PageStart {
+            get
+            {
+                return PageIndex - (PageIndex % 10) + 1;
+            }
+        }
+        /// <summary>
+        /// 페이징 나열 끝 번호
+        /// </summary>
+        public Decimal PageEnd {
+            get
+            {
+                return PageStart + 9 < PageCount ? PageStart : PageCount;
+            }
+        }
+        /// <summary>
+        /// 이전버튼 페이징 번호
+        /// </summary>
+        public Decimal PrevStart {
+            get
+            {
+                return PageStart - 10 > 0 ? PageStart - 10 : 1;
+            }
+        }
+        /// <summary>
+        /// 다음버튼 페이징 번호
+        /// </summary>
+        public Decimal NextStart {
+            get
+            {
+                return PageStart + 10 < PageCount ? PageStart + 10 : PageCount;
+            }
+        }
+        
     }
 }

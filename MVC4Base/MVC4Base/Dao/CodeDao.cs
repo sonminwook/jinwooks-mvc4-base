@@ -33,17 +33,17 @@ namespace MVC4Base.Dao
         /// <param name="mainCode">메인코드</param> 
         /// <param name="subCode">서브코드</param> 
         /// <returns></returns> 
-        public DataSet GetSYSCode(CodeSearchModels model)
+        public DataSet GetSYSCode(PagingModel model, string titleYN, string mainCode, string subCode, string codeName)
         {
             string strQuery = "usp_SYSCode_List";
 
             SqlParameter[] paramArray = { new SqlParameter("@PageIndex",        model.PageIndex)                //조회할 페이지 ** 1페이지부터 시작합니다. 
                                         , new SqlParameter("@PageSize",         model.PageSize)                 //페이지당 리스트갯수  
                                         , new SqlParameter("@Order",            model.Order)                    //정렬할 컬럼 
-                                        , new SqlParameter("@MainCode",         model.MainCode)                 //메인코드
-                                        , new SqlParameter("@SubCode",          model.SubCode)                  //서브코드
-                                        , new SqlParameter("@CodeName",         model.CodeName)                 //코드명   
-                                        , new SqlParameter("@TitleYN",          model.TitleYN)                  //제목여부
+                                        , new SqlParameter("@MainCode",         mainCode)                 //메인코드
+                                        , new SqlParameter("@SubCode",          subCode)                  //서브코드
+                                        , new SqlParameter("@CodeName",         codeName)                 //코드명   
+                                        , new SqlParameter("@TitleYN",          titleYN)                  //제목여부
                                         };
 
 

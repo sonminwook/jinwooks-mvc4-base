@@ -4,6 +4,6 @@ namespace MVC4Base.Services
 {
     public interface ICodeService
     {
-        System.Data.DataSet GetCodeList(CodeSearchModels model);
+        System.Data.DataSet GetCodeList(PagingModel model, string titleYN, string mainCode, string subCode, string codeName);
     }
 }

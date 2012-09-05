@@ -11,9 +11,9 @@ namespace MVC4Base.Services
     {
         private Dao.CodeDao codeDao = null;
 
-        public DataSet GetCodeList(CodeSearchModels model)
+        public DataSet GetCodeList(PagingModel model, string titleYN, string mainCode, string subCode, string codeName)
         {
-            return codeDao.GetSYSCode(model);
+            return codeDao.GetSYSCode(model, titleYN, mainCode, subCode, codeName);
         }
     }
 }

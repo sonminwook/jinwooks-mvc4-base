@@ -556,7 +556,9 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
-    <Content Include="Config\Controllers.xml" />
+    <Content Include="Config\Controllers.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\topmenu.js" />
     <Content Include="디자인시안\Admin_기초코드_서브코드.html" />
     <Content Include="디자인시안\Admin_사용자관리.html" />
