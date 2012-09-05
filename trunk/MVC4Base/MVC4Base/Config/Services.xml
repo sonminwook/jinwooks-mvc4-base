@@ -2,7 +2,7 @@
 <objects xmlns="http://www.springframework.net">
   <!-- 로그인 관련 -->
   <object id="AuthService" type="MVC4Base.Services.AuthService, MVC4Base" singleton="true">
-    <property name="userInfoDao" ref="UserInfoDao"/>
+    <property name="db" ref="MVC4BaseEntities"/>
   </object>
   
   <!-- 화면 디버깅 관련 -->
