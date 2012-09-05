@@ -35,11 +35,13 @@ namespace MVC4Base.Controllers
         /// <returns></returns>
         public ActionResult MainCodeList(PagingModel pagingModel, 
             string titleYN ,
-            string mainCode)
+            string mainCode ,
+            tbSYSCode sysCode)
         {
             ViewData.Add("pagingModel", pagingModel);
             ViewData.Add("titleYN", titleYN);
             ViewData.Add("mainCode", mainCode);
+            ViewData.Add("sysCode", sysCode);
 
             if (ModelState.IsValid)
             {

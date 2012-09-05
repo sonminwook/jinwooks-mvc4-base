@@ -4,6 +4,8 @@
     MVC4Base.Models.PagingModel pagingModel = (MVC4Base.Models.PagingModel)ViewData["pagingModel"];
 
     List<MVC4Base.fnSYSCodeList_Result> mainCodeModel = (List<MVC4Base.fnSYSCodeList_Result>)ViewData["mainCodeModel"];
+
+    MVC4Base.tbSYSCode sysCode = (MVC4Base.tbSYSCode)ViewData["sysCode"];
 }
 
 <!--타이틀, 네비게이터-->
@@ -189,7 +191,7 @@
     </table>
     <!-- 리스트 끝 -->
     @Html.Partial("_Paging")
-}
+
     <!-- 데이타의 C,U,D 상태를 나타냅니다. -->
     <div style="position: fixed">
         @Html.Hidden("hhsStatus", "I")
@@ -208,52 +210,58 @@
         </colgroup>
         <tr>
             <th class="list_le">
-@*                @Html.LabelFor(n=>n.MainCode)*@
+                @Html.Label("sysCode.MainCode", "메인코드")
             </th>
             <td>
-@*                @Html.TextBoxFor(n => n.MainCode, 
+                @Html.TextBox("sysCode.MainCode", sysCode.MainCode,
                             new { 
                                 Class = "input_border",
-                                id = "txtMainCode", 
                                 maxlength = "20"
-                            })*@
+                            })
             </td>
             <th>
-                사용여부
+                @Html.Label("sysCode.UseYN", "사용여부")
             </th>
             <td>
-                <nwc:NeoplusCheckBox ID="chkUseYN" runat="server" SourceField="UseYN" />
+                @Html.TextBox("sysCode.UseYN", sysCode.UseYN,
+                            new { 
+                                Class = "input_border",
+                                maxlength = "1"
+                            })
             </td>
         </tr>
         <tr>
             <th class="list_le" >
-                <asp:Literal ID="Literal6" runat="server" Text='<%$ Resources:CommonResource, COM_CodeName %>'></asp:Literal>
+                @Html.Label("sysCode.CodeName", "코드명")
             </th>
             <td>
-                <nwc:NeoplusTextBox ID="txtCodeName" runat="server" SourceField="CodeName" PK="False"
-                    Description='<%$ Resources:CommonResource, COM_CodeName %>' onFocus="False" Required="False"
-                    IMEMODE="None" CssClass="input_border" MaxLength="100" Width="90%"></nwc:NeoplusTextBox>
-                <a href="#" onclick="Common.MultiLanguageInput('txtCodeName','hidCodeNameLang');return false;">
-                    <img src="/Content/img/btn/btn_list_languages.gif" width="20" height="20" alt="View" /></a>
-                <input id="hidCodeNameLang" runat="server" sourcefield="CodeNameLang" type="hidden" />
+                @Html.TextBox("sysCode.CodeName", sysCode.CodeName,
+                new { 
+                    Class = "input_border",
+                    maxlength = "100"
+                })
             </td>
             <th>
-                <asp:Literal ID="Literal8" runat="server" Text='<%$ Resources:CommonResource, COM_SortSEQ %>'></asp:Literal>
+                @Html.Label("sysCode.SortOrder", "정렬순서")
             </th>
             <td>
-                <nwc:NeoplusTextBox ID="txtSortSEQ" runat="server" SourceField="SortSEQ" PK="False"
-                    Description='<%$ Resources:CommonResource, COM_SortSEQ %>' onFocus="False" Required="False"
-                    IMEMODE="None" CssClass="input_border" MaxLength="4" Width="20px"></nwc:NeoplusTextBox>
+                @Html.TextBox("sysCode.SortOrder", sysCode.SortOrder,
+                new { 
+                    Class = "input_border",
+                    maxlength = "100"
+                })
             </td>
         </tr>
         <tr>
             <th class="list_le" >
-                <asp:Literal ID="Literal9" runat="server" Text='<%$ Resources:CommonResource, COM_Description %>'></asp:Literal>
+                @Html.Label("sysCode.Description", "설명")
             </th>
             <td colspan="3">
-                <nwc:NeoplusTextBox ID="txtDescription" runat="server" SourceField="Description"
-                    PK="False" Description='<%$ Resources:CommonResource, COM_Description %>' onFocus="False"
-                    Required="False" IMEMODE="None" CssClass="input_border" MaxLength="3000" Width="98%"></nwc:NeoplusTextBox>
+                @Html.TextBox("sysCode.Description", sysCode.Description,
+                new { 
+                    Class = "input_border",
+                    maxlength = "3000"
+                })
             </td>
         </tr>
     </table>
@@ -283,4 +291,4 @@
     </div>
     <!--//리스트 하단버튼영역-->
     <!-- 버튼영역 종료 -->
-
+}
