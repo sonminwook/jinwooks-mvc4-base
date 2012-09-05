@@ -38,7 +38,7 @@
     <!--//상단버튼영역-->
 
     <!--조회조건 박스, board.css-->
-    <table class="box" cellspacing="0" cellpadding="0">
+    <table class="box">
         <tr>
             <td class="box_t01">
             </td>
@@ -52,10 +52,12 @@
                 &nbsp;
             </td>
             <td class="box_cen">
-                <table class="box_cont" cellspacing="0" cellpadding="0">
-                    <col width="80px" />
-                    <col width="" />
-                    <col width="" />
+                <table class="box_cont">
+                    <colgroup>
+                        <col style="width:80px" />
+                        <col />
+                        <col />
+                    </colgroup>
                     <tr>
                         <th>
                             @Html.Label("mainCode", "메인코드")

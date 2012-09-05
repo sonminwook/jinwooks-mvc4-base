@@ -208,7 +208,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\CodeModels.cs" />
+    <Compile Include="Models\PagingModel.cs" />
     <Compile Include="Services\AuthService.cs" />
     <Compile Include="Services\CodeService.cs" />
     <Compile Include="Services\DebugWindowService.cs" />
