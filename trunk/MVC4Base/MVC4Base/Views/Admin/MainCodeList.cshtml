@@ -92,19 +92,19 @@
     <!--//조회조건 박스-->
 
     <!-- 리스트영역 시작 -->
-    <table id="tbList" class="list" cellspacing="0" cellpadding="0">
+    <table id="tbList" class="list">
         <colgroup>
-            <col width="25px" />
-            <col width="30px" />
-            <col width="150px" />
+            <col style="width:25px" />
+            <col style="width:30px" />
+            <col style="width:150px" />
             <!-- 메인코드 -->
-            <col width="150px" />
+            <col style="width:150px" />
             <!-- 코드명 -->
-            <col width="70px" />
+            <col style="width:70px" />
             <!-- 사용유무 -->
-            <col width="70px" />
+            <col style="width:70px" />
             <!-- 정렬순서 -->
-            <col width="" />
+            <col style="width:" />
             <!-- 설명 -->
         </colgroup>
         <thead>
@@ -195,7 +195,7 @@
             <table style="width:100%">
                 <tbody>
                     <tr>
-                        <td style="padding-bottom: 2px; vertical-align: bottom" width="25%" align="left">
+                        <td style="padding-bottom: 2px; vertical-align: bottom; width:25%; text-align:left;">
                             <span style="font-family: 굴림; font-size: 9pt">총 @string.Format("{0:###,##0}", totalCount) 건</span>
                             <span style="font-family: 굴림; font-size: 9pt">&nbsp;(@(pagingModel.PageIndex)/@(pagingModel.PageCount.ToString()))</span>
                         </td>
@@ -239,7 +239,7 @@
                             <span>&nbsp;</span>
                             }
                         </td>
-                        <td width="25%">&nbsp;</td>
+                        <td style="width:25%">&nbsp;</td>
                     </tr>
                 </tbody>
             </table>
@@ -263,7 +263,7 @@
     <!-- 상세영역 시작 -->
     <h3>
         메인코드 상세보기</h3>
-    <table id="htblDetail" class="sub_table" cellspacing="0" cellpadding="0">
+    <table id="htblDetail" class="sub_table">
         <colgroup>
             <col style="width: 100px;" />
             <col  />
