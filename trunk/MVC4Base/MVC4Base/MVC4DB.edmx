@@ -1,0 +1,690 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MVC4BaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="MVC4BaseModelStoreContainer">
+          <EntitySet Name="tbMember" EntityType="MVC4BaseModel.Store.tbMember" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tbMemberLoginLog" EntityType="MVC4BaseModel.Store.tbMemberLoginLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tbMemberLoginSession" EntityType="MVC4BaseModel.Store.tbMemberLoginSession" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tbSYSAuthority" EntityType="MVC4BaseModel.Store.tbSYSAuthority" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tbSYSCode" EntityType="MVC4BaseModel.Store.tbSYSCode" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tbSYSMenu" EntityType="MVC4BaseModel.Store.tbSYSMenu" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tbSYSMenuRole" EntityType="MVC4BaseModel.Store.tbSYSMenuRole" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tbSYSRoleAuthority" EntityType="MVC4BaseModel.Store.tbSYSRoleAuthority" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tbSYSRoleGroup" EntityType="MVC4BaseModel.Store.tbSYSRoleGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tbSYSRoleMember" EntityType="MVC4BaseModel.Store.tbSYSRoleMember" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tbVisitLog" EntityType="MVC4BaseModel.Store.tbVisitLog" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="tbMember">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nickname" Type="nvarchar" MaxLength="50" />
+          <Property Name="UseYN" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="RegID" Type="varchar" MaxLength="50" />
+          <Property Name="RegIP" Type="varchar" MaxLength="15" />
+          <Property Name="RegDT" Type="datetime" Nullable="false" />
+          <Property Name="ModID" Type="varchar" MaxLength="50" />
+          <Property Name="ModIP" Type="varchar" MaxLength="15" />
+          <Property Name="ModDT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbMemberLoginLog">
+          <Key>
+            <PropertyRef Name="LogNo" />
+          </Key>
+          <Property Name="LogNo" Type="decimal" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LoginIP" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="LoginTime" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="BrowserUserAgent" Type="nvarchar" Nullable="false" MaxLength="1000" />
+          <Property Name="BrowserID" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="BrowserVer" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Platform" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="CookiesSupport" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="ActiveXSupport" Type="char" Nullable="false" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="tbMemberLoginSession">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LoginIP" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="LoginTime" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbSYSAuthority">
+          <Key>
+            <PropertyRef Name="AuthorityID" />
+          </Key>
+          <Property Name="AuthorityID" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="AuthorityName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="RegID" Type="varchar" MaxLength="50" />
+          <Property Name="RegIP" Type="varchar" MaxLength="15" />
+          <Property Name="RegDT" Type="datetime" Nullable="false" />
+          <Property Name="ModID" Type="varchar" MaxLength="50" />
+          <Property Name="ModIP" Type="varchar" MaxLength="15" />
+          <Property Name="ModDT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbSYSCode">
+          <Key>
+            <PropertyRef Name="MainCode" />
+            <PropertyRef Name="SubCode" />
+          </Key>
+          <Property Name="MainCode" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="SubCode" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="UseYN" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="Description" Type="nvarchar" MaxLength="3000" />
+          <Property Name="CodeName" Type="nvarchar" MaxLength="100" />
+          <Property Name="RegID" Type="varchar" MaxLength="50" />
+          <Property Name="RegIP" Type="varchar" MaxLength="15" />
+          <Property Name="RegDT" Type="datetime" Nullable="false" />
+          <Property Name="ModID" Type="varchar" MaxLength="50" />
+          <Property Name="ModIP" Type="varchar" MaxLength="15" />
+          <Property Name="ModDT" Type="datetime" />
+          <Property Name="SortOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="tbSYSMenu">
+          <Key>
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="MenuID" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="TopMenuID" Type="varchar" MaxLength="20" />
+          <Property Name="MenuName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="ParentMenuID" Type="varchar" MaxLength="20" />
+          <Property Name="PageURL" Type="nvarchar" MaxLength="1000" />
+          <Property Name="MenuLevel" Type="int" />
+          <Property Name="DisplayYN" Type="char" MaxLength="1" />
+          <Property Name="SubMainYN" Type="char" MaxLength="1" />
+          <Property Name="UseYN" Type="char" MaxLength="1" />
+          <Property Name="MobileYN" Type="char" MaxLength="1" />
+          <Property Name="RegID" Type="varchar" MaxLength="50" />
+          <Property Name="RegIP" Type="varchar" MaxLength="15" />
+          <Property Name="RegDT" Type="datetime" Nullable="false" />
+          <Property Name="ModID" Type="varchar" MaxLength="50" />
+          <Property Name="ModIP" Type="varchar" MaxLength="15" />
+          <Property Name="ModDT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbSYSMenuRole">
+          <Key>
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="MenuID" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="RoleID" Type="varchar" MaxLength="20" />
+          <Property Name="RegID" Type="varchar" MaxLength="50" />
+          <Property Name="RegIP" Type="varchar" MaxLength="15" />
+          <Property Name="RegDT" Type="datetime" Nullable="false" />
+          <Property Name="ModID" Type="varchar" MaxLength="50" />
+          <Property Name="ModIP" Type="varchar" MaxLength="15" />
+          <Property Name="ModDT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbSYSRoleAuthority">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="AuthorityID" Type="varchar" MaxLength="20" />
+          <Property Name="RegID" Type="varchar" MaxLength="50" />
+          <Property Name="RegIP" Type="varchar" MaxLength="15" />
+          <Property Name="RegDT" Type="datetime" Nullable="false" />
+          <Property Name="ModID" Type="varchar" MaxLength="50" />
+          <Property Name="ModIP" Type="varchar" MaxLength="15" />
+          <Property Name="ModDT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbSYSRoleGroup">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="RegID" Type="varchar" MaxLength="50" />
+          <Property Name="RegIP" Type="varchar" MaxLength="15" />
+          <Property Name="RegDT" Type="datetime" Nullable="false" />
+          <Property Name="ModID" Type="varchar" MaxLength="50" />
+          <Property Name="ModIP" Type="varchar" MaxLength="15" />
+          <Property Name="ModDT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbSYSRoleMember">
+          <Key>
+            <PropertyRef Name="RoleID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="RoleID" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="RegID" Type="varchar" MaxLength="50" />
+          <Property Name="RegIP" Type="varchar" MaxLength="15" />
+          <Property Name="RegDT" Type="datetime" Nullable="false" />
+          <Property Name="ModID" Type="varchar" MaxLength="50" />
+          <Property Name="ModIP" Type="varchar" MaxLength="15" />
+          <Property Name="ModDT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbVisitLog">
+          <Key>
+            <PropertyRef Name="LogNo" />
+            <PropertyRef Name="VisitDate" />
+          </Key>
+          <Property Name="LogNo" Type="decimal" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VisitDate" Type="datetime" Nullable="false" />
+          <Property Name="MenuID" Type="varchar" MaxLength="20" />
+          <Property Name="IP" Type="varchar" MaxLength="15" />
+          <Property Name="UserID" Type="varchar" MaxLength="50" />
+          <Property Name="BrowserUserAgent" Type="nvarchar" MaxLength="1000" />
+          <Property Name="BrowserID" Type="varchar" MaxLength="20" />
+          <Property Name="BrowserVer" Type="varchar" MaxLength="10" />
+          <Property Name="Platform" Type="varchar" MaxLength="20" />
+          <Property Name="CookiesSupport" Type="char" MaxLength="1" />
+          <Property Name="ActiveXSupport" Type="char" MaxLength="1" />
+        </EntityType>
+        <Function Name="ufn_Set_WhereString" ReturnType="varchar(max)" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WhereString" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="usp_SYSCode_DropDownList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MainCode" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_SYSCode_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MainCode" Type="varchar" Mode="In" />
+          <Parameter Name="SubCode" Type="varchar" Mode="In" />
+          <Parameter Name="CodeName" Type="nvarchar" Mode="In" />
+          <Parameter Name="TitleYN" Type="char" Mode="In" />
+          <Parameter Name="PageIndex" Type="decimal" Mode="In" />
+          <Parameter Name="PageSize" Type="decimal" Mode="In" />
+          <Parameter Name="Order" Type="varchar" Mode="In" />
+          <Parameter Name="TotalCount" Type="decimal" Mode="InOut" />
+        </Function>
+        <Function Name="usp_SYSCode_Process" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Arg" Type="varchar" Mode="In" />
+          <Parameter Name="MainCode" Type="varchar" Mode="In" />
+          <Parameter Name="SubCode" Type="varchar" Mode="In" />
+          <Parameter Name="UseYN" Type="char" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="CodeName" Type="nvarchar" Mode="In" />
+          <Parameter Name="SortOrder" Type="int" Mode="In" />
+          <Parameter Name="RegID" Type="varchar" Mode="In" />
+          <Parameter Name="RegIP" Type="varchar" Mode="In" />
+          <Parameter Name="ModID" Type="varchar" Mode="In" />
+          <Parameter Name="ModIP" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_SYSUser_GetAuthority" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="varchar" Mode="In" />
+          <Parameter Name="MenuID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_SYSUser_GetInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="varchar" Mode="In" />
+          <Parameter Name="UserPassword" Type="varchar" Mode="In" />
+          <Parameter Name="UserIP" Type="varchar" Mode="In" />
+          <Parameter Name="BrowserUserAgent" Type="nvarchar" Mode="In" />
+          <Parameter Name="BrowserID" Type="varchar" Mode="In" />
+          <Parameter Name="BrowserVer" Type="varchar" Mode="In" />
+          <Parameter Name="Platform" Type="varchar" Mode="In" />
+          <Parameter Name="CookiesSupport" Type="varchar" Mode="In" />
+          <Parameter Name="ActiveXSupport" Type="varchar" Mode="In" />
+          <Parameter Name="ProcessCode" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="usp_SYSUser_ReGetInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="varchar" Mode="In" />
+          <Parameter Name="LoginTime" Type="varchar" Mode="In" />
+          <Parameter Name="UserIP" Type="varchar" Mode="In" />
+          <Parameter Name="ProcessCode" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="usp_VisitLog_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MenuID" Type="varchar" Mode="In" />
+          <Parameter Name="IP" Type="varchar" Mode="In" />
+          <Parameter Name="UserID" Type="varchar" Mode="In" />
+          <Parameter Name="BrowserUserAgent" Type="nvarchar" Mode="In" />
+          <Parameter Name="BrowserID" Type="varchar" Mode="In" />
+          <Parameter Name="BrowserVer" Type="varchar" Mode="In" />
+          <Parameter Name="Platform" Type="varchar" Mode="In" />
+          <Parameter Name="CookiesSupport" Type="char" Mode="In" />
+          <Parameter Name="ActiveXSupport" Type="char" Mode="In" />
+        </Function>
+        <Function Name="usp_VisitLog_Menu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StartDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
+          <Parameter Name="MenuID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_VisitLog_MonthlyVisit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StartDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
+          <Parameter Name="VisitType" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_VisitLog_YearlyMenu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StartDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
+          <Parameter Name="MenuID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_VisitLog_YearlyVisits" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StartDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
+          <Parameter Name="VisitType" Type="varchar" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MVC4BaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="MVC4BaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbMember" EntityType="MVC4BaseModel.tbMember" />
+          <EntitySet Name="tbMemberLoginLog" EntityType="MVC4BaseModel.tbMemberLoginLog" />
+          <EntitySet Name="tbMemberLoginSession" EntityType="MVC4BaseModel.tbMemberLoginSession" />
+          <EntitySet Name="tbSYSAuthority" EntityType="MVC4BaseModel.tbSYSAuthority" />
+          <EntitySet Name="tbSYSCode" EntityType="MVC4BaseModel.tbSYSCode" />
+          <EntitySet Name="tbSYSMenu" EntityType="MVC4BaseModel.tbSYSMenu" />
+          <EntitySet Name="tbSYSMenuRole" EntityType="MVC4BaseModel.tbSYSMenuRole" />
+          <EntitySet Name="tbSYSRoleAuthority" EntityType="MVC4BaseModel.tbSYSRoleAuthority" />
+          <EntitySet Name="tbSYSRoleGroup" EntityType="MVC4BaseModel.tbSYSRoleGroup" />
+          <EntitySet Name="tbSYSRoleMember" EntityType="MVC4BaseModel.tbSYSRoleMember" />
+          <EntitySet Name="tbVisitLog" EntityType="MVC4BaseModel.tbVisitLog" />
+          <FunctionImport Name="fnSYSCodeList" ReturnType="Collection(MVC4BaseModel.fnSYSCodeList_Result)">
+            <Parameter Name="MainCode" Mode="In" Type="String" />
+            <Parameter Name="SubCode" Mode="In" Type="String" />
+            <Parameter Name="CodeName" Mode="In" Type="String" />
+            <Parameter Name="TitleYN" Mode="In" Type="String" />
+            <Parameter Name="PageIndex" Mode="In" Type="Decimal" />
+            <Parameter Name="PageSize" Mode="In" Type="Decimal" />
+            <Parameter Name="Order" Mode="In" Type="String" />
+            <Parameter Name="TotalCount" Mode="InOut" Type="Decimal" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="tbMember">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Nickname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UseYN" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="RegID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="RegIP" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="RegDT" Type="DateTime" Nullable="false" />
+          <Property Name="ModID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ModIP" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="ModDT" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="tbMemberLoginLog">
+          <Key>
+            <PropertyRef Name="LogNo" />
+          </Key>
+          <Property Name="LogNo" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LoginIP" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="LoginTime" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="BrowserUserAgent" Type="String" Nullable="false" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="BrowserID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="BrowserVer" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Platform" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="CookiesSupport" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="ActiveXSupport" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+        </EntityType>
+        <EntityType Name="tbMemberLoginSession">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LoginIP" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="LoginTime" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tbSYSAuthority">
+          <Key>
+            <PropertyRef Name="AuthorityID" />
+          </Key>
+          <Property Name="AuthorityID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="AuthorityName" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="RegID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="RegIP" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="RegDT" Type="DateTime" Nullable="false" />
+          <Property Name="ModID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ModIP" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="ModDT" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="tbSYSCode">
+          <Key>
+            <PropertyRef Name="MainCode" />
+            <PropertyRef Name="SubCode" />
+          </Key>
+          <Property Name="MainCode" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="SubCode" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="UseYN" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="Description" Type="String" MaxLength="3000" Unicode="true" FixedLength="false" />
+          <Property Name="CodeName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="RegID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="RegIP" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="RegDT" Type="DateTime" Nullable="false" />
+          <Property Name="ModID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ModIP" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="ModDT" Type="DateTime" />
+          <Property Name="SortOrder" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbSYSMenu">
+          <Key>
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="TopMenuID" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="MenuName" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="SortOrder" Type="Int32" />
+          <Property Name="ParentMenuID" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="PageURL" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="MenuLevel" Type="Int32" />
+          <Property Name="DisplayYN" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="SubMainYN" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="UseYN" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="MobileYN" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="RegID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="RegIP" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="RegDT" Type="DateTime" Nullable="false" />
+          <Property Name="ModID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ModIP" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="ModDT" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="tbSYSMenuRole">
+          <Key>
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="RoleID" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="RegID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="RegIP" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="RegDT" Type="DateTime" Nullable="false" />
+          <Property Name="ModID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ModIP" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="ModDT" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="tbSYSRoleAuthority">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="AuthorityID" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="RegID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="RegIP" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="RegDT" Type="DateTime" Nullable="false" />
+          <Property Name="ModID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ModIP" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="ModDT" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="tbSYSRoleGroup">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="RoleName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="SortOrder" Type="Int32" />
+          <Property Name="RegID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="RegIP" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="RegDT" Type="DateTime" Nullable="false" />
+          <Property Name="ModID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ModIP" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="ModDT" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="tbSYSRoleMember">
+          <Key>
+            <PropertyRef Name="RoleID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="RoleID" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="RegID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="RegIP" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="RegDT" Type="DateTime" Nullable="false" />
+          <Property Name="ModID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ModIP" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="ModDT" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="tbVisitLog">
+          <Key>
+            <PropertyRef Name="LogNo" />
+            <PropertyRef Name="VisitDate" />
+          </Key>
+          <Property Name="LogNo" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VisitDate" Type="DateTime" Nullable="false" />
+          <Property Name="MenuID" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="IP" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="UserID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="BrowserUserAgent" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="BrowserID" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="BrowserVer" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Platform" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="CookiesSupport" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="ActiveXSupport" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+        </EntityType>
+        <ComplexType Name="fnSYSCodeList_Result">
+          <Property Type="Decimal" Name="RowNo" Nullable="false" />
+          <Property Type="String" Name="MainCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SubCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="UseYN" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="3000" />
+          <Property Type="String" Name="CodeName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SortOrder" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MVC4BaseModelStoreContainer" CdmEntityContainer="MVC4BaseEntities">
+          <EntitySetMapping Name="tbMember">
+            <EntityTypeMapping TypeName="MVC4BaseModel.tbMember">
+              <MappingFragment StoreEntitySet="tbMember">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+                <ScalarProperty Name="UseYN" ColumnName="UseYN" />
+                <ScalarProperty Name="RegID" ColumnName="RegID" />
+                <ScalarProperty Name="RegIP" ColumnName="RegIP" />
+                <ScalarProperty Name="RegDT" ColumnName="RegDT" />
+                <ScalarProperty Name="ModID" ColumnName="ModID" />
+                <ScalarProperty Name="ModIP" ColumnName="ModIP" />
+                <ScalarProperty Name="ModDT" ColumnName="ModDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbMemberLoginLog">
+            <EntityTypeMapping TypeName="MVC4BaseModel.tbMemberLoginLog">
+              <MappingFragment StoreEntitySet="tbMemberLoginLog">
+                <ScalarProperty Name="LogNo" ColumnName="LogNo" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="LoginIP" ColumnName="LoginIP" />
+                <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
+                <ScalarProperty Name="BrowserUserAgent" ColumnName="BrowserUserAgent" />
+                <ScalarProperty Name="BrowserID" ColumnName="BrowserID" />
+                <ScalarProperty Name="BrowserVer" ColumnName="BrowserVer" />
+                <ScalarProperty Name="Platform" ColumnName="Platform" />
+                <ScalarProperty Name="CookiesSupport" ColumnName="CookiesSupport" />
+                <ScalarProperty Name="ActiveXSupport" ColumnName="ActiveXSupport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbMemberLoginSession">
+            <EntityTypeMapping TypeName="MVC4BaseModel.tbMemberLoginSession">
+              <MappingFragment StoreEntitySet="tbMemberLoginSession">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="LoginIP" ColumnName="LoginIP" />
+                <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbSYSAuthority">
+            <EntityTypeMapping TypeName="MVC4BaseModel.tbSYSAuthority">
+              <MappingFragment StoreEntitySet="tbSYSAuthority">
+                <ScalarProperty Name="AuthorityID" ColumnName="AuthorityID" />
+                <ScalarProperty Name="AuthorityName" ColumnName="AuthorityName" />
+                <ScalarProperty Name="RegID" ColumnName="RegID" />
+                <ScalarProperty Name="RegIP" ColumnName="RegIP" />
+                <ScalarProperty Name="RegDT" ColumnName="RegDT" />
+                <ScalarProperty Name="ModID" ColumnName="ModID" />
+                <ScalarProperty Name="ModIP" ColumnName="ModIP" />
+                <ScalarProperty Name="ModDT" ColumnName="ModDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbSYSCode">
+            <EntityTypeMapping TypeName="MVC4BaseModel.tbSYSCode">
+              <MappingFragment StoreEntitySet="tbSYSCode">
+                <ScalarProperty Name="MainCode" ColumnName="MainCode" />
+                <ScalarProperty Name="SubCode" ColumnName="SubCode" />
+                <ScalarProperty Name="UseYN" ColumnName="UseYN" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CodeName" ColumnName="CodeName" />
+                <ScalarProperty Name="RegID" ColumnName="RegID" />
+                <ScalarProperty Name="RegIP" ColumnName="RegIP" />
+                <ScalarProperty Name="RegDT" ColumnName="RegDT" />
+                <ScalarProperty Name="ModID" ColumnName="ModID" />
+                <ScalarProperty Name="ModIP" ColumnName="ModIP" />
+                <ScalarProperty Name="ModDT" ColumnName="ModDT" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbSYSMenu">
+            <EntityTypeMapping TypeName="MVC4BaseModel.tbSYSMenu">
+              <MappingFragment StoreEntitySet="tbSYSMenu">
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TopMenuID" ColumnName="TopMenuID" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="ParentMenuID" ColumnName="ParentMenuID" />
+                <ScalarProperty Name="PageURL" ColumnName="PageURL" />
+                <ScalarProperty Name="MenuLevel" ColumnName="MenuLevel" />
+                <ScalarProperty Name="DisplayYN" ColumnName="DisplayYN" />
+                <ScalarProperty Name="SubMainYN" ColumnName="SubMainYN" />
+                <ScalarProperty Name="UseYN" ColumnName="UseYN" />
+                <ScalarProperty Name="MobileYN" ColumnName="MobileYN" />
+                <ScalarProperty Name="RegID" ColumnName="RegID" />
+                <ScalarProperty Name="RegIP" ColumnName="RegIP" />
+                <ScalarProperty Name="RegDT" ColumnName="RegDT" />
+                <ScalarProperty Name="ModID" ColumnName="ModID" />
+                <ScalarProperty Name="ModIP" ColumnName="ModIP" />
+                <ScalarProperty Name="ModDT" ColumnName="ModDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbSYSMenuRole">
+            <EntityTypeMapping TypeName="MVC4BaseModel.tbSYSMenuRole">
+              <MappingFragment StoreEntitySet="tbSYSMenuRole">
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RegID" ColumnName="RegID" />
+                <ScalarProperty Name="RegIP" ColumnName="RegIP" />
+                <ScalarProperty Name="RegDT" ColumnName="RegDT" />
+                <ScalarProperty Name="ModID" ColumnName="ModID" />
+                <ScalarProperty Name="ModIP" ColumnName="ModIP" />
+                <ScalarProperty Name="ModDT" ColumnName="ModDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbSYSRoleAuthority">
+            <EntityTypeMapping TypeName="MVC4BaseModel.tbSYSRoleAuthority">
+              <MappingFragment StoreEntitySet="tbSYSRoleAuthority">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="AuthorityID" ColumnName="AuthorityID" />
+                <ScalarProperty Name="RegID" ColumnName="RegID" />
+                <ScalarProperty Name="RegIP" ColumnName="RegIP" />
+                <ScalarProperty Name="RegDT" ColumnName="RegDT" />
+                <ScalarProperty Name="ModID" ColumnName="ModID" />
+                <ScalarProperty Name="ModIP" ColumnName="ModIP" />
+                <ScalarProperty Name="ModDT" ColumnName="ModDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbSYSRoleGroup">
+            <EntityTypeMapping TypeName="MVC4BaseModel.tbSYSRoleGroup">
+              <MappingFragment StoreEntitySet="tbSYSRoleGroup">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="RegID" ColumnName="RegID" />
+                <ScalarProperty Name="RegIP" ColumnName="RegIP" />
+                <ScalarProperty Name="RegDT" ColumnName="RegDT" />
+                <ScalarProperty Name="ModID" ColumnName="ModID" />
+                <ScalarProperty Name="ModIP" ColumnName="ModIP" />
+                <ScalarProperty Name="ModDT" ColumnName="ModDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbSYSRoleMember">
+            <EntityTypeMapping TypeName="MVC4BaseModel.tbSYSRoleMember">
+              <MappingFragment StoreEntitySet="tbSYSRoleMember">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="RegID" ColumnName="RegID" />
+                <ScalarProperty Name="RegIP" ColumnName="RegIP" />
+                <ScalarProperty Name="RegDT" ColumnName="RegDT" />
+                <ScalarProperty Name="ModID" ColumnName="ModID" />
+                <ScalarProperty Name="ModIP" ColumnName="ModIP" />
+                <ScalarProperty Name="ModDT" ColumnName="ModDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbVisitLog">
+            <EntityTypeMapping TypeName="MVC4BaseModel.tbVisitLog">
+              <MappingFragment StoreEntitySet="tbVisitLog">
+                <ScalarProperty Name="LogNo" ColumnName="LogNo" />
+                <ScalarProperty Name="VisitDate" ColumnName="VisitDate" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="BrowserUserAgent" ColumnName="BrowserUserAgent" />
+                <ScalarProperty Name="BrowserID" ColumnName="BrowserID" />
+                <ScalarProperty Name="BrowserVer" ColumnName="BrowserVer" />
+                <ScalarProperty Name="Platform" ColumnName="Platform" />
+                <ScalarProperty Name="CookiesSupport" ColumnName="CookiesSupport" />
+                <ScalarProperty Name="ActiveXSupport" ColumnName="ActiveXSupport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="fnSYSCodeList" FunctionName="MVC4BaseModel.Store.usp_SYSCode_List" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVC4BaseModel.fnSYSCodeList_Result">
+                <ScalarProperty Name="RowNo" ColumnName="RowNo" />
+                <ScalarProperty Name="MainCode" ColumnName="MainCode" />
+                <ScalarProperty Name="SubCode" ColumnName="SubCode" />
+                <ScalarProperty Name="UseYN" ColumnName="UseYN" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CodeName" ColumnName="CodeName" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="MVC4DB" DisplayType="false">
+        <EntityTypeShape EntityType="MVC4BaseModel.tbMember" Width="1.5" PointX="0.75" PointY="0.75" Height="3.1340950520833335" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4BaseModel.tbMemberLoginLog" Width="1.5" PointX="2.75" PointY="0.75" Height="2.9417936197916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4BaseModel.tbMemberLoginSession" Width="1.5" PointX="4.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4BaseModel.tbSYSAuthority" Width="1.5" PointX="0.75" PointY="4.75" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4BaseModel.tbSYSCode" Width="1.5" PointX="2.75" PointY="4.75" Height="3.3263964843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4BaseModel.tbSYSMenu" Width="1.5" PointX="4.75" PointY="3.75" Height="4.2879036458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4BaseModel.tbSYSMenuRole" Width="1.5" PointX="6.75" PointY="0.75" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4BaseModel.tbSYSRoleAuthority" Width="1.5" PointX="6.75" PointY="4.75" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4BaseModel.tbSYSRoleGroup" Width="1.5" PointX="8.75" PointY="0.75" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4BaseModel.tbSYSRoleMember" Width="1.5" PointX="8.75" PointY="4.75" Height="2.5571907552083353" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC4BaseModel.tbVisitLog" Width="1.5" PointX="6.75" PointY="8.75" Height="3.1340950520833317" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
