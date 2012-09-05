@@ -8,12 +8,13 @@ using System.Configuration;
 using System.Web.Security;
 using System.Web.UI;
 using MVC4Base.Models;
+using System.Data.Objects;
 
 namespace MVC4Base.Services
 {
     public class AuthService : MVC4Base.Services.IAuthService
     {
-        private Dao.UserInfoDao userInfoDao = null;
+        private MVC4BaseEntities db = null;
 
         /// <summary>
         /// 세션에 있는 로그인 정보를 반환한다.(변경불가!!)
@@ -81,15 +82,15 @@ namespace MVC4Base.Services
         /// <returns></returns>
         public bool Login(string userID, string password, bool isSaveID, out string processCode)
         {
-            string strProcessCode = string.Empty;
             processCode = string.Empty;
             HttpRequest request = System.Web.HttpContext.Current.Request;
             HttpRequest response = System.Web.HttpContext.Current.Request;
 
-            DataSet ds = null;
+            List<fnSYSUserGetInfo_Result> data = null;
             try
             {
-                ds = userInfoDao.GetUserInfo(userID, password,
+                ObjectParameter oProcessCode = new ObjectParameter("ProcessCode", typeof(String));
+                data = db.fnSYSUserGetInfo(userID, password,
                                              request.UserHostAddress,
                                              request.UserAgent.ToString(),
                                              request.Browser.Id.ToString(),
@@ -97,11 +98,11 @@ namespace MVC4Base.Services
                                              GetUserPlatform(),
                                              request.Browser.Cookies.ToString(),
                                              request.Browser.ActiveXControls.ToString(),
-                                             out strProcessCode);
+                                             oProcessCode).ToList<fnSYSUserGetInfo_Result>();
 
-                if (string.IsNullOrEmpty(strProcessCode))
+                if (string.IsNullOrEmpty(oProcessCode.Value.ToString()))
                 {
-                    MakeLoginInfo(ds); // 사용자 정보 생성 (쿠키&세션)
+                    MakeLoginInfo(data); // 사용자 정보 생성 (쿠키&세션)
 
                     //아이디 기억여부
                     if (isSaveID)
@@ -128,13 +129,12 @@ namespace MVC4Base.Services
                 }
                 else
                 {   // 로그인 실패일 경우
-                    processCode = strProcessCode;
+                    processCode = oProcessCode.Value.ToString();
                     return false;
                 }
             }
             finally
             {
-                if (ds != null) ds.Dispose();
             }
 
         }
@@ -231,7 +231,7 @@ namespace MVC4Base.Services
             HttpRequest request = System.Web.HttpContext.Current.Request;
             HttpRequest response = System.Web.HttpContext.Current.Request;
 
-            userInfoDao.InsertVisitLog(string.Format("{0}_{1}",controllerName, actionName), 
+            db.fnVisitLogInsert(string.Format("{0}_{1}",controllerName, actionName), 
                             request.UserHostAddress,
                             UserInfomation.UserID,
                             request.UserAgent.ToString(),
@@ -253,29 +253,34 @@ namespace MVC4Base.Services
             //로그인 한 사람만 권한 수집
             if (UserInfomation.IsLoginUser)
             {
-                DataSet ds = null;
-
+                List<fnSYSUserGetAuthorityGroup_Result> oAuthorityGroup = null;
+                List<fnSYSUserGetAuthority_Result> oAuthority = null;
                 try
                 {
-                    ds = userInfoDao.GetAuthority(UserInfomation.UserID, UserInfomation.CurrentMenuID);
 
-                    if (ds.Tables.Count > 1)
+                    oAuthorityGroup = db.fnSYSUserGetAuthorityGroup(UserInfomation.UserID, UserInfomation.CurrentMenuID).ToList<fnSYSUserGetAuthorityGroup_Result>();
+
+                    if (oAuthorityGroup.Count() > 1)
                     {
                         
                         //권한그룹정보 수집
-                        foreach(DataRow row in ds.Tables[0].Rows){
-                            UserInfoTemp.RoleList.Add(row["RoleID"].ToString(), row["RoleName"].ToString());
-                        }
-                        //권한 수집
-                        foreach (DataRow row in ds.Tables[1].Rows)
+                        foreach (fnSYSUserGetAuthorityGroup_Result row in oAuthorityGroup)
                         {
-                            UserInfoTemp.RoleList.Add(row["AuthorityID"].ToString(), row["AuthorityName"].ToString());
+                            UserInfoTemp.RoleList.Add(row.RoleID, row.RoleName);
+                        }
+                    }
+
+                    oAuthority = db.fnSYSUserGetAuthority(UserInfomation.UserID, UserInfomation.CurrentMenuID).ToList<fnSYSUserGetAuthority_Result>();
+                    {
+                        //권한 수집
+                        foreach (fnSYSUserGetAuthority_Result row in oAuthority)
+                        {
+                            UserInfoTemp.RoleList.Add(row.AuthorityID, row.AuthorityName);
                         }
                     }
                 }
                 finally
                 {
-                    if (ds != null) ds.Dispose();
                 }
             }
 
@@ -293,21 +298,22 @@ namespace MVC4Base.Services
         /// </summary>
         private void ReSetUserInfo(string userID, string loginTime, string userIP, out string processCode)
         {
-            DataSet ds = null;
-
+            List<fnSYSUserGetInfo_Result> data = null;
+            ObjectParameter oProcessCode = new ObjectParameter("ProcessCode", typeof(String));
             try
             {
-                ds = userInfoDao.ReGetUserInfo(userID, loginTime, userIP, out processCode);
+                data = db.fnSYSUserReGetInfo(userID, loginTime, userIP, oProcessCode).ToList<fnSYSUserGetInfo_Result>();
 
-                if (string.IsNullOrEmpty(processCode))
+                if (string.IsNullOrEmpty(oProcessCode.Value.ToString()))
                 {
                     // DataSet으로 사용자 정보가 담긴 세션을 만든다.
-                    MakeSession(ds);
+                    MakeSession(data);
                 }
+
+                processCode = oProcessCode.Value.ToString();
             }
             finally
             {
-                if (ds != null) ds.Dispose();
             }
 
         }     /// <summary>
@@ -315,22 +321,22 @@ namespace MVC4Base.Services
         /// DB에서 로그인정보가 정확하면 사용자 정보로 로그인 쿠키와 세션을 생성해 준다.
         /// </summary>
         /// <param name="ds"></param>
-        private void MakeLoginInfo(DataSet ds)
+        private void MakeLoginInfo(List<fnSYSUserGetInfo_Result> data)
         {
             // 로그인 인증용 쿠키를 생성한다.
-            MakeCookie(ds);
+            MakeCookie(data);
 
             // 로그인 사용자 정보를 담고 있는 세션을 생성한다.
-            MakeSession(ds);
+            MakeSession(data);
         }
 
         /// <summary>
         /// 로그인 인증용 쿠키를 만든다.
         /// </summary>
         /// <param name="ds"></param>
-        private void MakeCookie(DataSet ds)
+        private void MakeCookie(List<fnSYSUserGetInfo_Result> data)
         {
-            DataRow drw = ds.Tables[0].Rows[0];
+            fnSYSUserGetInfo_Result drw = data[0];
 
             #region == 로그인용 쿠키 ==
 
@@ -346,12 +352,12 @@ namespace MVC4Base.Services
             }
 
             // 1.2 쿠키 값 입력
-            string strCookieValue = drw["UserID"].ToString() + "|" + drw["LoginTime"].ToString() + "|" + drw["LoginIP"].ToString();
+            string strCookieValue = drw.UserID + "|" + drw.LoginTime + "|" + drw.LoginIP;
 
             // 1.3 암호화 클래스 생성
             Neoplus.Framework.Common.CryptoManager oCryptoManager = new Neoplus.Framework.Common.CryptoManager();
             // 1.4 암호화 키를 로그인한 IP로 지정
-            oCryptoManager.Password = drw["LoginIP"].ToString();
+            oCryptoManager.Password = drw.LoginIP;
             // 1.5 사용자ID, LoginTime, LoginIP의 문자열을 합쳐서 암호화 문자열 생성
             oCookie.Value = oCryptoManager.Encrypt(strCookieValue).Replace("+", "*");
             // 1.6 쿠키설정
@@ -366,10 +372,10 @@ namespace MVC4Base.Services
         /// 사용자 정보를 담고 있는 세션을 만든다.
         /// </summary>
         /// <param name="ds"></param>
-        private void MakeSession(DataSet ds)
+        private void MakeSession(List<fnSYSUserGetInfo_Result> data)
         {
 
-            DataRow drw = ds.Tables[0].Rows[0];
+            fnSYSUserGetInfo_Result drw = data[0];
 
             #region == 사용자 정보 세션 생성 ==
 
@@ -380,11 +386,11 @@ namespace MVC4Base.Services
             // 2. 세션에 담을 정보를 바인딩 한다.
             UserInfo Info = new UserInfo();
 
-            Info.UserID = drw["UserID"].ToString();
-            Info.Nickname = drw["Nickname"].ToString();
-            Info.UserName = drw["UserName"].ToString();
-            Info.LoginTime = drw["LoginTime"].ToString();
-            Info.LoginIP = drw["LoginIP"].ToString();
+            Info.UserID = drw.UserID;
+            Info.Nickname = drw.Nickname;
+            Info.UserName = drw.UserName;
+            Info.LoginTime = drw.LoginTime;
+            Info.LoginIP = drw.LoginIP;
             Info.IsLoginUser = true;
             Info.CookieTimeout = System.Web.HttpContext.Current.Response.Cookies["AuthServiceLoginInfo"].Expires.ToString();
             // 2.3 세션에 사용자 정보 해쉬테이블을 담는다.

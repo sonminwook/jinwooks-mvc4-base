@@ -214,6 +214,10 @@
           <Parameter Name="UserID" Type="varchar" Mode="In" />
           <Parameter Name="MenuID" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="usp_SYSUser_GetAuthorityGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="varchar" Mode="In" />
+          <Parameter Name="MenuID" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="usp_SYSUser_GetInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="varchar" Mode="In" />
           <Parameter Name="UserPassword" Type="varchar" Mode="In" />
@@ -288,6 +292,43 @@
             <Parameter Name="PageSize" Mode="In" Type="Decimal" />
             <Parameter Name="Order" Mode="In" Type="String" />
             <Parameter Name="TotalCount" Mode="InOut" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="fnSYSUserGetInfo" ReturnType="Collection(MVC4BaseModel.fnSYSUserGetInfo_Result)">
+            <Parameter Name="UserID" Mode="In" Type="String" />
+            <Parameter Name="UserPassword" Mode="In" Type="String" />
+            <Parameter Name="UserIP" Mode="In" Type="String" />
+            <Parameter Name="BrowserUserAgent" Mode="In" Type="String" />
+            <Parameter Name="BrowserID" Mode="In" Type="String" />
+            <Parameter Name="BrowserVer" Mode="In" Type="String" />
+            <Parameter Name="Platform" Mode="In" Type="String" />
+            <Parameter Name="CookiesSupport" Mode="In" Type="String" />
+            <Parameter Name="ActiveXSupport" Mode="In" Type="String" />
+            <Parameter Name="ProcessCode" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fnSYSUserReGetInfo" ReturnType="Collection(MVC4BaseModel.fnSYSUserGetInfo_Result)">
+            <Parameter Name="UserID" Mode="In" Type="String" />
+            <Parameter Name="LoginTime" Mode="In" Type="String" />
+            <Parameter Name="UserIP" Mode="In" Type="String" />
+            <Parameter Name="ProcessCode" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fnSYSUserGetAuthority" ReturnType="Collection(MVC4BaseModel.fnSYSUserGetAuthority_Result)">
+            <Parameter Name="UserID" Mode="In" Type="String" />
+            <Parameter Name="MenuID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fnVisitLogInsert">
+            <Parameter Name="MenuID" Mode="In" Type="String" />
+            <Parameter Name="IP" Mode="In" Type="String" />
+            <Parameter Name="UserID" Mode="In" Type="String" />
+            <Parameter Name="BrowserUserAgent" Mode="In" Type="String" />
+            <Parameter Name="BrowserID" Mode="In" Type="String" />
+            <Parameter Name="BrowserVer" Mode="In" Type="String" />
+            <Parameter Name="Platform" Mode="In" Type="String" />
+            <Parameter Name="CookiesSupport" Mode="In" Type="String" />
+            <Parameter Name="ActiveXSupport" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fnSYSUserGetAuthorityGroup" ReturnType="Collection(MVC4BaseModel.fnSYSUserGetAuthorityGroup_Result)">
+            <Parameter Name="UserID" Mode="In" Type="String" />
+            <Parameter Name="MenuID" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tbMember">
@@ -461,6 +502,21 @@
           <Property Type="String" Name="Description" Nullable="true" MaxLength="3000" />
           <Property Type="String" Name="CodeName" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="SortOrder" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="fnSYSUserGetInfo_Result">
+          <Property Type="String" Name="UserID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Nickname" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LoginIP" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="LoginTime" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="fnSYSUserGetAuthority_Result">
+          <Property Type="String" Name="AuthorityID" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="AuthorityName" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="fnSYSUserGetAuthorityGroup_Result">
+          <Property Type="String" Name="RoleID" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="100" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -649,6 +705,45 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="CodeName" ColumnName="CodeName" />
                 <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fnSYSUserGetInfo" FunctionName="MVC4BaseModel.Store.usp_SYSUser_GetInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVC4BaseModel.fnSYSUserGetInfo_Result">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+                <ScalarProperty Name="LoginIP" ColumnName="LoginIP" />
+                <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fnSYSUserReGetInfo" FunctionName="MVC4BaseModel.Store.usp_SYSUser_ReGetInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVC4BaseModel.fnSYSUserGetInfo_Result">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+                <ScalarProperty Name="LoginIP" ColumnName="LoginIP" />
+                <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fnSYSUserGetAuthority" FunctionName="MVC4BaseModel.Store.usp_SYSUser_GetAuthority">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVC4BaseModel.fnSYSUserGetAuthority_Result">
+                <ScalarProperty Name="AuthorityID" ColumnName="AuthorityID" />
+                <ScalarProperty Name="AuthorityName" ColumnName="AuthorityName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fnVisitLogInsert" FunctionName="MVC4BaseModel.Store.usp_VisitLog_Insert" />
+          <FunctionImportMapping FunctionImportName="fnSYSUserGetAuthorityGroup" FunctionName="MVC4BaseModel.Store.usp_SYSUser_GetAuthorityGroup">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVC4BaseModel.fnSYSUserGetAuthorityGroup_Result">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

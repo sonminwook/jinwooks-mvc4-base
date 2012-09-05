@@ -43,9 +43,17 @@ namespace MVC4Base.Controllers
 
             if (ModelState.IsValid)
             {
-                ObjectParameter totalCount = new ObjectParameter("TotalCount", typeof(Decimal));
-                ViewData["mainCodeModel"] = db.fnSYSCodeList(mainCode, string.Empty, string.Empty, titleYN, pagingModel.PageIndex, pagingModel.PageSize, pagingModel.Order, totalCount).ToList<fnSYSCodeList_Result>();
-                pagingModel.TotalCount = (Decimal)totalCount.Value;
+                ObjectParameter oTotalCount = new ObjectParameter("TotalCount", typeof(Decimal));
+                ViewData["mainCodeModel"] = db.fnSYSCodeList(
+                    mainCode,
+                    string.Empty, 
+                    string.Empty, 
+                    titleYN, 
+                    pagingModel.PageIndex, 
+                    pagingModel.PageSize, 
+                    pagingModel.Order, 
+                    oTotalCount).ToList<fnSYSCodeList_Result>();
+                pagingModel.TotalCount = (Decimal)oTotalCount.Value;
             }
             return View();
         }

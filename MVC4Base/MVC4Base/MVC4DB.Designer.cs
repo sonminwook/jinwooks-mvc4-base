@@ -422,6 +422,323 @@ namespace MVC4Base
     
             return base.ExecuteFunction<fnSYSCodeList_Result>("fnSYSCodeList", mainCodeParameter, subCodeParameter, codeNameParameter, titleYNParameter, pageIndexParameter, pageSizeParameter, orderParameter, totalCount);
         }
+    
+        /// <summary>
+        /// 사용 가능한 메타데이터 설명서가 없습니다.
+        /// </summary>
+        /// <param name="userID">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        /// <param name="userPassword">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        /// <param name="userIP">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        /// <param name="browserUserAgent">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        /// <param name="browserID">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        /// <param name="browserVer">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        /// <param name="platform">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        /// <param name="cookiesSupport">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        /// <param name="activeXSupport">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        /// <param name="processCode">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        public ObjectResult<fnSYSUserGetInfo_Result> fnSYSUserGetInfo(global::System.String userID, global::System.String userPassword, global::System.String userIP, global::System.String browserUserAgent, global::System.String browserID, global::System.String browserVer, global::System.String platform, global::System.String cookiesSupport, global::System.String activeXSupport, ObjectParameter processCode)
+        {
+            ObjectParameter userIDParameter;
+            if (userID != null)
+            {
+                userIDParameter = new ObjectParameter("UserID", userID);
+            }
+            else
+            {
+                userIDParameter = new ObjectParameter("UserID", typeof(global::System.String));
+            }
+    
+            ObjectParameter userPasswordParameter;
+            if (userPassword != null)
+            {
+                userPasswordParameter = new ObjectParameter("UserPassword", userPassword);
+            }
+            else
+            {
+                userPasswordParameter = new ObjectParameter("UserPassword", typeof(global::System.String));
+            }
+    
+            ObjectParameter userIPParameter;
+            if (userIP != null)
+            {
+                userIPParameter = new ObjectParameter("UserIP", userIP);
+            }
+            else
+            {
+                userIPParameter = new ObjectParameter("UserIP", typeof(global::System.String));
+            }
+    
+            ObjectParameter browserUserAgentParameter;
+            if (browserUserAgent != null)
+            {
+                browserUserAgentParameter = new ObjectParameter("BrowserUserAgent", browserUserAgent);
+            }
+            else
+            {
+                browserUserAgentParameter = new ObjectParameter("BrowserUserAgent", typeof(global::System.String));
+            }
+    
+            ObjectParameter browserIDParameter;
+            if (browserID != null)
+            {
+                browserIDParameter = new ObjectParameter("BrowserID", browserID);
+            }
+            else
+            {
+                browserIDParameter = new ObjectParameter("BrowserID", typeof(global::System.String));
+            }
+    
+            ObjectParameter browserVerParameter;
+            if (browserVer != null)
+            {
+                browserVerParameter = new ObjectParameter("BrowserVer", browserVer);
+            }
+            else
+            {
+                browserVerParameter = new ObjectParameter("BrowserVer", typeof(global::System.String));
+            }
+    
+            ObjectParameter platformParameter;
+            if (platform != null)
+            {
+                platformParameter = new ObjectParameter("Platform", platform);
+            }
+            else
+            {
+                platformParameter = new ObjectParameter("Platform", typeof(global::System.String));
+            }
+    
+            ObjectParameter cookiesSupportParameter;
+            if (cookiesSupport != null)
+            {
+                cookiesSupportParameter = new ObjectParameter("CookiesSupport", cookiesSupport);
+            }
+            else
+            {
+                cookiesSupportParameter = new ObjectParameter("CookiesSupport", typeof(global::System.String));
+            }
+    
+            ObjectParameter activeXSupportParameter;
+            if (activeXSupport != null)
+            {
+                activeXSupportParameter = new ObjectParameter("ActiveXSupport", activeXSupport);
+            }
+            else
+            {
+                activeXSupportParameter = new ObjectParameter("ActiveXSupport", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<fnSYSUserGetInfo_Result>("fnSYSUserGetInfo", userIDParameter, userPasswordParameter, userIPParameter, browserUserAgentParameter, browserIDParameter, browserVerParameter, platformParameter, cookiesSupportParameter, activeXSupportParameter, processCode);
+        }
+    
+        /// <summary>
+        /// 사용 가능한 메타데이터 설명서가 없습니다.
+        /// </summary>
+        /// <param name="userID">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        /// <param name="loginTime">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        /// <param name="userIP">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        /// <param name="processCode">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        public ObjectResult<fnSYSUserGetInfo_Result> fnSYSUserReGetInfo(global::System.String userID, global::System.String loginTime, global::System.String userIP, ObjectParameter processCode)
+        {
+            ObjectParameter userIDParameter;
+            if (userID != null)
+            {
+                userIDParameter = new ObjectParameter("UserID", userID);
+            }
+            else
+            {
+                userIDParameter = new ObjectParameter("UserID", typeof(global::System.String));
+            }
+    
+            ObjectParameter loginTimeParameter;
+            if (loginTime != null)
+            {
+                loginTimeParameter = new ObjectParameter("LoginTime", loginTime);
+            }
+            else
+            {
+                loginTimeParameter = new ObjectParameter("LoginTime", typeof(global::System.String));
+            }
+    
+            ObjectParameter userIPParameter;
+            if (userIP != null)
+            {
+                userIPParameter = new ObjectParameter("UserIP", userIP);
+            }
+            else
+            {
+                userIPParameter = new ObjectParameter("UserIP", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<fnSYSUserGetInfo_Result>("fnSYSUserReGetInfo", userIDParameter, loginTimeParameter, userIPParameter, processCode);
+        }
+    
+        /// <summary>
+        /// 사용 가능한 메타데이터 설명서가 없습니다.
+        /// </summary>
+        /// <param name="userID">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        /// <param name="menuID">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        public ObjectResult<fnSYSUserGetAuthority_Result> fnSYSUserGetAuthority(global::System.String userID, global::System.String menuID)
+        {
+            ObjectParameter userIDParameter;
+            if (userID != null)
+            {
+                userIDParameter = new ObjectParameter("UserID", userID);
+            }
+            else
+            {
+                userIDParameter = new ObjectParameter("UserID", typeof(global::System.String));
+            }
+    
+            ObjectParameter menuIDParameter;
+            if (menuID != null)
+            {
+                menuIDParameter = new ObjectParameter("MenuID", menuID);
+            }
+            else
+            {
+                menuIDParameter = new ObjectParameter("MenuID", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<fnSYSUserGetAuthority_Result>("fnSYSUserGetAuthority", userIDParameter, menuIDParameter);
+        }
+    
+        /// <summary>
+        /// 사용 가능한 메타데이터 설명서가 없습니다.
+        /// </summary>
+        /// <param name="menuID">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        /// <param name="iP">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        /// <param name="userID">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        /// <param name="browserUserAgent">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        /// <param name="browserID">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        /// <param name="browserVer">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        /// <param name="platform">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        /// <param name="cookiesSupport">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        /// <param name="activeXSupport">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        public int fnVisitLogInsert(global::System.String menuID, global::System.String iP, global::System.String userID, global::System.String browserUserAgent, global::System.String browserID, global::System.String browserVer, global::System.String platform, global::System.String cookiesSupport, global::System.String activeXSupport)
+        {
+            ObjectParameter menuIDParameter;
+            if (menuID != null)
+            {
+                menuIDParameter = new ObjectParameter("MenuID", menuID);
+            }
+            else
+            {
+                menuIDParameter = new ObjectParameter("MenuID", typeof(global::System.String));
+            }
+    
+            ObjectParameter iPParameter;
+            if (iP != null)
+            {
+                iPParameter = new ObjectParameter("IP", iP);
+            }
+            else
+            {
+                iPParameter = new ObjectParameter("IP", typeof(global::System.String));
+            }
+    
+            ObjectParameter userIDParameter;
+            if (userID != null)
+            {
+                userIDParameter = new ObjectParameter("UserID", userID);
+            }
+            else
+            {
+                userIDParameter = new ObjectParameter("UserID", typeof(global::System.String));
+            }
+    
+            ObjectParameter browserUserAgentParameter;
+            if (browserUserAgent != null)
+            {
+                browserUserAgentParameter = new ObjectParameter("BrowserUserAgent", browserUserAgent);
+            }
+            else
+            {
+                browserUserAgentParameter = new ObjectParameter("BrowserUserAgent", typeof(global::System.String));
+            }
+    
+            ObjectParameter browserIDParameter;
+            if (browserID != null)
+            {
+                browserIDParameter = new ObjectParameter("BrowserID", browserID);
+            }
+            else
+            {
+                browserIDParameter = new ObjectParameter("BrowserID", typeof(global::System.String));
+            }
+    
+            ObjectParameter browserVerParameter;
+            if (browserVer != null)
+            {
+                browserVerParameter = new ObjectParameter("BrowserVer", browserVer);
+            }
+            else
+            {
+                browserVerParameter = new ObjectParameter("BrowserVer", typeof(global::System.String));
+            }
+    
+            ObjectParameter platformParameter;
+            if (platform != null)
+            {
+                platformParameter = new ObjectParameter("Platform", platform);
+            }
+            else
+            {
+                platformParameter = new ObjectParameter("Platform", typeof(global::System.String));
+            }
+    
+            ObjectParameter cookiesSupportParameter;
+            if (cookiesSupport != null)
+            {
+                cookiesSupportParameter = new ObjectParameter("CookiesSupport", cookiesSupport);
+            }
+            else
+            {
+                cookiesSupportParameter = new ObjectParameter("CookiesSupport", typeof(global::System.String));
+            }
+    
+            ObjectParameter activeXSupportParameter;
+            if (activeXSupport != null)
+            {
+                activeXSupportParameter = new ObjectParameter("ActiveXSupport", activeXSupport);
+            }
+            else
+            {
+                activeXSupportParameter = new ObjectParameter("ActiveXSupport", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction("fnVisitLogInsert", menuIDParameter, iPParameter, userIDParameter, browserUserAgentParameter, browserIDParameter, browserVerParameter, platformParameter, cookiesSupportParameter, activeXSupportParameter);
+        }
+    
+        /// <summary>
+        /// 사용 가능한 메타데이터 설명서가 없습니다.
+        /// </summary>
+        /// <param name="userID">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        /// <param name="menuID">사용 가능한 메타데이터 설명서가 없습니다.</param>
+        public ObjectResult<fnSYSUserGetAuthorityGroup_Result> fnSYSUserGetAuthorityGroup(global::System.String userID, global::System.String menuID)
+        {
+            ObjectParameter userIDParameter;
+            if (userID != null)
+            {
+                userIDParameter = new ObjectParameter("UserID", userID);
+            }
+            else
+            {
+                userIDParameter = new ObjectParameter("UserID", typeof(global::System.String));
+            }
+    
+            ObjectParameter menuIDParameter;
+            if (menuID != null)
+            {
+                menuIDParameter = new ObjectParameter("MenuID", menuID);
+            }
+            else
+            {
+                menuIDParameter = new ObjectParameter("MenuID", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<fnSYSUserGetAuthorityGroup_Result>("fnSYSUserGetAuthorityGroup", userIDParameter, menuIDParameter);
+        }
 
         #endregion
 
@@ -3575,6 +3892,313 @@ namespace MVC4Base
         private Nullable<global::System.Int32> _SortOrder;
         partial void OnSortOrderChanging(Nullable<global::System.Int32> value);
         partial void OnSortOrderChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// 사용 가능한 메타데이터 설명서가 없습니다.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="MVC4BaseModel", Name="fnSYSUserGetAuthority_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class fnSYSUserGetAuthority_Result : ComplexObject
+    {
+        #region 팩터리 메서드
+    
+        /// <summary>
+        /// 새 fnSYSUserGetAuthority_Result 개체를 만듭니다.
+        /// </summary>
+        /// <param name="authorityID">AuthorityID 속성의 초기 값입니다.</param>
+        public static fnSYSUserGetAuthority_Result CreatefnSYSUserGetAuthority_Result(global::System.String authorityID)
+        {
+            fnSYSUserGetAuthority_Result fnSYSUserGetAuthority_Result = new fnSYSUserGetAuthority_Result();
+            fnSYSUserGetAuthority_Result.AuthorityID = authorityID;
+            return fnSYSUserGetAuthority_Result;
+        }
+
+        #endregion
+
+        #region 기본 속성
+    
+        /// <summary>
+        /// 사용 가능한 메타데이터 설명서가 없습니다.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String AuthorityID
+        {
+            get
+            {
+                return _AuthorityID;
+            }
+            set
+            {
+                OnAuthorityIDChanging(value);
+                ReportPropertyChanging("AuthorityID");
+                _AuthorityID = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("AuthorityID");
+                OnAuthorityIDChanged();
+            }
+        }
+        private global::System.String _AuthorityID;
+        partial void OnAuthorityIDChanging(global::System.String value);
+        partial void OnAuthorityIDChanged();
+    
+        /// <summary>
+        /// 사용 가능한 메타데이터 설명서가 없습니다.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AuthorityName
+        {
+            get
+            {
+                return _AuthorityName;
+            }
+            set
+            {
+                OnAuthorityNameChanging(value);
+                ReportPropertyChanging("AuthorityName");
+                _AuthorityName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AuthorityName");
+                OnAuthorityNameChanged();
+            }
+        }
+        private global::System.String _AuthorityName;
+        partial void OnAuthorityNameChanging(global::System.String value);
+        partial void OnAuthorityNameChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// 사용 가능한 메타데이터 설명서가 없습니다.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="MVC4BaseModel", Name="fnSYSUserGetAuthorityGroup_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class fnSYSUserGetAuthorityGroup_Result : ComplexObject
+    {
+        #region 팩터리 메서드
+    
+        /// <summary>
+        /// 새 fnSYSUserGetAuthorityGroup_Result 개체를 만듭니다.
+        /// </summary>
+        /// <param name="roleID">RoleID 속성의 초기 값입니다.</param>
+        public static fnSYSUserGetAuthorityGroup_Result CreatefnSYSUserGetAuthorityGroup_Result(global::System.String roleID)
+        {
+            fnSYSUserGetAuthorityGroup_Result fnSYSUserGetAuthorityGroup_Result = new fnSYSUserGetAuthorityGroup_Result();
+            fnSYSUserGetAuthorityGroup_Result.RoleID = roleID;
+            return fnSYSUserGetAuthorityGroup_Result;
+        }
+
+        #endregion
+
+        #region 기본 속성
+    
+        /// <summary>
+        /// 사용 가능한 메타데이터 설명서가 없습니다.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String RoleID
+        {
+            get
+            {
+                return _RoleID;
+            }
+            set
+            {
+                OnRoleIDChanging(value);
+                ReportPropertyChanging("RoleID");
+                _RoleID = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("RoleID");
+                OnRoleIDChanged();
+            }
+        }
+        private global::System.String _RoleID;
+        partial void OnRoleIDChanging(global::System.String value);
+        partial void OnRoleIDChanged();
+    
+        /// <summary>
+        /// 사용 가능한 메타데이터 설명서가 없습니다.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String RoleName
+        {
+            get
+            {
+                return _RoleName;
+            }
+            set
+            {
+                OnRoleNameChanging(value);
+                ReportPropertyChanging("RoleName");
+                _RoleName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("RoleName");
+                OnRoleNameChanged();
+            }
+        }
+        private global::System.String _RoleName;
+        partial void OnRoleNameChanging(global::System.String value);
+        partial void OnRoleNameChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// 사용 가능한 메타데이터 설명서가 없습니다.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="MVC4BaseModel", Name="fnSYSUserGetInfo_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class fnSYSUserGetInfo_Result : ComplexObject
+    {
+        #region 팩터리 메서드
+    
+        /// <summary>
+        /// 새 fnSYSUserGetInfo_Result 개체를 만듭니다.
+        /// </summary>
+        /// <param name="userID">UserID 속성의 초기 값입니다.</param>
+        /// <param name="loginIP">LoginIP 속성의 초기 값입니다.</param>
+        /// <param name="loginTime">LoginTime 속성의 초기 값입니다.</param>
+        public static fnSYSUserGetInfo_Result CreatefnSYSUserGetInfo_Result(global::System.String userID, global::System.String loginIP, global::System.String loginTime)
+        {
+            fnSYSUserGetInfo_Result fnSYSUserGetInfo_Result = new fnSYSUserGetInfo_Result();
+            fnSYSUserGetInfo_Result.UserID = userID;
+            fnSYSUserGetInfo_Result.LoginIP = loginIP;
+            fnSYSUserGetInfo_Result.LoginTime = loginTime;
+            return fnSYSUserGetInfo_Result;
+        }
+
+        #endregion
+
+        #region 기본 속성
+    
+        /// <summary>
+        /// 사용 가능한 메타데이터 설명서가 없습니다.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String UserID
+        {
+            get
+            {
+                return _UserID;
+            }
+            set
+            {
+                OnUserIDChanging(value);
+                ReportPropertyChanging("UserID");
+                _UserID = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("UserID");
+                OnUserIDChanged();
+            }
+        }
+        private global::System.String _UserID;
+        partial void OnUserIDChanging(global::System.String value);
+        partial void OnUserIDChanged();
+    
+        /// <summary>
+        /// 사용 가능한 메타데이터 설명서가 없습니다.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String UserName
+        {
+            get
+            {
+                return _UserName;
+            }
+            set
+            {
+                OnUserNameChanging(value);
+                ReportPropertyChanging("UserName");
+                _UserName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("UserName");
+                OnUserNameChanged();
+            }
+        }
+        private global::System.String _UserName;
+        partial void OnUserNameChanging(global::System.String value);
+        partial void OnUserNameChanged();
+    
+        /// <summary>
+        /// 사용 가능한 메타데이터 설명서가 없습니다.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Nickname
+        {
+            get
+            {
+                return _Nickname;
+            }
+            set
+            {
+                OnNicknameChanging(value);
+                ReportPropertyChanging("Nickname");
+                _Nickname = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Nickname");
+                OnNicknameChanged();
+            }
+        }
+        private global::System.String _Nickname;
+        partial void OnNicknameChanging(global::System.String value);
+        partial void OnNicknameChanged();
+    
+        /// <summary>
+        /// 사용 가능한 메타데이터 설명서가 없습니다.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String LoginIP
+        {
+            get
+            {
+                return _LoginIP;
+            }
+            set
+            {
+                OnLoginIPChanging(value);
+                ReportPropertyChanging("LoginIP");
+                _LoginIP = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("LoginIP");
+                OnLoginIPChanged();
+            }
+        }
+        private global::System.String _LoginIP;
+        partial void OnLoginIPChanging(global::System.String value);
+        partial void OnLoginIPChanged();
+    
+        /// <summary>
+        /// 사용 가능한 메타데이터 설명서가 없습니다.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String LoginTime
+        {
+            get
+            {
+                return _LoginTime;
+            }
+            set
+            {
+                OnLoginTimeChanging(value);
+                ReportPropertyChanging("LoginTime");
+                _LoginTime = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("LoginTime");
+                OnLoginTimeChanged();
+            }
+        }
+        private global::System.String _LoginTime;
+        partial void OnLoginTimeChanging(global::System.String value);
+        partial void OnLoginTimeChanged();
 
         #endregion
 

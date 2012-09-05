@@ -2,6 +2,4 @@
 <objects xmlns="http://www.springframework.net">
   <object id="MVC4BaseEntities" type="MVC4Base.MVC4BaseEntities" singleton="false">
   </object>
-  <object id="UserInfoDao" type="MVC4Base.Dao.UserInfoDao, MVC4Base" singleton="false">
-  </object>
 </objects>
