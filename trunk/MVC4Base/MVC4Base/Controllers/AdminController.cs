@@ -31,13 +31,19 @@ namespace MVC4Base.Controllers
         /// 메인코드 관리 목록 /Admin/MainCodeList
         /// </summary>
         /// <returns></returns>
-        public ActionResult MainCodeList(CodeSearchModels model)
+        public ActionResult MainCodeList(PagingModel pagingModel
+            , string titleYN
+            , string mainCode)
         {
+            ViewData.Add("pagingModel", pagingModel);
+            ViewData.Add("titleYN", titleYN);
+            ViewData.Add("mainCode", mainCode);
+
             if (ModelState.IsValid)
             {
-                ViewData["DataSet"] = codeService.GetCodeList(model);
+                ViewData["DataSet"] = codeService.GetCodeList(pagingModel, titleYN, mainCode, string.Empty, string.Empty);
             }
-            return View(model);
+            return View();
         }
 
         /// <summary>
