@@ -1,0 +1,68 @@
+﻿@{
+    MVC4Base.Models.PagingModel pagingModel = (MVC4Base.Models.PagingModel)ViewData["pagingModel"];
+}
+    <!--페이지 리스트 버튼-->
+    <div class="list_btn">
+        <div id="pglist" style="text-align:center">
+            @Html.Hidden("pagingModel.PageIndex", pagingModel.PageIndex, new { id = "hhdCurrentPageIndex" })
+            <table style="width:100%">
+                <tbody>
+                    <tr>
+                        <td style="padding-bottom: 2px; vertical-align: bottom; width:25%; text-align:left;">
+                            <span style="font-family: 굴림; font-size: 9pt">총 @string.Format("{0:###,##0}", pagingModel.TotalCount) 건</span>
+                            <span style="font-family: 굴림; font-size: 9pt">&nbsp;(@(pagingModel.PageIndex)/@(pagingModel.PageCount.ToString()))</span>
+                        </td>
+                        <td style="text-align:center">
+                            @if (pagingModel.PageIndex > 1)
+                            { 
+                            <input style="margin-bottom: -3px" src="/Content/img/board/btn_front.gif" type="image" 
+                            title="처음" onclick="$('#hhdCurrentPageIndex').attr('value','1')" />
+                            <span>&nbsp;</span>
+                            <input style="margin-bottom: -3px" class="aspnetdisabled" src="/Content/img/board/btn_pre.gif" type="image" 
+                            title="이전 10페이지" onclick="$('#hhdCurrentPageIndex').attr('value','@pagingModel.PrevStart')" />
+                            <span style="color: #d7d7d7">&nbsp;|&nbsp;</span>
+                            }
+                            else
+                            {
+                            <input style="margin-bottom: -3px" src="/Content/img/board/btn_front.gif" type="image" title="처음"/>
+                            <span>&nbsp;</span>
+                            <input style="margin-bottom: -3px" class="aspnetdisabled" src="/Content/img/board/btn_pre.gif" type="image" title="이전" />
+                            <span style="color: #d7d7d7">&nbsp;|&nbsp;</span>
+                            }
+                            @for (Decimal i = pagingModel.PageStart; i <= pagingModel.PageEnd; i++)
+                            {   
+                            <a style="font-family: 굴림; color: @(i == pagingModel.PageIndex ? "#f98217" : "black"); font-size: 9pt; font-weight: @(i == pagingModel.PageIndex ? "bold" : "normal"); text-decoration: none;" 
+                            href="#" onclick="javascript:$('#hhdCurrentPageIndex').attr('value','@i');document.getElementById('searchForm').submit();return false;">@i</a>
+                            <span style="color: #d7d7d7">&nbsp;|&nbsp;</span>
+                            }
+                            @if (pagingModel.PageIndex != pagingModel.PageCount)
+                            { 
+                            <input style="margin-bottom: -3px" class="aspnetdisabled" src="/Content/img/board/btn_next.gif" type="image"
+                            title="다음 10 페이지" onclick="$('#hhdCurrentPageIndex').attr('value','@pagingModel.NextStart')" />
+                            <span>&nbsp;</span>
+                            <input style="margin-bottom: -3px" src="/Content/img/board/btn_end.gif" type="image" 
+                            title="마지막" onclick="$('#hhdCurrentPageIndex').attr('value','@pagingModel.PageCount')" />
+                            <span>&nbsp;</span>
+                            }
+                            else
+                            {
+                            <input style="margin-bottom: -3px" class="aspnetdisabled" src="/Content/img/board/btn_next.gif" type="image" title="다음" />
+                            <span>&nbsp;</span>
+                            <input style="margin-bottom: -3px" src="/Content/img/board/btn_end.gif" type="image" title="마지막" />
+                            <span>&nbsp;</span>
+                            }
+                        </td>
+                        <td style="width:25%">&nbsp;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="btn_right">
+            @Html.DropDownList("pagingModel.PageSize", new List<SelectListItem>(){
+                new SelectListItem(){Text="10", Value="10"},
+                new SelectListItem(){Text="30", Value="30"},
+                new SelectListItem(){Text="50", Value="50"}
+            }, new { id = "ddlListPerPage", onchange = "$('#hhdCurrentPageIndex').attr('value','1');document.getElementById('searchForm').submit();return false;" })
+        </div>
+    </div>
+    <!--// 페이지 리스트 버튼 -->

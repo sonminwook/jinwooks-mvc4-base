@@ -13,20 +13,20 @@ namespace MVC4Base.Models
             PageIndex = 1;
             PageSize = 10;
             Order = string.Empty;
-            TotlaCount = 0;
+            TotalCount = 0;
         }
         
         public Decimal PageIndex { get; set; }
         public Decimal PageSize { get; set; }
         public string Order { get; set; }
-        public Decimal TotlaCount { get; set; }
+        public Decimal TotalCount { get; set; }
 
         /// <summary>
         /// 페이징 갯수
         /// </summary>
         public Decimal PageCount {
             get {
-                Decimal v = Math.Ceiling((Decimal)TotlaCount / PageSize);
+                Decimal v = Math.Ceiling((Decimal)TotalCount / PageSize);
                 return v == 0 ? 1 : v;
             }
         }

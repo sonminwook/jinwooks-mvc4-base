@@ -11,12 +11,6 @@
 
   <!-- 회원 관리 관련 -->
   <object id="MemberService" type="MVC4Base.Services.MemberService, MVC4Base" singleton="false">
-    <property name="memberDao" ref="MemberDao"/>
-  </object>
-
-  <!-- 코드 관리 관련 -->
-  <object id="CodeService" type="MVC4Base.Services.CodeService, MVC4Base" singleton="false">
-    <property name="codeDao" ref="CodeDao"/>
   </object>
   
 </objects>

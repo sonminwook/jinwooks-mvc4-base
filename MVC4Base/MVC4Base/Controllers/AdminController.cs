@@ -7,13 +7,14 @@ using MVC4Base.Filters;
 using MVC4Base.Services;
 using MVC4Base.Models;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Objects;
 
 namespace MVC4Base.Controllers
 {
     public class AdminController : Controller
     {
         private IAuthService authService = null;
-        private ICodeService codeService = null;
+        private MVC4BaseEntities db = null;
 
         /// <summary>
         /// 관리자 메인페이지 /Admin/Index
@@ -42,7 +43,9 @@ namespace MVC4Base.Controllers
 
             if (ModelState.IsValid)
             {
-                ViewData["DataSet"] = codeService.GetCodeList(pagingModel, titleYN, mainCode, string.Empty, string.Empty);
+                ObjectParameter totalCount = new ObjectParameter("TotalCount", typeof(Decimal));
+                ViewData["mainCodeModel"] = db.fnSYSCodeList(mainCode, string.Empty, string.Empty, titleYN, pagingModel.PageIndex, pagingModel.PageSize, pagingModel.Order, totalCount).ToList<fnSYSCodeList_Result>();
+                pagingModel.TotalCount = (Decimal)totalCount.Value;
             }
             return View();
         }
