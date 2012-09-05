@@ -208,7 +208,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\CodeModels.cs" />
     <Compile Include="Models\PagingModel.cs" />
     <Compile Include="MVC4DB.Designer.cs">
       <AutoGen>True</AutoGen>
