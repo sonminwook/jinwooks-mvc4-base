@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using MVC4Base.Filters;
 using MVC4Base.Services;
 using MVC4Base.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace MVC4Base.Controllers
 {
@@ -31,9 +32,9 @@ namespace MVC4Base.Controllers
         /// 메인코드 관리 목록 /Admin/MainCodeList
         /// </summary>
         /// <returns></returns>
-        public ActionResult MainCodeList(PagingModel pagingModel
-            , string titleYN
-            , string mainCode)
+        public ActionResult MainCodeList(PagingModel pagingModel, 
+            string titleYN ,
+            string mainCode)
         {
             ViewData.Add("pagingModel", pagingModel);
             ViewData.Add("titleYN", titleYN);
