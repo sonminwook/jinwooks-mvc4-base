@@ -207,6 +207,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interceptor\TimeCheckInterceptor.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\PagingModel.cs" />
     <Compile Include="MVC4DB.Designer.cs">
@@ -235,6 +236,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Config\Filters.xml" />
+    <Content Include="Config\Aop.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\css\board.css" />
     <Content Include="Content\css\default.css" />
     <Content Include="Content\css\popup.css" />
