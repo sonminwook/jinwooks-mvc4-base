@@ -33,7 +33,6 @@ namespace MVC4Base.Controllers
         /// 메인코드 관리 목록 /Admin/MainCodeList
         /// </summary>
         /// <returns></returns>
-        [Transaction]
         public ActionResult MainCodeList(PagingModel pagingModel, 
             string titleYN ,
             string mainCode ,
