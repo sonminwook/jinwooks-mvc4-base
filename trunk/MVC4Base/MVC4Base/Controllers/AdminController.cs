@@ -6,8 +6,8 @@ using System.Web.Mvc;
 using MVC4Base.Filters;
 using MVC4Base.Services;
 using MVC4Base.Models;
-using System.ComponentModel.DataAnnotations;
 using System.Data.Objects;
+using Spring.Transaction.Interceptor;
 
 namespace MVC4Base.Controllers
 {
@@ -33,6 +33,7 @@ namespace MVC4Base.Controllers
         /// 메인코드 관리 목록 /Admin/MainCodeList
         /// </summary>
         /// <returns></returns>
+        [Transaction]
         public ActionResult MainCodeList(PagingModel pagingModel, 
             string titleYN ,
             string mainCode ,
