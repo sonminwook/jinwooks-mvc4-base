@@ -64,6 +64,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Spring.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Spring.Data, Version=2.0.0.40000, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Spring.Data.dll</HintPath>
+    </Reference>
     <Reference Include="Spring.Web, Version=2.0.0.40000, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Spring.Web.dll</HintPath>
@@ -207,7 +211,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Interceptor\TimeCheckInterceptor.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\PagingModel.cs" />
     <Compile Include="MVC4DB.Designer.cs">
@@ -228,9 +231,6 @@
     <Content Include="App_Data\MVC4Base.mdf" />
     <Content Include="App_Data\MVC4Base_log.LDF">
       <DependentUpon>MVC4Base.mdf</DependentUpon>
-    </Content>
-    <Content Include="Config\Dao.xml">
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Config\Services.xml">
       <SubType>Designer</SubType>
@@ -697,6 +697,10 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MVC4DB.Designer.cs</LastGenOutput>
     </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dao\" />
+    <Folder Include="Interceptor\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
