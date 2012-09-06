@@ -216,18 +216,18 @@
                 @Html.TextBox("sysCode.MainCode", sysCode.MainCode,
                             new { 
                                 Class = "input_border",
-                                maxlength = "20"
+                                maxlength = "20",
+                                Readonly = (string.IsNullOrEmpty(sysCode.MainCode) ? "false" : "true")
                             })
             </td>
             <th>
                 @Html.Label("sysCode.UseYN", "사용여부")
             </th>
             <td>
-                @Html.TextBox("sysCode.UseYN", sysCode.UseYN,
-                            new { 
-                                Class = "input_border",
-                                maxlength = "1"
-                            })
+                @Html.RadioButton("sysCode.UseYN", "Y", sysCode.UseYN == "Y", new { id="UseYN_Y"})
+                @Html.Label("UseYN_Y", "사용")
+                @Html.RadioButton("sysCode.UseYN", "N", sysCode.UseYN == "N", new { id="UseYN_N"})
+                @Html.Label("UseYN_N", "미사용")
             </td>
         </tr>
         <tr>
