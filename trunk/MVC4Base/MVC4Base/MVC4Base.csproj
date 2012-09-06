@@ -239,6 +239,9 @@
     <Content Include="Config\Aop.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Config\Dao.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\css\board.css" />
     <Content Include="Content\css\default.css" />
     <Content Include="Content\css\popup.css" />
@@ -699,7 +702,6 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Dao\" />
     <Folder Include="Interceptor\" />
   </ItemGroup>
   <PropertyGroup>

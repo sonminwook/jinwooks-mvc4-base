@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:tx="http://www.springframework.net/tx"
+         xmlns:db="http://www.springframework.net/database" >
+
+  <!-- 데이터베이스 연결 정보-->
+  <!--
+    <db:provider id="MVC4BaseEntitiesProvider"
+    provider="System.Data.SqlClient"
+    connectionString="metadata=res://*/MVC4DB.csdl|res://*/MVC4DB.ssdl|res://*/MVC4DB.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=.\SQLEXPRESS;attachdbfilename=|DataDirectory|\MVC4Base.mdf;integrated security=True;user instance=True;multipleactiveresultsets=True;App=EntityFramework&quot;" 
+    providerName="System.Data.EntityClient" />
+
+    -->
+  <!-- 트랜잭션 관리자-->
+  <!--
+    <object id="transactionManager"
+            type="Spring.Data.TxScopeTransactionManager, Spring.Data">
+      <property name="DbProvider" ref="MVC4BaseEntitiesProvider"/>
+    </object>-->
+
+  <!-- DAO Object-->
+  <object id="MVC4BaseEntities" type="MVC4Base.MVC4BaseEntities" singleton="false">
+  </object>
+
+  <!-- Attribute로 트랜잭션 지정-->
+  <!--
+    <tx:attribute-driven transaction-manager="transactionManager"/>-->
+</objects>
